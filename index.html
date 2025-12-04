@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Rohit ki Notes</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<button id="toggleMode">🌙</button>
+<!-- THEME TOGGLE -->
+<button id="themeToggle" class="theme-btn">🌙</button>
 
+<!-- NAVBAR -->
 <nav class="nav">
-  <img src="profile.jpg" class="profile-pic">
-  <h1>Rohit ki Notes</h1>
+  <img src="profile.jpg" class="profile-pic" alt="Profile">
+  <h2 class="brand">Rohit ki Notes</h2>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="class.html">Classes</a></li>
+  </ul>
 </nav>
 
-<div class="hero">
-  <h2>Welcome to Rohit ki Notes</h2>
-  <p>POWER ∝ WORK</p>
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1>Welcome to Rohit ki Notes</h1>
+  <p class="quote">POWER ∝ WORK</p>
+
   <a href="class.html" class="btn">Start Learning</a>
-</div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about" id="about">
+  <h2>About</h2>
+  <p class="motive">“We Are The Hardest Worker In The Room.”</p>
+</section>
 
 <script src="script.js"></script>
 </body>
