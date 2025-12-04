@@ -7,60 +7,72 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <nav class="nav">
     <div class="brand">
-      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
+      <div class="profile-logo">⚛</div>
       <div class="brand-text">
         <div class="brand-title">Rohit ki Notes</div>
         <div class="brand-sub">Personal Study Hub</div>
       </div>
     </div>
+
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="class.html">Classes</a></li>
-      <li><a href="subject.html">Subjects</a></li>
-      <li><a href="chapter.html">Chapters</a></li>
+      <li><a href="#about-section">About</a></li>
     </ul>
   </nav>
 
+  <!-- HERO SECTION -->
   <header class="hero">
     <div class="hero-inner">
       <h1>Welcome to <span class="accent">Rohit ki Notes</span></h1>
-      <p class="lead">Class-wise, Subject-wise aur Chapter-wise notes — modern motion design ke saath.</p>
+      <p class="lead">
+        Class-wise organized notes — simple, fast & modern motion experience.
+      </p>
+
       <div class="cta-row">
         <a class="btn" href="class.html">Start Learning</a>
-        <a class="btn btn-ghost" href="#about">About</a>
+        <a class="btn btn-ghost" href="#about-section">About</a>
       </div>
     </div>
-    <div class="hero-motion" aria-hidden="true"></div>
+    <div class="hero-motion"></div>
   </header>
 
-  <main>
-    <section id="about" class="section">
-      <h2 class="section-title">About</h2>
-      <p>Ye personal learning site Rohit ke notes ke liye hai — simple layout, fast navigation, aur smooth motion animations.</p>
-    </section>
+  <!-- ONLY CLASS SECTION (Subject & Chapter removed) -->
+  <section class="section">
+    <h2 class="section-title">Available Classes</h2>
 
-    <section class="features section">
-      <div class="card">
-        <h3>Class-wise</h3>
-        <p>Class 6 se 12 tak organized notes.</p>
-      </div>
-      <div class="card">
-        <h3>Subject-wise</h3>
-        <p>Maths, Physics, Chemistry, English, Hindi, SST.</p>
-      </div>
-      <div class="card">
-        <h3>Chapter-wise</h3>
-        <p>Har chapter ka summary aur important points.</p>
-      </div>
-    </section>
-  </main>
+    <div class="grid">
+      <a class="card-link" href="class.html">Class 6</a>
+      <a class="card-link" href="class.html">Class 7</a>
+      <a class="card-link" href="class.html">Class 8</a>
+      <a class="card-link" href="class.html">Class 9</a>
+      <a class="card-link" href="class.html">Class 10</a>
+      <a class="card-link" href="class.html">Class 11</a>
+      <a class="card-link" href="class.html">Class 12</a>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION — SCROLL TARGET -->
+  <section id="about-section" class="section about-box">
+    <h2 class="section-title">About & Motivation</h2>
+
+    <p class="motivation">
+      <strong>Power is proportional to work — jitna work karenge utna power milegi.</strong>
+    </p>
+
+    <p class="tagline">
+      <strong>We are the hardest worker in the room.</strong>
+    </p>
+  </section>
 
   <footer class="footer">
     <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
   </footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
