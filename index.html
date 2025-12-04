@@ -2,79 +2,72 @@
 <html lang="hi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rohit ki Notes — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="physics-bg" aria-hidden="true"></div>
 
-  <nav class="nav">
-    <div class="brand">
-      <div class="profile-logo">⚛</div>
-      <div class="brand-text">
-        <div class="brand-title">Rohit ki Notes</div>
-        <div class="brand-sub">Personal Study Hub</div>
-      </div>
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="brand">
+    <div class="profile-logo">⚛</div>
+    <div class="brand-text">
+      <div class="brand-title">Rohit ki Notes</div>
+      <div class="brand-sub">Personal Study Hub</div>
     </div>
+  </div>
 
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="class.html">Classes</a></li>
-      <li><a href="subject.html">Subjects</a></li>
-      <li><a href="chapter.html">Chapters</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="#about-section">About</a></li>
-    </ul>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="class.html">Classes</a></li>
+    <li><a href="#about-section">About</a></li>
+  </ul>
+</nav>
 
-    <div class="nav-actions">
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+<!-- HERO SECTION -->
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Welcome to <span class="accent">Rohit ki Notes</span></h1>
+    <p class="lead">Well-organized notes with clean UI & modern animations.</p>
+
+    <div class="cta-row">
+      <a class="btn" href="class.html">Start Learning</a>
+      <a class="btn btn-ghost" href="#about-section">About</a>
     </div>
-  </nav>
+  </div>
+  <div class="hero-motion"></div>
+</header>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <h1>Welcome to <span class="accent">Rohit ki Notes</span></h1>
-      <p class="lead">Class-wise organized notes — simple, fast & modern motion experience.</p>
+<!-- ONLY CLASS SECTION -->
+<section class="section">
+  <h2 class="section-title">Available Classes</h2>
 
-      <div class="cta-row">
-        <a class="btn" href="class.html">Start Learning</a>
-        <a class="btn btn-ghost" href="#about-section">About</a>
-      </div>
-    </div>
-    <div class="hero-motion"></div>
-  </header>
+  <div class="grid">
+    <a class="card-link" href="class.html">Class 6</a>
+    <a class="card-link" href="class.html">Class 7</a>
+    <a class="card-link" href="class.html">Class 8</a>
+    <a class="card-link" href="class.html">Class 9</a>
+    <a class="card-link" href="class.html">Class 10</a>
+    <a class="card-link" href="class.html">Class 11</a>
+    <a class="card-link" href="class.html">Class 12</a>
+  </div>
+</section>
 
-  <!-- Only Class section on home (as requested) -->
-  <section class="section">
-    <h2 class="section-title">Available Classes</h2>
-    <div class="grid">
-      <a class="card-link" href="class.html">Class 6</a>
-      <a class="card-link" href="class.html">Class 7</a>
-      <a class="card-link" href="class.html">Class 8</a>
-      <a class="card-link" href="class.html">Class 9</a>
-      <a class="card-link" href="class.html">Class 10</a>
-      <a class="card-link" href="class.html">Class 11</a>
-      <a class="card-link" href="class.html">Class 12</a>
-    </div>
-  </section>
+<!-- ABOUT SECTION -->
+<section id="about-section" class="section about-box">
+  <h2 class="section-title">About & Motivation</h2>
 
-  <!-- About / Motivational Section -->
-  <section id="about-section" class="section about-box">
-    <h2 class="section-title">About & Motivation</h2>
+  <p class="motivation"><strong>POWER ∝ WORK</strong></p>
 
-    <p class="motivation">
-      <strong>Power is proportional to work — jitna work karenge utna power milegi.</strong>
-    </p>
+  <p class="tagline"><strong>We are the hardest worker in the room.</strong></p>
+</section>
 
-    <p class="tagline">We are the hardest worker in the room.</p>
-  </section>
+<footer class="footer">
+  <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
+</footer>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
-  </footer>
+<script src="script.js"></script>
 
-  <script src="script.js"></script>
 </body>
 </html>
