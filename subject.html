@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subjects – Rohit ki Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="physics-bg" aria-hidden="true"></div>
 
-<!-- NAVBAR -->
-<nav class="nav">
+  <nav class="nav">
     <div class="brand">
         <div class="profile-logo">⚛</div>
         <div class="brand-text">
@@ -22,35 +23,33 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="class.html">Classes</a></li>
         <li><a href="subject.html" class="active">Subjects</a></li>
+        <li><a href="notes.html">Notes</a></li>
     </ul>
-</nav>
 
-<!-- SUBJECT PAGE -->
-<section class="section">
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <section class="section">
     <h1 class="section-title">Select Subject</h1>
 
     <div class="grid">
-
-        <a href="chapter.html" class="subject-card">Physics</a>
-        <a href="chapter.html" class="subject-card">Chemistry</a>
-        <a href="chapter.html" class="subject-card">Biology</a>
-        <a href="chapter.html" class="subject-card">Maths</a>
-
-        <!-- Sanskrit Section Added -->
-        <a href="chapter.html" class="subject-card">Sanskrit</a>
-
-        <a href="chapter.html" class="subject-card">History</a>
-        <a href="chapter.html" class="subject-card">Geography</a>
-        <a href="chapter.html" class="subject-card">English</a>
-
+        <a href="chapter.html?sub=physics" class="subject-card">Physics</a>
+        <a href="chapter.html?sub=chemistry" class="subject-card">Chemistry</a>
+        <a href="chapter.html?sub=biology" class="subject-card">Biology</a>
+        <a href="chapter.html?sub=maths" class="subject-card">Maths</a>
+        <a href="chapter.html?sub=sanskrit" class="subject-card">Sanskrit</a>
+        <a href="chapter.html?sub=history" class="subject-card">History</a>
+        <a href="chapter.html?sub=geography" class="subject-card">Geography</a>
+        <a href="chapter.html?sub=english" class="subject-card">English</a>
     </div>
-</section>
+  </section>
 
-<footer class="footer">
-    <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
-</footer>
+  <footer class="footer">
+    <p>© <span id="year3"></span> Rohit ki Notes</p>
+  </footer>
 
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
