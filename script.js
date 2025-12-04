@@ -1,26 +1,12 @@
-/* PAGE NAVIGATION */
-function goto(page) {
-    window.location.href = page;
+function goto(pg) {
+    window.location.href = pg;
 }
 
-/* DARK / LIGHT MODE */
 function toggleMode() {
     document.body.classList.toggle("light");
 }
 
-/* SEARCH CHAPTERS */
-function searchChapter() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let boxes = document.getElementsByClassName("box");
-
-    for (let b of boxes) {
-        let text = b.innerText.toLowerCase();
-        b.style.display = text.includes(input) ? "block" : "none";
-    }
-}
-
-/* STUDY TIMER */
-let timer, sec = 0;
+let sec = 0, timer;
 
 function openTimer() {
     document.getElementById("timerBox").style.display = "block";
@@ -30,7 +16,7 @@ function startTimer() {
     clearInterval(timer);
     timer = setInterval(()=>{
         sec++;
-        document.getElementById("time").innerText = sec + " sec";
+        document.getElementById("time").innerText = sec+" sec";
     },1000);
 }
 
