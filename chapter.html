@@ -1,22 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <title>Chapters</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rohit ki Notes — Chapters</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="nav">
+    <div class="brand">
+      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
+      <div class="brand-text">
+        <div class="brand-title">Rohit ki Notes</div>
+        <div class="brand-sub">Chapters</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="class.html">Classes</a></li>
+      <li><a href="subject.html">Subjects</a></li>
+      <li><a href="chapter.html" class="active">Chapters</a></li>
+    </ul>
+  </nav>
 
-<h2 class="page-title">Chapters</h2>
+  <main class="page">
+    <h1 class="page-heading">Chapters (Example)</h1>
+    <div class="grid">
+      <div class="chapter-card">
+        <h3>Chapter 1 — Motion</h3>
+        <p>Short notes and key formulas related to motion.</p>
+        <a class="small-btn" href="#">Open</a>
+      </div>
 
-<div class="grid">
-  <div class="card">Chapter 1</div>
-  <div class="card">Chapter 2</div>
-  <div class="card">Chapter 3</div>
-  <div class="card">Chapter 4</div>
-  <div class="card">Chapter 5</div>
-</div>
+      <div class="chapter-card">
+        <h3>Chapter 2 — Force and Laws</h3>
+        <p>Newton's laws, examples and solved problems.</p>
+        <a class="small-btn" href="#">Open</a>
+      </div>
 
-<script src="script.js"></script>
+      <div class="chapter-card">
+        <h3>Chapter 3 — Work & Energy</h3>
+        <p>Concepts, equations and practical examples.</p>
+        <a class="small-btn" href="#">Open</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year4"></span> Rohit ki Notes</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
