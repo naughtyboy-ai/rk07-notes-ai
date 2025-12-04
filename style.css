@@ -12,6 +12,23 @@
   font-weight: 900;
   box-shadow: 0 8px 26px rgba(80, 120, 255, 0.4);
 }
+.subject-box {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.subject-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.chapter-ul li a {
+    font-size: 1rem;
+    display: block;
+    padding: 6px 0;
+}
 
 /* Motivation Section */
 .about-box {
