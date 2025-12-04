@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Physics Chapters</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 class="title">Physics Chapters</h1>
+
+<input type="text" id="search" placeholder="Search Chapter..." onkeyup="searchChapter()">
+
+<div class="chapter-box" id="chapterList">
+  <a class="chapter" href="notes.html">Chapter 1 – Motion</a>
+  <a class="chapter" href="notes.html">Chapter 2 – Force</a>
+  <a class="chapter" href="notes.html">Chapter 3 – Work, Energy & Power</a>
+  <a class="chapter" href="notes.html">Chapter 4 – Gravitation</a>
+</div>
+
+<script>
+function searchChapter() {
+  let input = document.getElementById("search").value.toLowerCase();
+  let chapters = document.getElementById("chapterList").getElementsByTagName("a");
+  for (let i = 0; i < chapters.length; i++) {
+    let txt = chapters[i].innerText.toLowerCase();
+    chapters[i].style.display = txt.includes(input) ? "" : "none";
+  }
+}
+</script>
+
+</body>
+</html>
