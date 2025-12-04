@@ -1,54 +1,21 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapters – Rohit ki Notes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<title>Chapters</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="nav">
-  <div class="brand">
-    <div class="profile-logo">⚛</div>
-    <div class="brand-text">
-      <div class="brand-title">Rohit ki Notes</div>
-      <div class="brand-sub">Chapters</div>
-    </div>
-  </div>
+<h1 class="title">Chapters</h1>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="class.html">Classes</a></li>
-    <li><a href="subject.html">Subjects</a></li>
-    <li><a href="chapter.html" class="active">Chapters</a></li>
-    <li><a href="notes.html">Notes</a></li>
-  </ul>
+<input id="searchBox" type="text" placeholder="Search Chapter...">
 
-  <div class="nav-actions">
-    <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
-  </div>
-</nav>
-
-<main class="page section">
-  <h1 id="chapterHeading" class="page-heading">Chapters</h1>
-
-  <!-- Search box (only page with search) -->
-  <div class="search-row">
-    <input id="chapterSearch" class="search-input" type="search" placeholder="Search chapters (e.g., motion, परिचय, शब्दरूप...)">
-  </div>
-
-  <div id="chaptersList" class="icon-list">
-    <!-- This list is populated by script.js based on ?sub= parameter.
-         Default (no sub) shows general sample chapters (excluding Sanskrit).
-         If sub=sanskrit, script will populate Sanskrit chapters only. -->
-  </div>
-</main>
-
-<footer class="footer">
-  <p>© <span id="year4"></span> Rohit ki Notes</p>
-</footer>
+<ul id="chapterList">
+  <li><a href="notes.pdf">Chapter 1</a></li>
+  <li><a href="notes.pdf">Chapter 2</a></li>
+  <li><a href="notes.pdf">Chapter 3</a></li>
+  <li><a href="notes.pdf">Chapter 4</a></li>
+</ul>
 
 <script src="script.js"></script>
 </body>
