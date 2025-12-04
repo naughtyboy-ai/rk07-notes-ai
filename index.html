@@ -1,18 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <title>Personal Study Site</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rohit ki Notes — Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="nav">
+    <div class="brand">
+      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
+      <div class="brand-text">
+        <div class="brand-title">Rohit ki Notes</div>
+        <div class="brand-sub">Personal Study Hub</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="class.html">Classes</a></li>
+      <li><a href="subject.html">Subjects</a></li>
+      <li><a href="chapter.html">Chapters</a></li>
+    </ul>
+  </nav>
 
-<header class="hero">
-  <h1 class="title">Welcome to My Study Hub</h1>
-  <p class="subtitle">All Classes • All Subjects • All Chapters</p>
-  <a href="class.html" class="btn">Get Started</a>
-</header>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Welcome to <span class="accent">Rohit ki Notes</span></h1>
+      <p class="lead">Class-wise, Subject-wise aur Chapter-wise notes — modern motion design ke saath.</p>
+      <div class="cta-row">
+        <a class="btn" href="class.html">Start Learning</a>
+        <a class="btn btn-ghost" href="#about">About</a>
+      </div>
+    </div>
+    <div class="hero-motion" aria-hidden="true"></div>
+  </header>
 
-<script src="script.js"></script>
+  <main>
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <p>Ye personal learning site Rohit ke notes ke liye hai — simple layout, fast navigation, aur smooth motion animations.</p>
+    </section>
+
+    <section class="features section">
+      <div class="card">
+        <h3>Class-wise</h3>
+        <p>Class 6 se 12 tak organized notes.</p>
+      </div>
+      <div class="card">
+        <h3>Subject-wise</h3>
+        <p>Maths, Physics, Chemistry, English, Hindi, SST.</p>
+      </div>
+      <div class="card">
+        <h3>Chapter-wise</h3>
+        <p>Har chapter ka summary aur important points.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
