@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Chemistry Chapters</title>
+<link rel="stylesheet" href="style.css"></head><body>
+
+<h1 class="title">Chemistry Chapters</h1>
+<input type="text" id="search" placeholder="Search Chapter..." onkeyup="searchChapter()">
+
+<div class="chapter-box" id="chapterList">
+  <a class="chapter" href="notes.html">Chapter 1 – Matter</a>
+  <a class="chapter" href="notes.html">Chapter 2 – Atoms</a>
+  <a class="chapter" href="notes.html">Chapter 3 – Compounds</a>
+</div>
+
+<script>
+function searchChapter(){let i,input=document.getElementById("search").value.toLowerCase(),c=document.getElementById("chapterList").getElementsByTagName("a");for(i=0;i<c.length;i++){let t=c[i].innerText.toLowerCase();c[i].style.display=t.includes(input)?"":"none";}}
+</script>
+
+</body></html>
