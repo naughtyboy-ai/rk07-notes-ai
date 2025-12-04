@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Ki Notes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <img src="profile.jpg" alt="Profile" class="logo">
-    <h1>Rohit Ki Notes</h1>
+    <img src="profile.jpg" class="logo">
+    <button onclick="toggleMode()">🌙</button>
 </header>
 
-<nav>
-    <a href="classes.html">Classes</a>
-    <a href="tests.html">Tests</a>
-</nav>
-
 <section class="hero">
-    <h2>Welcome to Rohit Ki Notes</h2>
-    <p>Power ∝ Work</p>
-    <p class="motive">We are the hardest workers in the room.</p>
-    <button onclick="openClasses()">Start Learning</button>
+    <h1>Power ∝ Work</h1>
+    <p>We are the hardest workers in the room.</p>
+    <button onclick="goto('classes.html')">Start Learning</button>
+    <button class="outline" onclick="goto('tests.html')">Take Tests</button>
 </section>
+
+<button onclick="openTimer()">⏳ Study Timer</button>
+
+<div id="timerBox">
+    <h3>Study Timer</h3>
+    <p id="time">0 sec</p>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+</div>
 
 <script src="script.js"></script>
 </body>
