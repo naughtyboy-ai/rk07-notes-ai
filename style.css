@@ -1,58 +1,115 @@
-/* Physics Symbol Logo */
-.profile-logo {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #3dd6ff, #6b6bff);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0b0f14;
-  font-size: 32px;
-  font-weight: 900;
-  box-shadow: 0 8px 26px rgba(80, 120, 255, 0.4);
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
-.subject-box {
+
+body {
+    background: #0b0f14;
+    color: white;
+}
+
+/* NAVBAR */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
     background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #cfd9ff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.nav-links a.active {
+    color: #3dd6ff;
+    font-weight: 600;
+}
+
+/* Logo */
+.profile-logo {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg,#3dd6ff,#6b6bff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.brand-sub {
+    font-size: 0.8rem;
+    color: #9abaff;
+}
+
+/* PAGE SECTION */
+.section {
+    padding: 35px 20px;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* SUBJECT GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 20px;
+}
+
+.subject-card {
+    background: rgba(255,255,255,0.06);
     padding: 20px;
     border-radius: 12px;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.subject-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.subject-card:hover {
+    background: rgba(61,214,255,0.15);
+    transform: translateY(-4px);
 }
 
-.chapter-ul li a {
-    font-size: 1rem;
-    display: block;
-    padding: 6px 0;
-}
-
-/* Motivation Section */
-.about-box {
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-  padding: 40px 26px;
-  border-radius: 14px;
-  margin-top: 30px;
-}
-
-.motivation {
-  font-size: 1.3rem;
-  background: linear-gradient(90deg,#3dd6ff,#6b6bff);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 800;
-  margin-bottom: 14px;
-}
-
-.tagline {
-  font-size: 1.6rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg,#ffffff,#d6e6ff);
-  -webkit-background-clip: text;
-  color: transparent;
+/* FOOTER */
+.footer {
+    margin-top: 30px;
+    padding: 16px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
