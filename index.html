@@ -4,14 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rohit ki Notes — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="nav">
   <div class="brand">
     <div class="profile-logo">⚛</div>
+    <!-- To use actual image instead of ⚛, replace above with:
+         <img src="profile.jpg" alt="Rohit" class="profile-img" /> -->
     <div class="brand-text">
       <div class="brand-title">Rohit ki Notes</div>
       <div class="brand-sub">Personal Study Hub</div>
@@ -21,40 +23,41 @@
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="class.html">Classes</a></li>
+    <li><a href="subject.html">Subjects</a></li>
     <li><a href="#about-section">About</a></li>
   </ul>
+
+  <div class="nav-actions">
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+  </div>
 </nav>
 
-<!-- HERO SECTION -->
 <header class="hero">
   <div class="hero-inner">
     <h1>Welcome to <span class="accent">Rohit ki Notes</span></h1>
-    <p class="lead">Well-organized notes with clean UI & modern animations.</p>
+    <p class="lead">Organized notes — fast, clean & motion-ready interface.</p>
 
     <div class="cta-row">
-      <a class="btn" href="class.html">Start Learning</a>
+      <a class="btn" id="startLearning" href="class.html">Start Learning</a>
       <a class="btn btn-ghost" href="#about-section">About</a>
     </div>
   </div>
-  <div class="hero-motion"></div>
+  <div class="hero-motion" aria-hidden="true"></div>
 </header>
 
-<!-- ONLY CLASS SECTION -->
 <section class="section">
   <h2 class="section-title">Available Classes</h2>
-
-  <div class="grid">
-    <a class="card-link" href="class.html">Class 6</a>
-    <a class="card-link" href="class.html">Class 7</a>
-    <a class="card-link" href="class.html">Class 8</a>
-    <a class="card-link" href="class.html">Class 9</a>
-    <a class="card-link" href="class.html">Class 10</a>
-    <a class="card-link" href="class.html">Class 11</a>
-    <a class="card-link" href="class.html">Class 12</a>
+  <div class="class-scroll">
+    <div class="class-tile">Class 6</div>
+    <div class="class-tile">Class 7</div>
+    <div class="class-tile">Class 8</div>
+    <div class="class-tile">Class 9</div>
+    <div class="class-tile">Class 10</div>
+    <div class="class-tile">Class 11</div>
+    <div class="class-tile">Class 12</div>
   </div>
 </section>
 
-<!-- ABOUT SECTION -->
 <section id="about-section" class="section about-box">
   <h2 class="section-title">About & Motivation</h2>
 
@@ -68,6 +71,5 @@
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
