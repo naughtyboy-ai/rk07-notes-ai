@@ -3,47 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rohit ki Notes — Chapters</title>
+  <title>Chapters – Rohit ki Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="physics-bg" aria-hidden="true"></div>
+
   <nav class="nav">
     <div class="brand">
-      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
+      <div class="profile-logo">⚛</div>
       <div class="brand-text">
         <div class="brand-title">Rohit ki Notes</div>
         <div class="brand-sub">Chapters</div>
       </div>
     </div>
+
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="class.html">Classes</a></li>
       <li><a href="subject.html">Subjects</a></li>
       <li><a href="chapter.html" class="active">Chapters</a></li>
+      <li><a href="notes.html">Notes</a></li>
     </ul>
+
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+    </div>
   </nav>
 
-  <main class="page">
-    <h1 class="page-heading">Chapters (Example)</h1>
+  <main class="page section">
+    <h1 class="page-heading">Chapters</h1>
+
+    <!-- Example physics chapters (if ?sub=physics passed, you can expand later) -->
     <div class="grid">
       <div class="chapter-card">
-        <h3>Chapter 1 — Motion</h3>
+        <h3>Physics — Chapter 1: Motion</h3>
         <p>Short notes and key formulas related to motion.</p>
-        <a class="small-btn" href="#">Open</a>
+        <a class="small-btn" href="notes.html?file=sample_physics.pdf">Open Notes</a>
       </div>
 
       <div class="chapter-card">
-        <h3>Chapter 2 — Force and Laws</h3>
+        <h3>Physics — Chapter 2: Force and Laws</h3>
         <p>Newton's laws, examples and solved problems.</p>
-        <a class="small-btn" href="#">Open</a>
+        <a class="small-btn" href="notes.html?file=sample_physics.pdf">Open Notes</a>
       </div>
 
       <div class="chapter-card">
-        <h3>Chapter 3 — Work & Energy</h3>
+        <h3>Physics — Chapter 3: Work & Energy</h3>
         <p>Concepts, equations and practical examples.</p>
-        <a class="small-btn" href="#">Open</a>
+        <a class="small-btn" href="notes.html?file=sample_physics.pdf">Open Notes</a>
       </div>
     </div>
+
+    <!-- Sanskrit Section -->
+    <section class="subject-box" aria-label="Sanskrit section">
+      <h2 class="subject-title">Sanskrit — Chapters</h2>
+      <ul class="chapter-ul">
+        <li><a href="notes.html?file=sanskrit_ch1.pdf">Chapter 1 — परिचय</a></li>
+        <li><a href="notes.html?file=sanskrit_ch2.pdf">Chapter 2 — संस्कृत वर्णमाला</a></li>
+        <li><a href="notes.html?file=sanskrit_ch3.pdf">Chapter 3 — शब्दरूप</a></li>
+        <li><a href="notes.html?file=sanskrit_ch4.pdf">Chapter 4 — धातुरूप</a></li>
+        <li><a href="notes.html?file=sanskrit_ch5.pdf">Chapter 5 — सन्धि</a></li>
+        <li><a href="notes.html?file=sanskrit_ch6.pdf">Chapter 6 — समास</a></li>
+        <li><a href="notes.html?file=sanskrit_ch7.pdf">Chapter 7 — उपसर्ग एवं प्रत्यय</a></li>
+        <li><a href="notes.html?file=sanskrit_ch8.pdf">Chapter 8 — अनुवाद अभ्यास</a></li>
+      </ul>
+    </section>
+
   </main>
 
   <footer class="footer">
