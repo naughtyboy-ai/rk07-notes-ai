@@ -1,22 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <title>Select Subject</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rohit ki Notes — Subjects</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="nav">
+    <div class="brand">
+      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
+      <div class="brand-text">
+        <div class="brand-title">Rohit ki Notes</div>
+        <div class="brand-sub">Subjects</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="class.html">Classes</a></li>
+      <li><a href="subject.html" class="active">Subjects</a></li>
+      <li><a href="chapter.html">Chapters</a></li>
+    </ul>
+  </nav>
 
-<h2 class="page-title">Choose Subject</h2>
+  <main class="page">
+    <h1 class="page-heading">Choose Subject</h1>
+    <div class="grid">
+      <a class="card-link" href="chapter.html">Physics</a>
+      <a class="card-link" href="chapter.html">Maths</a>
+      <a class="card-link" href="chapter.html">Science</a>
+      <a class="card-link" href="chapter.html">English</a>
+      <a class="card-link" href="chapter.html">Hindi</a>
+      <a class="card-link" href="chapter.html">SST</a>
+    </div>
+  </main>
 
-<div class="grid">
-  <a href="chapter.html" class="card">Maths</a>
-  <a href="chapter.html" class="card">Science</a>
-  <a href="chapter.html" class="card">English</a>
-  <a href="chapter.html" class="card">Hindi</a>
-  <a href="chapter.html" class="card">SST</a>
-</div>
+  <footer class="footer">
+    <p>© <span id="year3"></span> Rohit ki Notes</p>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
