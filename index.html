@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>My Notes Hub</title>
+  <style>
+    :root{
+      --bg1: #071420; --bg2:#0b2540; --card:#071a2a;
+      --accent:#6ee7b7; --muted:#9fb6c6; --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg,var(--bg1),var(--bg2)); color:#e8f6f2;
+      -webkit-font-smoothing:antialiased; padding:28px;
+    }
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+    .logo{width:68px;height:68px;border-radius:14px;background:linear-gradient(135deg,#7ee1d6,#60a5fa);
+          display:flex;align-items:center;justify-content:center;color:#042b2b;font-weight:800;font-size:20px}
+    h1{margin:0;font-size:22px}
+    .lead{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .controls{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}
+    .btn{background:linear-gradient(90deg,#7ee1d6,#60a5fa);color:#032b2b;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .search{flex:1;min-width:220px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:inherit}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media (max-width:880px){ .grid{grid-template-columns:1fr} header{flex-direction:column;align-items:flex-start} }
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h2{margin:0 0 8px}
+    .subject-list{display:grid;gap:8px}
+    .subject{
+      display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)
+    }
+    .left{display:flex;gap:12px;align-items:center}
+    .badge{width:44px;height:44px;border-radius:8px;background:linear-gradient(180deg,#041826,#062b3f);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    .small{color:var(--muted);font-size:13px}
+    details{background:transparent;padding:6px;border-radius:10px}
+    summary{cursor:pointer;outline:none;list-style:none;display:flex;align-items:center;gap:8px}
+    .file-row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px;border-radius:8px;background:rgba(255,255,255,0.015)}
+    .file-link{color:var(--accent);text-decoration:none;font-weight:700}
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+    code{background:rgba(255,255,255,0.02);padding:2px 6px;border-radius:6px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">NH</div>
+      <div>
+        <h1>My Notes Hub</h1>
+        <p class="lead">Classwise expandable notes — add PDFs into the `notes/` folders on your repo. Class 12 → Maths files are pre-linked (examples).</p>
+      </div>
+    </header>
+
+    <div class="controls">
+      <input id="q" class="search" placeholder="Search subject or file (type e.g. 'trig' or 'physics')" oninput="filterList()"/>
+      <button class="ghost btn" onclick="showAll()">Show All Classes</button>
+      <button class="btn" onclick="scrollToUploadInfo()">How to upload</button>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- CLASS 10 -->
+      <div class="card" id="class10Card">
+        <h2>Class 10 — Subjects (expandable)</h2>
+        <p class="small">Put files into <code>notes/class10/{subject}</code>. Example: <code>notes/class10/maths/</code></p>
+
+        <div class="subject-list" id="class10">
+          <!-- many common 10th subjects (placeholders) -->
+          <div class="subject"><div class="left"><div class="badge">M</div><div><strong>Mathematics</strong><div class="small">notes/class10/maths/</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/maths/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">S</div><div><strong>Science</strong><div class="small">notes/class10/science/ (or physics/chem/bio separate)</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/science/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">P</div><div><strong>Physics</strong><div class="small">notes/class10/physics/</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/physics/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">C</div><div><strong>Chemistry</strong><div class="small">notes/class10/chemistry/</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/chemistry/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">B</div><div><strong>Biology</strong><div class="small">notes/class10/biology/</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/biology/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">E</div><div><strong>English</strong><div class="small">notes/class10/english/</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/english/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">H</div><div><strong>Hindi</strong><div class="small">notes/class10/hindi/</div></div></div><a class="btn" href="#" onclick="alert('Upload PDFs to notes/class10/hindi/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">CS</div><div><strong>Computer / IT</strong><div class="small">notes/class10/computer/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class10/computer/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">SS</div><div><strong>Social Science</strong><div class="small">notes/class10/social-science/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class10/social-science/')">Upload</a></div>
+
+          <div class="subject"><div class="left"><div class="badge">EV</div><div><strong>EVS</strong><div class="small">notes/class10/evs/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class10/evs/')">Upload</a></div>
+
+          <!-- add more placeholders if needed -->
+        </div>
+      </div>
+
+      <!-- CLASS 11 -->
+      <div class="card" id="class11Card">
+        <h2>Class 11 — Subjects (streams + common)</h2>
+        <p class="small">Folders: <code>notes/class11/{subject}</code></p>
+        <details open>
+          <summary><strong>PCM / Common</strong></summary>
+          <div style="margin-top:12px">
+            <div class="subject-list">
+              <div class="subject"><div class="left"><div class="badge">M</div><div><strong>Mathematics</strong><div class="small">notes/class11/maths/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/maths/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">P</div><div><strong>Physics</strong><div class="small">notes/class11/physics/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/physics/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">C</div><div><strong>Chemistry</strong><div class="small">notes/class11/chemistry/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/chemistry/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">B</div><div><strong>Biology</strong><div class="small">notes/class11/biology/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/biology/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">CS</div><div><strong>Computer / IP</strong><div class="small">notes/class11/computer/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/computer/')">Upload</a></div>
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary><strong>Commerce / Arts / Others</strong></summary>
+          <div style="margin-top:12px">
+            <div class="subject-list">
+              <div class="subject"><div class="left"><div class="badge">AC</div><div><strong>Accountancy</strong><div class="small">notes/class11/accountancy/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/accountancy/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">BS</div><div><strong>Business Studies</strong><div class="small">notes/class11/business-studies/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/business-studies/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">HI</div><div><strong>History</strong><div class="small">notes/class11/history/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/history/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">EC</div><div><strong>Economics</strong><div class="small">notes/class11/economics/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/economics/')">Upload</a></div>
+              <div class="subject"><div class="left"><div class="badge">PS</div><div><strong>Political Science</strong><div class="small">notes/class11/political-science/</div></div></div><a class="btn" href="#" onclick="alert('Upload to notes/class11/political-science/')">Upload</a></div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- CLASS 12 -->
+      <div class="card" id="class12Card">
+        <h2>Class 12 — Subjects (streams + pre-filled Maths files)</h2>
+        <p class="small">Folders: <code>notes/class12/{subject}</code>. Example files are already linked under Maths (you should upload the same-named files into that folder).</p>
+
+        <!-- MATHS (with actual uploaded file links) -->
+        <details open>
+          <summary><strong>Mathematics (example files linked)</strong></summary>
+          <div style="margin-top:12px">
+            <div class="subject-list">
+              <!-- Each file link assumes you upload the exact same filename into notes/class12/maths/ -->
+              <div class="file-row">
+                <div><strong>Relations & Functions</strong><div class="small">notes/class12/maths/Public – 01_Relations and Function (1).pdf</div></div>
+                <a class="file-link" href="notes/class12/maths/Public – 01_Relations and Function (1).pdf" download>Download</a>
+              </div>
+
+              <div class="file-row">
+                <div><strong>Trigonometry</strong><div class="small">notes/class12/maths/Public – Trigonometry (1).pdf</div></div>
+                <a class="file-link" href="notes/class12/maths/Public – Trigonometry (1).pdf" download>Download</a>
+              </div>
+
+              <div class="file-row">
+                <div><strong>Differentiation</strong><div class="small">notes/class12/maths/Public – 01_Differentiation (1).pdf</div></div>
+                <a class="file-link" href="notes/class12/maths/Public – 01_Differentiation (1).pdf" download>Download</a>
+              </div>
+
+              <div class="file-row">
+                <div><strong>Limits</strong><div class="small">notes/class12/maths/Public – 02_Limits.pdf</div></div>
+                <a class="file-link" href="notes/class12/maths/Public – 02_Limits.pdf" download>Download</a>
+              </div>
+
+              <div class="file-row">
+                <div><strong>Inverse Trigonometric Functions</strong><div class="small">notes/class12/maths/Public – 02_Inverse Trigonometric Functions (1).pdf</div></div>
+                <a class="file-link" href="notes/class12/maths/Public – 02_Inverse Trigonometric Functions (1).pdf" download>Download</a>
+              </div>
+
+              <div class="file-row">
+                <div><strong>Complex Numbers</strong><div class="small">notes/class12/maths/Public – 03_Complexf (1).pdf</div></div>
+                <a class="file-link" href="notes/class12/maths/Public – 03_Complexf (1).pdf" download>Download</a>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Other subjects placeholders -->
+        <details>
+          <summary><strong>Physics</strong></summary>
+          <div style="margin-top:12px" class="small">Upload to <code>notes/class12/physics/</code>. After uploading, add links similar to the Maths section.</div>
+        </details>
+
+        <details>
+          <summary><strong>Chemistry</strong></summary>
+          <div style="margin-top:12px" class="small">Upload to <code>notes/class12/chemistry/</code>.</div>
+        </details>
+
+        <details>
+          <summary><strong>Biology</strong></summary>
+          <div style="margin-top:12px" class="small">Upload to <code>notes/class12/biology/</code>.</div>
+        </details>
+
+        <details>
+          <summary><strong>English</strong></summary>
+          <div style="margin-top:12px" class="small">Upload to <code>notes/class12/english/</code>.</div>
+        </details>
+
+        <details>
+          <summary><strong>Computer / CS</strong></summary>
+          <div style="margin-top:12px" class="small">Upload to <code>notes/class12/computer/</code>.</div>
+        </details>
+
+      </div>
+    </div>
+
+    <footer id="uploadInfo">
+      <p><strong>Upload instructions (short):</strong></p>
+      <ol style="color:var(--muted);text-align:left;max-width:900px;margin:8px auto 0">
+        <li>Create folders in your repo like <code>notes/class12/maths/</code>, <code>notes/class11/physics/</code>, etc.</li>
+        <li>Upload PDFs into their respective folders (use GitHub → Add file → Upload files).</li>
+        <li>If filenames have spaces or special chars, consider renaming to hyphen/slugs (recommended) — but the current HTML links use the original names you uploaded.</li>
+        <li>Then enable Pages: <em>Settings → Pages → Source: main branch → Save</em>. Your site will appear at <code>https://&lt;username&gt;.github.io/</code>.</li>
+      </ol>
+      <p class="small">Tip: If a download doesn't work, check file name exactness and avoid leading/trailing spaces in filenames.</p>
+    </footer>
+  </div>
+
+  <script>
+    // small utility: show all / filter
+    function showAll(){ document.querySelectorAll('details').forEach(d=>d.open=true); document.getElementById('q').value=''; filterList(); }
+    function filterList(){
+      const q = document.getElementById('q').value.toLowerCase().trim();
+      if(!q){ document.querySelectorAll('.subject, .file-row').forEach(n=>n.style.display='flex'); return; }
+      document.querySelectorAll('.subject, .file-row').forEach(node=>{
+        const text = node.innerText.toLowerCase();
+        node.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+    function scrollToUploadInfo(){ document.getElementById('uploadInfo').scrollIntoView({behavior:'smooth'}); }
+  </script>
+</body>
+</html>
