@@ -1,65 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rohit Ki Notes</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Ki Notes</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loader">
-    <div class="spin"></div>
-</div>
-
-<!-- 3D Animated Background -->
-<canvas id="bg-canvas"></canvas>
-
 <header>
-    <img src="profile.jpg" class="profile-pic">
+    <img src="profile.jpg" alt="Profile" class="logo">
     <h1>Rohit Ki Notes</h1>
-    <button id="themeToggle">🌓</button>
 </header>
 
-<!-- Side Menu -->
-<div id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="class.html">📘 Classes</a>
-    <a href="test.html">📝 Tests</a>
-    <a href="#" id="motivateBtn">✨ Motivation</a>
-</div>
+<nav>
+    <a href="classes.html">Classes</a>
+    <a href="tests.html">Tests</a>
+</nav>
 
-<button id="menuBtn">☰</button>
-
-<!-- Home Content -->
-<section class="home">
-    <h2 class="glow">Welcome to Rohit’s Study Room</h2>
-
-    <div class="card-grid">
-
-        <a href="class.html" class="card3d">📘 <br> Start Learning</a>
-
-        <a href="test.html" class="card3d">📝 <br> Take Tests</a>
-
-        <a href="#" class="card3d" id="notifyBtn">🔔 <br> Notifications</a>
-
-        <a href="#" class="card3d" id="openTimer">⏳ <br> Study Timer</a>
-    </div>
+<section class="hero">
+    <h2>Welcome to Rohit Ki Notes</h2>
+    <p>Power ∝ Work</p>
+    <p class="motive">We are the hardest workers in the room.</p>
+    <button onclick="openClasses()">Start Learning</button>
 </section>
-
-<!-- Motivation Popup -->
-<div id="motivationPopup" class="popup">
-    <p id="motivationText"></p>
-    <button onclick="closePopup()">Close</button>
-</div>
-
-<!-- Study Timer -->
-<div id="timerBox" class="popup">
-    <h2>Study Timer</h2>
-    <div id="time">00:00</div>
-    <button onclick="startTimer()">Start</button>
-    <button onclick="stopTimer()">Stop</button>
-</div>
 
 <script src="script.js"></script>
 </body>
