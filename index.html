@@ -1,74 +1,24 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rohit ki Notes — Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <title>Rohit ki Notes</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<button id="toggleMode">🌙</button>
+
 <nav class="nav">
-  <div class="brand">
-    <div class="profile-logo">⚛</div>
-    <!-- To use actual image instead of ⚛, replace above with:
-         <img src="profile.jpg" alt="Rohit" class="profile-img" /> -->
-    <div class="brand-text">
-      <div class="brand-title">Rohit ki Notes</div>
-      <div class="brand-sub">Personal Study Hub</div>
-    </div>
-  </div>
-
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="class.html">Classes</a></li>
-    <li><a href="subject.html">Subjects</a></li>
-    <li><a href="#about-section">About</a></li>
-  </ul>
-
-  <div class="nav-actions">
-    <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
-  </div>
+  <img src="profile.jpg" class="profile-pic">
+  <h1>Rohit ki Notes</h1>
 </nav>
 
-<header class="hero">
-  <div class="hero-inner">
-    <h1>Welcome to <span class="accent">Rohit ki Notes</span></h1>
-    <p class="lead">Organized notes — fast, clean & motion-ready interface.</p>
-
-    <div class="cta-row">
-      <a class="btn" id="startLearning" href="class.html">Start Learning</a>
-      <a class="btn btn-ghost" href="#about-section">About</a>
-    </div>
-  </div>
-  <div class="hero-motion" aria-hidden="true"></div>
-</header>
-
-<section class="section">
-  <h2 class="section-title">Available Classes</h2>
-  <div class="class-scroll">
-    <div class="class-tile">Class 6</div>
-    <div class="class-tile">Class 7</div>
-    <div class="class-tile">Class 8</div>
-    <div class="class-tile">Class 9</div>
-    <div class="class-tile">Class 10</div>
-    <div class="class-tile">Class 11</div>
-    <div class="class-tile">Class 12</div>
-  </div>
-</section>
-
-<section id="about-section" class="section about-box">
-  <h2 class="section-title">About & Motivation</h2>
-
-  <p class="motivation"><strong>POWER ∝ WORK</strong></p>
-
-  <p class="tagline"><strong>We are the hardest worker in the room.</strong></p>
-</section>
-
-<footer class="footer">
-  <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
-</footer>
+<div class="hero">
+  <h2>Welcome to Rohit ki Notes</h2>
+  <p>POWER ∝ WORK</p>
+  <a href="class.html" class="btn">Start Learning</a>
+</div>
 
 <script src="script.js"></script>
 </body>
