@@ -1,49 +1,65 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rohit ki Notes</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit Ki Notes</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<button id="themeToggle" class="theme-btn">🌙</button>
+<div id="loader">
+    <div class="spin"></div>
+</div>
 
-<!-- NAVBAR -->
-<nav class="nav">
-  <img src="profile.jpg" class="profile-pic" alt="Profile">
-  <h2 class="brand">Rohit ki Notes</h2>
+<!-- 3D Animated Background -->
+<canvas id="bg-canvas"></canvas>
 
-  <ul class="nav-links">
-    <li><a href="#" id="homeBtn">Home</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-</nav>
+<header>
+    <img src="profile.jpg" class="profile-pic">
+    <h1>Rohit Ki Notes</h1>
+    <button id="themeToggle">🌓</button>
+</header>
 
-<!-- 3D HERO SECTION -->
-<section class="hero">
-  <div class="floating3d">
-    <h1>Welcome to <span class="highlight">Rohit ki Notes</span></h1>
-    <p class="quote">POWER ∝ WORK</p>
-  </div>
+<!-- Side Menu -->
+<div id="sideMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="class.html">📘 Classes</a>
+    <a href="test.html">📝 Tests</a>
+    <a href="#" id="motivateBtn">✨ Motivation</a>
+</div>
+
+<button id="menuBtn">☰</button>
+
+<!-- Home Content -->
+<section class="home">
+    <h2 class="glow">Welcome to Rohit’s Study Room</h2>
+
+    <div class="card-grid">
+
+        <a href="class.html" class="card3d">📘 <br> Start Learning</a>
+
+        <a href="test.html" class="card3d">📝 <br> Take Tests</a>
+
+        <a href="#" class="card3d" id="notifyBtn">🔔 <br> Notifications</a>
+
+        <a href="#" class="card3d" id="openTimer">⏳ <br> Study Timer</a>
+    </div>
 </section>
 
-<!-- HIDDEN SECTIONS (Home button tap se khulte hain) -->
-<section id="sections" class="hidden-sections">
+<!-- Motivation Popup -->
+<div id="motivationPopup" class="popup">
+    <p id="motivationText"></p>
+    <button onclick="closePopup()">Close</button>
+</div>
 
-  <div class="tile-box">
-    <a class="tile glow" href="class.html">📘 Classes</a>
-    <a class="tile glow" href="test.html">📝 Test</a>
-  </div>
-
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="about" id="about">
-  <h2>About</h2>
-  <p class="motive">“We Are The Hardest Worker In The Room.”</p>
-</section>
+<!-- Study Timer -->
+<div id="timerBox" class="popup">
+    <h2>Study Timer</h2>
+    <div id="time">00:00</div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+</div>
 
 <script src="script.js"></script>
 </body>
