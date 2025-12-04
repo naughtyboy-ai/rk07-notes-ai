@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(135deg, #2a2a72, #009ffd);
+  animation: fadeIn 1.5s ease;
+}
+
+.title {
+  font-size: 3rem;
+  animation: slideDown 1s ease;
+}
+
+.subtitle {
+  margin: 10px 0 30px;
+  animation: fadeIn 2s ease;
+}
+
+.btn {
+  padding: 14px 30px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2rem;
+  animation: fadeIn 1.2s ease;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background: #1c1c1c;
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.4s;
+  animation: zoomIn 0.7s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  background: #333;
+}
+
+/* Motion Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
