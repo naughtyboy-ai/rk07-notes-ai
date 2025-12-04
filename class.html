@@ -3,36 +3,45 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rohit ki Notes — Classes</title>
+  <title>Classes – Rohit ki Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="physics-bg" aria-hidden="true"></div>
+
   <nav class="nav">
     <div class="brand">
-      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
+      <div class="profile-logo">⚛</div>
       <div class="brand-text">
         <div class="brand-title">Rohit ki Notes</div>
         <div class="brand-sub">Classes</div>
       </div>
     </div>
+
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="class.html" class="active">Classes</a></li>
       <li><a href="subject.html">Subjects</a></li>
       <li><a href="chapter.html">Chapters</a></li>
+      <li><a href="notes.html">Notes</a></li>
     </ul>
+
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+    </div>
   </nav>
 
-  <main class="page">
+  <main class="page section">
     <h1 class="page-heading">Choose Your Class</h1>
     <div class="grid">
-      <a class="card-link" href="subject.html">Class 6</a>
-      <a class="card-link" href="subject.html">Class 7</a>
-      <a class="card-link" href="subject.html">Class 8</a>
-      <a class="card-link" href="subject.html">Class 9</a>
-      <a class="card-link" href="subject.html">Class 10</a>
-      <a class="card-link" href="subject.html">Class 11</a>
-      <a class="card-link" href="subject.html">Class 12</a>
+      <a class="card-link" href="subject.html?class=6">Class 6</a>
+      <a class="card-link" href="subject.html?class=7">Class 7</a>
+      <a class="card-link" href="subject.html?class=8">Class 8</a>
+      <a class="card-link" href="subject.html?class=9">Class 9</a>
+      <a class="card-link" href="subject.html?class=10">Class 10</a>
+      <a class="card-link" href="subject.html?class=11">Class 11</a>
+      <a class="card-link" href="subject.html?class=12">Class 12</a>
     </div>
   </main>
 
