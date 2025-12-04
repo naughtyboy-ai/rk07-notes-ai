@@ -1,25 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit Ki Notes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <img src="profile.jpg" class="logo">
-    <button onclick="toggleMode()">🌙</button>
+<!-- HEADER -->
+<header class="header">
+    <div class="left">
+        <img src="profile.jpg" class="logo">
+        <h2>Rohit Ki Notes</h2>
+    </div>
+
+    <div class="right">
+        <button onclick="toggleMode()" class="mode-btn">🌙</button>
+    </div>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero">
-    <h1>Power ∝ Work</h1>
-    <p>We are the hardest workers in the room.</p>
-    <button onclick="goto('classes.html')">Start Learning</button>
-    <button class="outline" onclick="goto('tests.html')">Take Tests</button>
+    <h1 class="title">Power ∝ Work</h1>
+    <p class="sub">We are the hardest workers in the room.</p>
+
+    <div class="hero-buttons">
+        <button onclick="goto('classes.html')">Start Learning</button>
+        <button class="outline" onclick="goto('tests.html')">Take Tests</button>
+    </div>
 </section>
 
-<button onclick="openTimer()">⏳ Study Timer</button>
+<!-- ABOUT SECTION -->
+<section class="about">
+    <h2>About Us</h2>
+    <p>
+        Knowledge is power — and power is proportional to work.  
+        The more you study, the more powerful you become.  
+        Rohit Ki Notes is crafted for students who want the best notes, tests, and motivation.
+    </p>
+</section>
 
+<!-- FEATURES SECTION -->
+<section class="features">
+    <h2>Why Choose Us?</h2>
+
+    <div class="feature-grid">
+        <div class="card">📘 High-quality Notes</div>
+        <div class="card">📝 Chapter-wise Tests</div>
+        <div class="card">🔍 Smart Search System</div>
+        <div class="card">⏳ Study Timer</div>
+        <div class="card">🌗 Dark/Light Mode</div>
+        <div class="card">📚 All Subjects Covered</div>
+    </div>
+</section>
+
+<!-- TOOLS SECTION -->
+<section class="tools">
+    <h2>Study Tools</h2>
+    <div class="tool-grid">
+        <button class="tool" onclick="openTimer()">⏳ Study Timer</button>
+        <button class="tool" onclick="goto('tests.html')">🧠 Quick Test</button>
+        <button class="tool" onclick="goto('classes.html')">📖 Open Notes</button>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    Made with ❤️ for Students | Rohit Ki Notes
+</footer>
+
+<!-- TIMER POPUP -->
 <div id="timerBox">
     <h3>Study Timer</h3>
     <p id="time">0 sec</p>
