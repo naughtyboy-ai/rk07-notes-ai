@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rohit ki Notes — Subjects</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects – Rohit ki Notes</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="nav">
+
+<!-- NAVBAR -->
+<nav class="nav">
     <div class="brand">
-      <img src="profile.jpg" alt="Rohit ki Notes" class="profile" />
-      <div class="brand-text">
-        <div class="brand-title">Rohit ki Notes</div>
-        <div class="brand-sub">Subjects</div>
-      </div>
+        <div class="profile-logo">⚛</div>
+        <div class="brand-text">
+            <div class="brand-title">Rohit ki Notes</div>
+            <div class="brand-sub">Personal Study Hub</div>
+        </div>
     </div>
+
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="class.html">Classes</a></li>
-      <li><a href="subject.html" class="active">Subjects</a></li>
-      <li><a href="chapter.html">Chapters</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="class.html">Classes</a></li>
+        <li><a href="subject.html" class="active">Subjects</a></li>
     </ul>
-  </nav>
+</nav>
 
-  <main class="page">
-    <h1 class="page-heading">Choose Subject</h1>
+<!-- SUBJECT PAGE -->
+<section class="section">
+    <h1 class="section-title">Select Subject</h1>
+
     <div class="grid">
-      <a class="card-link" href="chapter.html">Physics</a>
-      <a class="card-link" href="chapter.html">Maths</a>
-      <a class="card-link" href="chapter.html">Science</a>
-      <a class="card-link" href="chapter.html">English</a>
-      <a class="card-link" href="chapter.html">Hindi</a>
-      <a class="card-link" href="chapter.html">SST</a>
-      <!-- Sanskrit Subject Section -->
-<div class="subject-box">
-    <h2 class="subject-title">Sanskrit</h2>
 
-    <ul class="chapter-ul">
-        <li><a href="#">Chapter 1 — परिचय</a></li>
-        <li><a href="#">Chapter 2 — संस्कृत वर्णमाला</a></li>
-        <li><a href="#">Chapter 3 — शब्दरूप</a></li>
-        <li><a href="#">Chapter 4 — धातुरूप</a></li>
-        <li><a href="#">Chapter 5 — सन्धि</a></li>
-        <li><a href="#">Chapter 6 — समास</a></li>
-        <li><a href="#">Chapter 7 — उपसर्ग एवं प्रत्यय</a></li>
-        <li><a href="#">Chapter 8 — अनुवाद अभ्यास</a></li>
-    </ul>
-</div>
+        <a href="chapter.html" class="subject-card">Physics</a>
+        <a href="chapter.html" class="subject-card">Chemistry</a>
+        <a href="chapter.html" class="subject-card">Biology</a>
+        <a href="chapter.html" class="subject-card">Maths</a>
+
+        <!-- Sanskrit Section Added -->
+        <a href="chapter.html" class="subject-card">Sanskrit</a>
+
+        <a href="chapter.html" class="subject-card">History</a>
+        <a href="chapter.html" class="subject-card">Geography</a>
+        <a href="chapter.html" class="subject-card">English</a>
+
     </div>
-  </main>
+</section>
 
-  <footer class="footer">
-    <p>© <span id="year3"></span> Rohit ki Notes</p>
-  </footer>
+<footer class="footer">
+    <p>© <span id="year"></span> Rohit ki Notes — Built with ❤️</p>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
