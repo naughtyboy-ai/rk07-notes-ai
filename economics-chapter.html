@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Economics — Chapters</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <img src="profile.jpg" class="profile-pic" alt="Rohit">
+  <div class="brand-text">
+    <div class="brand-title">Rohit ki Notes</div>
+    <div class="brand-sub">Economics</div>
+  </div>
+  <div style="margin-left:auto; padding-right:16px;">
+    <button id="themeToggle" class="icon-btn">🌙</button>
+  </div>
+</nav>
+
+<main class="page section">
+  <h1 class="title">Economics — Chapters</h1>
+
+  <input type="text" id="search" class="search-input" placeholder="Search chapters..." onkeyup="searchChapter()">
+
+  <div class="chapter-box" id="chapterList">
+    <a class="chapter" href="notes.html?file=economics_ch1.pdf">Chapter 1 – Basic Concepts</a>
+    <a class="chapter" href="notes.html?file=economics_ch2.pdf">Chapter 2 – Demand & Supply</a>
+    <a class="chapter" href="notes.html?file=economics_ch3.pdf">Chapter 3 – Markets</a>
+    <a class="chapter" href="notes.html?file=economics_ch4.pdf">Chapter 4 – National Income</a>
+    <a class="chapter" href="notes.html?file=economics_ch5.pdf">Chapter 5 – Government Budget</a>
+  </div>
+</main>
+
+<script>
+function searchChapter(){
+  const q = document.getElementById('search').value.toLowerCase();
+  const list = document.getElementById('chapterList').getElementsByTagName('a');
+  for(let i=0;i<list.length;i++){
+    const txt = list[i].innerText.toLowerCase();
+    list[i].style.display = txt.includes(q) ? '' : 'none';
+  }
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>
