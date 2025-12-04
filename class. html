@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Class</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2 class="page-title">Choose Your Class</h2>
+
+<div class="grid">
+  <a href="subject.html" class="card">Class 6</a>
+  <a href="subject.html" class="card">Class 7</a>
+  <a href="subject.html" class="card">Class 8</a>
+  <a href="subject.html" class="card">Class 9</a>
+  <a href="subject.html" class="card">Class 10</a>
+  <a href="subject.html" class="card">Class 11</a>
+  <a href="subject.html" class="card">Class 12</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
