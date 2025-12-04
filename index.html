@@ -2,13 +2,12 @@
 <html lang="hi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rohit ki Notes</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- THEME TOGGLE -->
 <button id="themeToggle" class="theme-btn">🌙</button>
 
 <!-- NAVBAR -->
@@ -17,18 +16,27 @@
   <h2 class="brand">Rohit ki Notes</h2>
 
   <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="#" id="homeBtn">Home</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="class.html">Classes</a></li>
   </ul>
 </nav>
-  
-<!-- HERO SECTION -->
-<section class="hero">
-  <h1>Welcome to Rohit ki Notes</h1>
-  <p class="quote">POWER ∝ WORK</p>
 
-  <a href="class.html" class="btn">Start Learning</a>
+<!-- 3D HERO SECTION -->
+<section class="hero">
+  <div class="floating3d">
+    <h1>Welcome to <span class="highlight">Rohit ki Notes</span></h1>
+    <p class="quote">POWER ∝ WORK</p>
+  </div>
+</section>
+
+<!-- HIDDEN SECTIONS (Home button tap se khulte hain) -->
+<section id="sections" class="hidden-sections">
+
+  <div class="tile-box">
+    <a class="tile glow" href="class.html">📘 Classes</a>
+    <a class="tile glow" href="test.html">📝 Test</a>
+  </div>
+
 </section>
 
 <!-- ABOUT SECTION -->
