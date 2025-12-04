@@ -1,4 +1,6 @@
-/* =========================================================
+/* function openClasses() {
+    window.location.href = "classes.html";
+}
    script.js — Full Replace (background, menu, theme, timer, search, notifications)
    ========================================================= */
 
