@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+        }
+        .topbar {
+            padding: 10px;
+            background: #111;
+            color: white;
+            font-family: Poppins, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        iframe {
+            width: 100%;
+            height: 92vh;
+            border: none;
+        }
+        button {
+            background: #4f8cff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <button onclick="history.back()">← Back</button>
+    <span id="title"></span>
+</div>
+
+<iframe id="pdfFrame"></iframe>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file");
+    const title = params.get("title");
+
+    document.getElementById("title").innerText = title;
+    document.getElementById("pdfFrame").src = file;
+</script>
+
+</body>
+</html>
