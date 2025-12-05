@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Calendar — Rohit ki Notes</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<style>
+  :root{
+    --bg:#07101a; --card: rgba(255,255,255,0.04);
+    --accent:#3aa0ff; --muted:#b9c9e0;
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; font-family:Inter,system-ui,Arial; background:linear-gradient(180deg,#04101a,#071829); color:#e9f5ff; padding:28px; -webkit-font-smoothing:antialiased; }
+  header{ display:flex; align-items:center; gap:12px; margin-bottom:18px }
+  header img{ width:52px; height:52px; border-radius:50%; object-fit:cover; box-shadow:0 8px 28px rgba(58,160,255,0.06) }
+  header h1{ font-size:18px; margin:0 }
+
+  .container{ max-width:980px; margin:0 auto; display:grid; grid-template-columns: 1fr 320px; gap:22px; align-items:start }
+
+  .cal-card{ background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02)); padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.03); box-shadow: 0 14px 40px rgba(2,6,12,0.6) }
+
+  /* header controls */
+  .cal-header{ display:flex; justify-content:space-between; align-items:center; gap:10px }
+  .cal-nav{ display:flex; gap:8px }
+  .cal-btn{ padding:8px 12px; border-radius:8px; border:0; background:transparent; color:var(--muted); cursor:pointer; font-weight:700; border:1px solid rgba(255,255,255,0.02) }
+  .cal-title{ font-weight:800; font-size:18px; color:#eaf6ff }
+
+  /* grid */
+  .weekdays{ display:grid; grid-template-columns: repeat(7,1fr); gap:6px; margin-top:12px; color:var(--muted); font-weight:700; text-align:center }
+  .days{ display:grid; grid-template-columns: repeat(7,1fr); gap:8px; margin-top:8px; }
+  .day{
+    min-height:92px; border-radius:10px; padding:8px; background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.02); transition:transform .15s, box-shadow .15s; position:relative; overflow:hidden;
+  }
+  .day:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.6) }
+  .day .date{ font-weight:800; color:var(--accent) }
+  .other-month{ opacity:0.28; filter:grayscale(.2) }
+
+  /* side panel */
+  .side{ display:flex; flex-direction:column; gap:12px; }
+  .mini{ padding:12px; border-radius:10px; background:transparent; border:1px dashed rgba(255,255,255,0.03); color:var(--muted) }
+
+  .legend{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+  .legend .dot{ width:10px; height:10px; border-radius:50% }
+
+  /* responsive */
+  @media (max-width:900px){
+    .container{ grid-template-columns: 1fr; }
+    .day{ min-height:72px }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="profile.jpg" alt="Profile">
+  <h1>Rohit ki Notes — Calendar</h1>
+</header>
+
+<div class="container">
+
+  <div class="cal-card" id="calendarCard">
+    <div class="cal-header">
+      <div class="cal-title" id="calTitle">Month Year</div>
+      <div class="cal-nav">
+        <button class="cal-btn" id="prevBtn">◀</button>
+        <button class="cal-btn" id="todayBtn">Today</button>
+        <button class="cal-btn" id="nextBtn">▶</button>
+      </div>
+    </div>
+
+    <div class="weekdays">
+      <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+
+    <div class="days" id="daysGrid"></div>
+  </div>
+
+  <aside class="side">
+    <div class="mini">
+      <h3 style="margin:0 0 8px 0">Month Overview</h3>
+      <div class="muted">Use ◀ ▶ to change months. Click any date to highlight it.</div>
+    </div>
+
+    <div class="mini">
+      <h4 style="margin:0 0 8px 0">Legend</h4>
+      <div class="legend">
+        <div style="display:flex;gap:8px;align-items:center"><span class="dot" style="background:var(--accent)"></span> Selected</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="dot" style="background:#7b6bff"></span> Events (future)</div>
+      </div>
+    </div>
+
+    <div class="mini">
+      <a href="index.html" style="color:#9fcfff">⬅ Back to Home</a>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+/* Simple stylish calendar (no event storage — UI highlight only) */
+(function(){
+  const daysGrid = document.getElementById('daysGrid'), title = document.getElementById('calTitle');
+  let cur = new Date(); cur.setDate(1);
+
+  function render(){
+    daysGrid.innerHTML = '';
+    const year = cur.getFullYear(), month = cur.getMonth();
+    title.textContent = cur.toLocaleString(undefined,{month:'long', year:'numeric'});
+
+    // first day index (Sun=0)
+    const firstIndex = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month+1, 0).getDate();
+    const prevDays = new Date(year, month, 0).getDate();
+
+    // fill prev month tail
+    for(let i=firstIndex-1;i>=0;i--){
+      const d = document.createElement('div'); d.className='day other-month';
+      d.innerHTML = `<div class="date">${prevDays - i}</div>`;
+      daysGrid.appendChild(d);
+    }
+
+    // current month days
+    for(let d=1; d<=daysInMonth; d++){
+      const el = document.createElement('div'); el.className='day';
+      el.innerHTML = `<div class="date">${d}</div>`;
+      el.addEventListener('click', ()=> {
+        // remove existing selects
+        document.querySelectorAll('.day').forEach(x=> x.style.boxShadow = '');
+        el.style.boxShadow = '0 10px 40px rgba(58,160,255,0.12)';
+      });
+      daysGrid.appendChild(el);
+    }
+
+    // fill next month head to complete grid (weeks)
+    const total = daysGrid.children.length;
+    const need = (7 - (total % 7)) % 7;
+    for(let i=1;i<=need;i++){
+      const d = document.createElement('div'); d.className='day other-month';
+      d.innerHTML = `<div class="date">${i}</div>`;
+      daysGrid.appendChild(d);
+    }
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', ()=>{ cur.setMonth(cur.getMonth()-1); render(); });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ cur.setMonth(cur.getMonth()+1); render(); });
+  document.getElementById('todayBtn').addEventListener('click', ()=>{ cur = new Date(); cur.setDate(1); render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
