@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 Physics – Chapters</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#eef2ff;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#0066ff;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:bold;
+    }
+    .container{
+        padding:20px;
+    }
+    .chapter{
+        background:white;
+        padding:15px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(0,0,100,0.1);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .chapter:hover{
+        transform:scale(1.03);
+        box-shadow:0 6px 12px rgba(0,0,0,0.2);
+    }
+    .arrow{
+        font-size:22px;
+        color:#0066ff;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – Physics Chapters</header>
+
+<div class="container">
+
+    <div class="chapter" onclick="openPDF('1-physical-world.pdf')">
+        1. Physical World <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('2-units-and-measurements.pdf')">
+        2. Units and Measurements <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('3-motion-in-a-straight-line.pdf')">
+        3. Motion in a Straight Line <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('4-motion-in-a-plane.pdf')">
+        4. Motion in a Plane <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('5-laws-of-motion.pdf')">
+        5. Laws of Motion <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('6-work-energy-power.pdf')">
+        6. Work, Energy & Power <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('7-system-of-particles.pdf')">
+        7. System of Particles & Rotational Motion <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('8-gravitation.pdf')">
+        8. Gravitation <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('9-mechanical-properties-of-solids.pdf')">
+        9. Mechanical Properties of Solids <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('10-mechanical-properties-of-fluids.pdf')">
+        10. Mechanical Properties of Fluids <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('11-thermal-properties-of-matter.pdf')">
+        11. Thermal Properties of Matter <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('12-thermodynamics.pdf')">
+        12. Thermodynamics <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('13-kinetic-theory.pdf')">
+        13. Kinetic Theory of Gases <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('14-oscillations.pdf')">
+        14. Oscillations <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('15-waves.pdf')">
+        15. Waves <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPDF(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
