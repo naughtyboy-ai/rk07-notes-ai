@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 – Arts Subjects</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f3f3f3;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#7b1fa2;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:bold;
+    }
+    .container{
+        padding:20px;
+    }
+    .subject{
+        background:white;
+        padding:18px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:20px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .subject:hover{
+        transform:scale(1.03);
+        box-shadow:0 6px 12px rgba(0,0,0,0.2);
+    }
+    .arrow{
+        font-size:22px;
+        font-weight:bold;
+        color:#7b1fa2;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – Arts Subjects</header>
+
+<div class="container">
+
+    <div class="subject" onclick="openPage('11-history-chapters.html')">
+        History <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-geography-chapters.html')">
+        Geography <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-political-science-chapters.html')">
+        Political Science <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-economics-chapters.html')">
+        Economics <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-sociology-chapters.html')">
+        Sociology <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-english-chapters.html')">
+        English <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-hindi-chapters.html')">
+        Hindi <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-philosophy-chapters.html')">
+        Philosophy <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('11-psychology-chapters.html')">
+        Psychology <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPage(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
