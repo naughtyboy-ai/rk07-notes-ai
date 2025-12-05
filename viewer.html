@@ -1,54 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Viewer</title>
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-        }
-        .topbar {
-            padding: 10px;
-            background: #111;
-            color: white;
-            font-family: Poppins, sans-serif;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        iframe {
-            width: 100%;
-            height: 92vh;
-            border: none;
-        }
-        button {
-            background: #4f8cff;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            border: none;
-        }
-    </style>
-</head>
-<body>
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Viewer</title>
+<link rel="stylesheet" href="site.css">
+</head><body>
+<div class="container">
+  <div class="viewer-top">
+    <div><button class="btn" onclick="history.back()">← Back</button></div>
+    <div id="vTitle">Loading…</div>
+    <div>
+      <button class="btn" id="zoomOut">−</button>
+      <button class="btn" id="zoomIn">＋</button>
+      <a id="download" class="btn" download>⬇ Download</a>
+      <button class="btn" id="fullscreen">⛶</button>
+    </div>
+  </div>
 
-<div class="topbar">
-    <button onclick="history.back()">← Back</button>
-    <span id="title"></span>
+  <iframe id="pdfFrame" class="pdf-frame" src=""></iframe>
 </div>
 
-<iframe id="pdfFrame"></iframe>
-
-<script>
-    const params = new URLSearchParams(window.location.search);
-    const file = params.get("file");
-    const title = params.get("title");
-
-    document.getElementById("title").innerText = title;
-    document.getElementById("pdfFrame").src = file;
-</script>
-
-</body>
-</html>
+<script src="viewer.js"></script>
+</body></html>
