@@ -3,78 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 Computer – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+<title>Class 12 Computer Chapters</title>
+
+<style>
+    body{font-family:Arial;background:#f5f5f5;padding:20px;margin:0;}
+    h1{text-align:center;font-size:30px;margin-bottom:10px;}
+    h2{margin-top:30px;font-size:22px;color:#222;}
+    .chapter-card{
+        background:white;padding:14px 15px;margin:10px 0;border-radius:8px;
+        font-size:17px;box-shadow:0 3px 6px rgba(0,0,0,0.1);cursor:pointer;
+        font-weight:600;transition:.3s;
+    }
+    .chapter-card:hover{background:#e8f4ff;transform:translateY(-2px);}
+</style>
+
 </head>
 <body>
 
-<header>
-    <h2>Class 12 – Computer Science</h2>
-    <a href="../12-science.html" class="back-btn">⬅ Back</a>
-</header>
+<h1>Class 12 – Computer Science</h1>
 
-<div class="chapter-list">
+<h2>📘 Python Programming</h2>
 
-    <h3 style="margin-top:20px;">💻 Computer Science (Python)</h3>
+<div class="chapter-card" onclick="openNotes('12-cs-ch1.pdf')">Chapter 1 – Python Revision</div>
+<div class="chapter-card" onclick="openNotes('12-cs-ch2.pdf')">Chapter 2 – Functions & Recursion</div>
+<div class="chapter-card" onclick="openNotes('12-cs-ch3.pdf')">Chapter 3 – File Handling</div>
+<div class="chapter-card" onclick="openNotes('12-cs-ch4.pdf')">Chapter 4 – Data Structure (Stacks, Queues)</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-computer/01-python-basics.pdf">
-        1. Python Basics & Revision Tour
-    </a>
+<h2>📙 Database (SQL)</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-computer/02-functions.pdf">
-        2. Functions in Python
-    </a>
+<div class="chapter-card" onclick="openNotes('12-cs-ch5.pdf')">Chapter 5 – Relational Databases</div>
+<div class="chapter-card" onclick="openNotes('12-cs-ch6.pdf')">Chapter 6 – SQL Queries</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-computer/03-file-handling.pdf">
-        3. File Handling
-    </a>
+<h2>📗 Networking</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-computer/04-stack-queue.pdf">
-        4. Data Structures (Stack / Queue)
-    </a>
+<div class="chapter-card" onclick="openNotes('12-cs-ch7.pdf')">Chapter 7 – Computer Networks</div>
+<div class="chapter-card" onclick="openNotes('12-cs-ch8.pdf')">Chapter 8 – Network Security</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-computer/05-recursion.pdf">
-        5. Recursion
-    </a>
-
-
-    <h3 style="margin-top:20px;">🌐 Computer Networks</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/06-networking-basics.pdf">
-        1. Networking Basics
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/07-internet-protocols.pdf">
-        2. Internet, Protocols & Security
-    </a>
-
-
-    <h3 style="margin-top:20px;">🗃️ Database (SQL)</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/08-sql-basics.pdf">
-        1. SQL Basics & Commands
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/09-sql-queries.pdf">
-        2. SQL Queries (With Examples)
-    </a>
-
-
-    <h3 style="margin-top:20px;">📦 Computer Applications / IP</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/10-data-handling-python.pdf">
-        1. Data Handling Using Python
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/11-visualization.pdf">
-        2. Data Visualization
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-computer/12-societal-impact.pdf">
-        3. Societal Impacts of IT
-    </a>
-
-</div>
+<script>
+function openNotes(file){window.location.href = "notes-viewer.html?file=" + file;}
+</script>
 
 </body>
 </html>
