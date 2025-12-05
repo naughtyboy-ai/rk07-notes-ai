@@ -1,85 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 Biology – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+<title>Class 12 Biology Chapters</title>
+
+<style>
+body { font-family: Arial; background:#f5f5f5; padding:20px; margin:0; }
+h1 { text-align:center; font-size:30px; margin-bottom:10px; }
+h2 { margin-top:30px; font-size:22px; color:#222; }
+.chapter-card {
+    background:white; padding:14px 15px; margin:10px 0; border-radius:8px;
+    font-size:17px; box-shadow:0 3px 6px rgba(0,0,0,0.1); cursor:pointer;
+    font-weight:600; transition:.3s;
+}
+.chapter-card:hover { background:#e8f4ff; transform:translateY(-2px); }
+</style>
 </head>
+
 <body>
 
-<header>
-    <h2>Class 12 – Biology</h2>
-    <a href="../12-science.html" class="back-btn">⬅ Back</a>
-</header>
+<h1>Class 12 – जीव विज्ञान (Biology)</h1>
 
-<div class="chapter-list">
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/01-reproduction-in-organisms.pdf">
-        1. Reproduction in Organisms
-    </a>
+<h2>📘 भाग 1</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/02-sexual-reproduction-in-flowering-plants.pdf">
-        2. Sexual Reproduction in Flowering Plants
-    </a>
+<div class="chapter-card" onclick="openNotes('12-bio-ch1.pdf')">अध्याय 1 – प्रजनन</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch2.pdf')">अध्याय 2 – मानव प्रजनन</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch3.pdf')">अध्याय 3 – मानव प्रजनन स्वास्थ्य</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch4.pdf')">अध्याय 4 – वंशागति एवं विविधता</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch5.pdf')">अध्याय 5 – वंशागति का अणुगत आधार</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch6.pdf')">अध्याय 6 – उत्क्रमण</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/03-human-reproduction.pdf">
-        3. Human Reproduction
-    </a>
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/04-reproductive-health.pdf">
-        4. Reproductive Health
-    </a>
+<h2>📗 भाग 2</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/05-principles-of-inheritance-and-variation.pdf">
-        5. Principles of Inheritance and Variation
-    </a>
+<div class="chapter-card" onclick="openNotes('12-bio-ch7.pdf')">अध्याय 7 – मानव स्वास्थ्य एवं रोग</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch8.pdf')">अध्याय 8 – खाद्य उत्पादन में उन्नत प्रौद्योगिकी</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch9.pdf')">अध्याय 9 – जैव प्रौद्योगिकी</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch10.pdf')">अध्याय 10 – जैव प्रौद्योगिकी एवं उसके अनुप्रयोग</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch11.pdf')">अध्याय 11 – जीव एवं जनसंख्या</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch12.pdf')">अध्याय 12 – पर्यावरण एवं पारितंत्र</div>
+<div class="chapter-card" onclick="openNotes('12-bio-ch13.pdf')">अध्याय 13 – जैव विविधता एवं संरक्षण</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/06-molecular-basis-of-inheritance.pdf">
-        6. Molecular Basis of Inheritance
-    </a>
 
-    <a class="chapter-card" href="../notes-viewer/12-biology/07-evolution.pdf">
-        7. Evolution
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/08-human-health-and-disease.pdf">
-        8. Human Health and Disease
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/09-strategies-for-enhancement-in-food-production.pdf">
-        9. Strategies for Enhancement in Food Production
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/10-microbes-in-human-welfare.pdf">
-        10. Microbes in Human Welfare
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/11-biotecnology-principles-and-processes.pdf">
-        11. Biotechnology: Principles and Processes
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/12-biotechnology-and-its-applications.pdf">
-        12. Biotechnology and its Applications
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/13-organisms-and-populations.pdf">
-        13. Organisms and Populations
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/14-ecosystem.pdf">
-        14. Ecosystem
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/15-biodiversity-and-conservation.pdf">
-        15. Biodiversity and Conservation
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-biology/16-environmental-issues.pdf">
-        16. Environmental Issues
-    </a>
-
-</div>
+<script>
+function openNotes(file) {
+    window.location.href = "notes-viewer.html?file=" + file;
+}
+</script>
 
 </body>
 </html>
