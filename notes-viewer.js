@@ -10,8 +10,8 @@
 const CHAPTERS = [
   { title: "Chapter 1 — Motion", file: "pdfs/physics_motion.pdf" },
   { title: "Chapter 2 — Force", file: "pdfs/physics_force.pdf" },
-  { title: "Chapter 3 — Work & Energy", file: "pdfs/physics_work.pdf" },
-  { title: "Chapter 4 — Waves", file: "pdfs/physics_waves.pdf" },
+  { title: "Chapter 3 — Work & Energy", file: "physics_work.pdf" },
+  { title: "Chapter 4 — Waves", file: "physics_waves.pdf" },
   /* Add more: { title: "Chapter X", file: "path/to/file.pdf" } */
 ];
 
