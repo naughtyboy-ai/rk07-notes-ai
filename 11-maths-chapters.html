@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 Maths – Chapters</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#eef6ff;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#0057b7;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:bold;
+    }
+    .container{
+        padding:20px;
+    }
+    .chapter{
+        background:white;
+        padding:15px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(0,0,80,0.15);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .chapter:hover{
+        transform:scale(1.03);
+        box-shadow:0 6px 12px rgba(0,0,0,0.25);
+    }
+    .arrow{
+        font-size:22px;
+        color:#0057b7;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – Mathematics Chapters</header>
+
+<div class="container">
+
+    <div class="chapter" onclick="openPDF('1-sets.pdf')">
+        1. Sets <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('2-relations-and-functions.pdf')">
+        2. Relations & Functions <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('3-trigonometric-functions.pdf')">
+        3. Trigonometric Functions <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('4-principle-of-mathematical-induction.pdf')">
+        4. Principle of Mathematical Induction <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('5-complex-numbers-and-quadratic-equations.pdf')">
+        5. Complex Numbers & Quadratic Equations <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('6-linear-inequalities.pdf')">
+        6. Linear Inequalities <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('7-permutation-and-combination.pdf')">
+        7. Permutation & Combination <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('8-binomial-theorem.pdf')">
+        8. Binomial Theorem <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('9-sequences-and-series.pdf')">
+        9. Sequences & Series <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('10-straight-lines.pdf')">
+        10. Straight Lines <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('11-conic-sections.pdf')">
+        11. Conic Sections <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('12-introduction-to-3d-geometry.pdf')">
+        12. Introduction to 3D Geometry <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('13-limits-and-derivatives.pdf')">
+        13. Limits & Derivatives <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('14-mathematical-reasoning.pdf')">
+        14. Mathematical Reasoning <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('15-statistics.pdf')">
+        15. Statistics <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('16-probability.pdf')">
+        16. Probability <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPDF(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
