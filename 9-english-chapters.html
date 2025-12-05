@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 English Chapters</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 25px;
+            color: #333;
+        }
+
+        .chapter-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .chapter-card:hover {
+            background: #e8f4ff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Class 9 — English</h1>
+
+    <!-- BEEHIVE -->
+    <h2>📘 Beehive</h2>
+
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch1.pdf')">Chapter 1 – The Fun They Had</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch2.pdf')">Chapter 2 – The Sound of Music</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch3.pdf')">Chapter 3 – The Little Girl</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch4.pdf')">Chapter 4 – A Truly Beautiful Mind</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch5.pdf')">Chapter 5 – The Snake and the Mirror</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch6.pdf')">Chapter 6 – My Childhood</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch7.pdf')">Chapter 7 – Packing</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch8.pdf')">Chapter 8 – Reach for the Top</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch9.pdf')">Chapter 9 – The Bond of Love</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch10.pdf')">Chapter 10 – Kathmandu</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-bee-ch11.pdf')">Chapter 11 – If I Were You</div>
+
+
+    <!-- MOMENTS -->
+    <h2>📙 Moments (Supplementary Reader)</h2>
+
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch1.pdf')">Chapter 1 – The Lost Child</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch2.pdf')">Chapter 2 – The Adventures of Toto</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch3.pdf')">Chapter 3 – Iswaran the Storyteller</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch4.pdf')">Chapter 4 – In the Kingdom of Fools</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch5.pdf')">Chapter 5 – The Happy Prince</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch6.pdf')">Chapter 6 – Weathering the Storm in Ersama</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch7.pdf')">Chapter 7 – The Last Leaf</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch8.pdf')">Chapter 8 – A House Is Not a Home</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch9.pdf')">Chapter 9 – The Accidental Tourist</div>
+    <div class="chapter-card" onclick="openNotes('9-eng-mom-ch10.pdf')">Chapter 10 – The Beggar</div>
+
+
+    <script>
+        function openNotes(file) {
+            window.location.href = "notes-viewer.html?file=" + file;
+        }
+    </script>
+
+</body>
+</html>
