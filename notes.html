@@ -13,56 +13,55 @@
     <div class="left">
       <button id="backBtn" class="btn-ghost" title="Back">←</button>
       <div class="nv-title">Notes Viewer</div>
-      <div class="nv-label" id="currentChapterLabel">—</div>
+      <div id="currentChapterLabel" class="nv-label">—</div>
     </div>
 
     <div class="right">
-      <input id="searchCh" placeholder="Search chapters..." class="search" />
+      <input id="searchCh" placeholder="Search chapters..." class="search" aria-label="Search chapters" />
       <button id="sidebarToggle" class="btn-ghost" title="Toggle Chapters">☰</button>
       <button id="zoomOut" class="btn-ghost" title="Zoom out">−</button>
       <button id="zoomIn" class="btn-ghost" title="Zoom in">＋</button>
       <button id="fullscreenBtn" class="btn-ghost" title="Fullscreen">⛶</button>
       <a id="downloadBtn" class="btn-ghost" title="Download PDF" download>⬇</a>
-      <label class="theme-switch">
+      <label class="theme-switch" title="Toggle theme">
         <input type="checkbox" id="themeToggle" />
         <span class="slider"></span>
       </label>
     </div>
   </header>
 
-  <!-- LAYOUT -->
+  <!-- LAYOUT: sidebar + main -->
   <div class="nv-wrapper">
 
     <!-- SIDEBAR -->
-    <aside id="chaptersSidebar" class="nv-sidebar">
+    <aside id="chaptersSidebar" class="nv-sidebar" aria-hidden="false">
       <div class="sidebar-head">
-        <h3>Chapters</h3>
-        <button id="closeSidebar" class="btn-small">✕</button>
+        <h3 id="sidebarTitle">Chapters</h3>
+        <button id="closeSidebar" class="btn-small" aria-label="Close chapters">✕</button>
       </div>
 
       <div class="chapters-search">
-        <input id="chapSearch" placeholder="Filter chapters..." />
+        <input id="chapSearch" placeholder="Filter chapters..." aria-label="Filter chapters" />
       </div>
 
-      <div id="chaptersList" class="chap-list">
-        <!-- chapters inserted here by JS -->
+      <div id="chaptersList" class="chap-list" role="list">
+        <!-- JS injects chap items -->
       </div>
 
       <div class="sidebar-foot">
-        <small>Place PDFs in the same folder and map files in <code>notes-viewer.js</code></small>
+        <small id="sidebarNote">Put PDFs in <code>pdfs/</code> and map them in JSON under <code>data/</code></small>
       </div>
     </aside>
 
     <!-- VIEWER -->
-    <main class="nv-main">
-      <div id="loader" class="nv-loader">Loading PDF…</div>
+    <main class="nv-main" role="main">
+      <div id="loader" class="nv-loader" aria-live="polite">Loading PDF…</div>
 
-      <!-- container for scaling the embed -->
       <div id="viewerWrap" class="viewer-wrap">
-        <embed id="pdfEmbed" class="pdf-embed" type="application/pdf" src="" />
+        <embed id="pdfEmbed" class="pdf-embed" type="application/pdf" src="" aria-label="PDF viewer" />
       </div>
 
-      <div id="pageHint" class="page-hint">Use ← → to change chapter (if mapped)</div>
+      <div id="pageHint" class="page-hint">Tip: Use ← → to navigate chapters (when multiple mapped).</div>
     </main>
 
   </div>
