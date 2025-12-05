@@ -213,3 +213,19 @@ input:checked + .slider {
 input:checked + .slider::before {
     transform: translateX(27px);
 }
+:root {
+    --bg: #ffffff;
+    --text: #111;
+}
+
+[data-theme="dark"] {
+    --bg: #0c0f22;
+    --text: #fff;
+}
+
+/* Apply globally */
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.3s;
+}
