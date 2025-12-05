@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 English – Chapters</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f0f6ff;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#8b00ff;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:bold;
+    }
+    .container{
+        padding:20px;
+    }
+    .chapter{
+        background:white;
+        padding:15px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(60,0,100,0.20);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.25s;
+    }
+    .chapter:hover{
+        transform:scale(1.03);
+        box-shadow:0 6px 14px rgba(0,0,0,0.25);
+    }
+    .arrow{
+        font-size:22px;
+        color:#8b00ff;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – English Chapters</header>
+
+<div class="container">
+
+    <!-- HORNBILL PROSE -->
+    <div class="chapter" onclick="openPDF('hb1-the-portrait-of-a-lady.pdf')">
+        Hornbill 1. The Portrait of a Lady <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb2-a-photograph.pdf')">
+        Hornbill 2. A Photograph (Poem) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb3-we-are-not-afraid-to-die.pdf')">
+        Hornbill 3. We’re Not Afraid to Die… <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb4-discovering-tut.pdf')">
+        Hornbill 4. Discovering Tut <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb5-the-laburnum-top.pdf')">
+        Hornbill 5. The Laburnum Top (Poem) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb6-the-voice-of-the-rain.pdf')">
+        Hornbill 6. The Voice of the Rain (Poem) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb7-childhood.pdf')">
+        Hornbill 7. Childhood (Poem) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('hb8-father-to-son.pdf')">
+        Hornbill 8. Father to Son (Poem) <span class="arrow">›</span>
+    </div>
+
+    <!-- SNAPSHOTS SUPPLEMENTARY -->
+    <div class="chapter" onclick="openPDF('ss1-the-summer-of-the-beautiful-white-horse.pdf')">
+        Snapshots 1. The Summer of the Beautiful White Horse <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss2-the-address.pdf')">
+        Snapshots 2. The Address <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss3-ranga-marriage.pdf')">
+        Snapshots 3. Ranga’s Marriage <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss4-albert-einstein-at-school.pdf')">
+        Snapshots 4. Albert Einstein at School <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss5-mother’s-day.pdf')">
+        Snapshots 5. Mother’s Day (Play) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss6-the-ganga-iccha.pdf')">
+        Snapshots 6. The Ganga Iccha (Bihar Board Special) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss7-the-birth.pdf')">
+        Snapshots 7. The Birth <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('ss8-the-tale-of-melon-city.pdf')">
+        Snapshots 8. The Tale of Melon City <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPDF(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
