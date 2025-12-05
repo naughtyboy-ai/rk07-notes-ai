@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 Chemistry – Chapters</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#eef2ff;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#ff6600;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:bold;
+    }
+    .container{
+        padding:20px;
+    }
+    .chapter{
+        background:white;
+        padding:15px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(0,0,100,0.1);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .chapter:hover{
+        transform:scale(1.03);
+        box-shadow:0 6px 12px rgba(0,0,0,0.2);
+    }
+    .arrow{
+        font-size:22px;
+        color:#ff6600;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – Chemistry Chapters</header>
+
+<div class="container">
+
+    <div class="chapter" onclick="openPDF('1-some-basic-concepts-of-chemistry.pdf')">
+        1. Some Basic Concepts of Chemistry <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('2-structure-of-atom.pdf')">
+        2. Structure of Atom <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('3-classification-of-elements.pdf')">
+        3. Classification of Elements & Periodicity <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('4-chemical-bonding.pdf')">
+        4. Chemical Bonding & Molecular Structure <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('5-states-of-matter.pdf')">
+        5. States of Matter (Gases & Liquids) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('6-thermodynamics.pdf')">
+        6. Thermodynamics <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('7-equilibrium.pdf')">
+        7. Equilibrium <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('8-redox-reactions.pdf')">
+        8. Redox Reactions <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('9-organic-chemistry-basics.pdf')">
+        9. Organic Chemistry – Basic Principles & Techniques <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('10-hydrocarbons.pdf')">
+        10. Hydrocarbons <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('11-environmental-chemistry.pdf')">
+        11. Environmental Chemistry <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPDF(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
