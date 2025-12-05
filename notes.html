@@ -1,71 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Notes Viewer — Rohit ki Notes</title>
-  <link rel="stylesheet" href="notes-viewer.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Viewer</title>
+    <link rel="stylesheet" href="notes.css">
 </head>
 <body>
 
-  <!-- TOPBAR -->
-  <header class="nv-topbar">
-    <div class="left">
-      <button id="backBtn" class="btn-ghost" title="Back">←</button>
-      <div class="nv-title">Notes Viewer</div>
-      <div id="currentChapterLabel" class="nv-label">—</div>
+<div class="container">
+
+    <h1>Notes Viewer</h1>
+
+    <!-- CLASS SELECTION -->
+    <div class="block">
+        <h2>Select Class</h2>
+        <select id="classSelect">
+            <option value="">Choose Class</option>
+            <option value="class11">Class 11</option>
+            <option value="class12">Class 12</option>
+        </select>
     </div>
 
-    <div class="right">
-      <input id="searchCh" placeholder="Search chapters..." class="search" aria-label="Search chapters" />
-      <button id="sidebarToggle" class="btn-ghost" title="Toggle Chapters">☰</button>
-      <button id="zoomOut" class="btn-ghost" title="Zoom out">−</button>
-      <button id="zoomIn" class="btn-ghost" title="Zoom in">＋</button>
-      <button id="fullscreenBtn" class="btn-ghost" title="Fullscreen">⛶</button>
-      <a id="downloadBtn" class="btn-ghost" title="Download PDF" download>⬇</a>
-      <label class="theme-switch" title="Toggle theme">
-        <input type="checkbox" id="themeToggle" />
-        <span class="slider"></span>
-      </label>
+    <!-- SUBJECT SELECTION -->
+    <div class="block" id="subjectBlock" style="display:none;">
+        <h2>Select Subject</h2>
+        <select id="subjectSelect"></select>
     </div>
-  </header>
 
-  <!-- LAYOUT: sidebar + main -->
-  <div class="nv-wrapper">
+    <!-- CHAPTER LIST -->
+    <div class="block" id="chapterBlock" style="display:none;">
+        <h2>Select Chapter</h2>
+        <ul id="chapterList"></ul>
+    </div>
 
-    <!-- SIDEBAR -->
-    <aside id="chaptersSidebar" class="nv-sidebar" aria-hidden="false">
-      <div class="sidebar-head">
-        <h3 id="sidebarTitle">Chapters</h3>
-        <button id="closeSidebar" class="btn-small" aria-label="Close chapters">✕</button>
-      </div>
+</div>
 
-      <div class="chapters-search">
-        <input id="chapSearch" placeholder="Filter chapters..." aria-label="Filter chapters" />
-      </div>
-
-      <div id="chaptersList" class="chap-list" role="list">
-        <!-- JS injects chap items -->
-      </div>
-
-      <div class="sidebar-foot">
-        <small id="sidebarNote">Put PDFs in <code>pdfs/</code> and map them in JSON under <code>data/</code></small>
-      </div>
-    </aside>
-
-    <!-- VIEWER -->
-    <main class="nv-main" role="main">
-      <div id="loader" class="nv-loader" aria-live="polite">Loading PDF…</div>
-
-      <div id="viewerWrap" class="viewer-wrap">
-        <embed id="pdfEmbed" class="pdf-embed" type="application/pdf" src="" aria-label="PDF viewer" />
-      </div>
-
-      <div id="pageHint" class="page-hint">Tip: Use ← → to navigate chapters (when multiple mapped).</div>
-    </main>
-
-  </div>
-
-  <script src="notes-viewer.js"></script>
+<script src="notes.js"></script>
 </body>
 </html>
