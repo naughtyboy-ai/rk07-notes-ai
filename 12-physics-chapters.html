@@ -1,81 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 Physics – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 Physics Chapters</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 { text-align: center; font-size: 30px; margin-bottom: 10px; }
+        h2 { margin-top: 30px; font-size: 22px; color: #222; }
+        .chapter-card {
+            background: white;
+            padding: 14px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 17px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-weight: 600;
+            transition: .3s;
+        }
+        .chapter-card:hover {
+            background: #e8f4ff;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h2>Class 12 – Physics</h2>
-    <a href="../12-science.html" class="back-btn">⬅ Back</a>
-</header>
+<h1>Class 12 – भौतिकी (Physics)</h1>
 
-<div class="chapter-list">
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/01-electric-charges-and-fields.pdf">
-        1. Electric Charges and Fields
-    </a>
+<h2>📘 भाग 1</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/02-electrostatic-potential-and-capacitance.pdf">
-        2. Electrostatic Potential & Capacitance
-    </a>
+<div class="chapter-card" onclick="openNotes('12-phy-ch1.pdf')">अध्याय 1 – वैद्युत आवेश एवं क्षेत्र</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch2.pdf')">अध्याय 2 – वैद्युत विभव एवं धारिता</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch3.pdf')">अध्याय 3 – धारा विद्युत</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch4.pdf')">अध्याय 4 – गतिज चुम्बकत्व</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch5.pdf')">अध्याय 5 – चुंबकीय प्रभाव</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch6.pdf')">अध्याय 6 – विद्युतचुंबकीय प्रेरण</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch7.pdf')">अध्याय 7 – प्रत्यावर्ती धारा</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch8.pdf')">अध्याय 8 – विद्युतचुंबकीय तरंगें</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/03-current-electricity.pdf">
-        3. Current Electricity
-    </a>
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/04-moving-charges-and-magnetism.pdf">
-        4. Moving Charges & Magnetism
-    </a>
+<h2>📗 भाग 2</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/05-magnetism-and-matter.pdf">
-        5. Magnetism & Matter
-    </a>
+<div class="chapter-card" onclick="openNotes('12-phy-ch9.pdf')">अध्याय 9 – किरण आप्टिक्स और तरंग आप्टिक्स</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch10.pdf')">अध्याय 10 – तरंगिकी</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch11.pdf')">अध्याय 11 – विकिरण एवं पदार्थ की द्वैत प्रवृत्ति</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch12.pdf')">अध्याय 12 – परमाणु</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch13.pdf')">अध्याय 13 – नाभिक</div>
+<div class="chapter-card" onclick="openNotes('12-phy-ch14.pdf')">अध्याय 14 – अर्धचालक इलेक्ट्रॉनिक्स</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/06-electromagnetic-induction.pdf">
-        6. Electromagnetic Induction
-    </a>
 
-    <a class="chapter-card" href="../notes-viewer/12-physics/07-alternating-current.pdf">
-        7. Alternating Current
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/08-electromagnetic-waves.pdf">
-        8. Electromagnetic Waves
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/09-ray-optics.pdf">
-        9. Ray Optics
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/10-wave-optics.pdf">
-        10. Wave Optics
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/11-dual-nature-of-radiation.pdf">
-        11. Dual Nature of Radiation & Matter
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/12-atoms.pdf">
-        12. Atoms
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/13-nuclei.pdf">
-        13. Nuclei
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/14-semiconductor-electronics.pdf">
-        14. Semiconductor Electronics
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-physics/15-communication-systems.pdf">
-        15. Communication Systems
-    </a>
-
-</div>
+<script>
+function openNotes(file) {
+    window.location.href = "notes-viewer.html?file=" + file;
+}
+</script>
 
 </body>
 </html>
