@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 Hindi – Chapters</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#fff4ef;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#ff5722;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:700;
+        letter-spacing:1px;
+    }
+    .container{
+        padding:20px;
+    }
+    .chapter{
+        background:white;
+        padding:15px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(255,87,34,0.25);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.25s;
+    }
+    .chapter:hover{
+        transform:scale(1.04);
+        box-shadow:0 6px 14px rgba(0,0,0,0.25);
+    }
+    .arrow{
+        font-size:22px;
+        color:#ff5722;
+    }
+
+    h2{
+        margin-top:25px;
+        color:#ff5722;
+        font-size:20px;
+        font-weight:700;
+        border-left:5px solid #ff5722;
+        padding-left:10px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – Hindi Chapters</header>
+
+<div class="container">
+
+    <!-- ------------------------- -->
+    <!-- ANTRA (काव्य भाग) -->
+    <!-- ------------------------- -->
+
+    <h2>अंतरा – भाग (कविता)</h2>
+
+    <div class="chapter" onclick="openPDF('antra1-hri-day.pdf')">
+        1. हरिवंश राय बच्चन — हृदय और मन <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('antra2-nirala.pdf')">
+        2. निराला — जागो फिर एक बार <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('antra3-nagmati.pdf')">
+        3. पद्माकर — नागमती का विरह <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('antra4-rahim.pdf')">
+        4. रहीम — दोहे <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('antra5-maithili.pdf')">
+        5. मैथिलीशरण गुप्त — मानवता <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('antra6-tulsidas.pdf')">
+        6. तुलसीदास — कवित्त <span class="arrow">›</span>
+    </div>
+
+    <!-- ------------------------- -->
+    <!-- AAROHA (गद्य भाग) -->
+    <!-- ------------------------- -->
+
+    <h2>आरोह – गद्य</h2>
+
+    <div class="chapter" onclick="openPDF('aaroh1-akhbaar.pdf')">
+        1. अख़बारों की भी अपनी भाषा <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('aaroh2-mangal-pandet.pdf')">
+        2. मंगल पांडे का जीवन संघर्ष <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('aaroh3-saans.pdf')">
+        3. सांसों की महत्ता <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('aaroh4-sheb.pdf')">
+        4. शेख चिल्ली की कहानियाँ <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('aaroh5-kathak.pdf')">
+        5. कथक का विकास <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('aaroh6-pahal.pdf')">
+        6. पहल — स्त्री शक्ति <span class="arrow">›</span>
+    </div>
+
+
+    <!-- ------------------------- -->
+    <!-- व्याकरण & लेखन -->
+    <!-- ------------------------- -->
+
+    <h2>व्याकरण & लेखन</h2>
+
+    <div class="chapter" onclick="openPDF('grammar-hindi-11.pdf')">
+        संपूर्ण व्याकरण नोट्स <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('letter-writing-hindi-11.pdf')">
+        पत्र लेखन <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('essay-writing-hindi-11.pdf')">
+        निबंध लेखन <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('notice-writing-hindi-11.pdf')">
+        सूचना लेखन <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPDF(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
