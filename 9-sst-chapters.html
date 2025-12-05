@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 SST Chapters</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 25px;
+            color: #333;
+        }
+
+        .chapter-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .chapter-card:hover {
+            background: #e8f4ff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Class 9 — Social Science</h1>
+
+    <!-- Geography -->
+    <h2>🌍 Geography</h2>
+    <div class="chapter-card" onclick="openNotes('9-sst-geo-ch1.pdf')">Chapter 1 – India: Size and Location</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-geo-ch2.pdf')">Chapter 2 – Physical Features of India</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-geo-ch3.pdf')">Chapter 3 – Drainage</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-geo-ch4.pdf')">Chapter 4 – Climate</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-geo-ch5.pdf')">Chapter 5 – Natural Vegetation and Wildlife</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-geo-ch6.pdf')">Chapter 6 – Population</div>
+
+
+    <!-- History -->
+    <h2>📜 History</h2>
+    <div class="chapter-card" onclick="openNotes('9-sst-hist-ch1.pdf')">Chapter 1 – The French Revolution</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-hist-ch2.pdf')">Chapter 2 – Socialism in Europe & Russian Revolution</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-hist-ch3.pdf')">Chapter 3 – Nazism and the Rise of Hitler</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-hist-ch4.pdf')">Chapter 4 – Forest Society and Colonialism</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-hist-ch5.pdf')">Chapter 5 – Pastoralists in the Modern World</div>
+
+
+    <!-- Civics -->
+    <h2>⚖️ Civics (Political Science)</h2>
+    <div class="chapter-card" onclick="openNotes('9-sst-civ-ch1.pdf')">Chapter 1 – What is Democracy? Why Democracy?</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-civ-ch2.pdf')">Chapter 2 – Constitutional Design</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-civ-ch3.pdf')">Chapter 3 – Electoral Politics</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-civ-ch4.pdf')">Chapter 4 – Working of Institutions</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-civ-ch5.pdf')">Chapter 5 – Democratic Rights</div>
+
+
+    <!-- Economics -->
+    <h2>💰 Economics</h2>
+    <div class="chapter-card" onclick="openNotes('9-sst-eco-ch1.pdf')">Chapter 1 – The Story of Village Palampur</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-eco-ch2.pdf')">Chapter 2 – People as Resource</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-eco-ch3.pdf')">Chapter 3 – Poverty as a Challenge</div>
+    <div class="chapter-card" onclick="openNotes('9-sst-eco-ch4.pdf')">Chapter 4 – Food Security in India</div>
+
+
+    <script>
+        function openNotes(file) {
+            window.location.href = "notes-viewer.html?file=" + file;
+        }
+    </script>
+
+</body>
+</html>
