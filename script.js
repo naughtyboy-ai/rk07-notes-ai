@@ -29,3 +29,21 @@ function resetTimer() {
     document.getElementById("time").innerText = "0 sec";
     clearInterval(timer);
 }
+const themeSwitch = document.getElementById("themeSwitch");
+
+themeSwitch.addEventListener("change", () => {
+    if (themeSwitch.checked) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+    } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+    }
+});
+
+// Load saved theme
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+    themeSwitch.checked = true;
+    document.documentElement.setAttribute("data-theme", "dark");
+}
