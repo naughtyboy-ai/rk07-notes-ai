@@ -1,85 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 Chemistry – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+<title>Class 12 Chemistry Chapters</title>
+
+<style>
+body { font-family: Arial; background:#f5f5f5; padding:20px; margin:0; }
+h1 { text-align:center; font-size:30px; margin-bottom:10px; }
+h2 { margin-top:30px; font-size:22px; color:#222; }
+.chapter-card {
+    background:white; padding:14px 15px; margin:10px 0; border-radius:8px;
+    font-size:17px; box-shadow:0 3px 6px rgba(0,0,0,0.1); cursor:pointer;
+    font-weight:600; transition:.3s;
+}
+.chapter-card:hover { background:#e8f4ff; transform:translateY(-2px); }
+</style>
 </head>
+
 <body>
 
-<header>
-    <h2>Class 12 – Chemistry</h2>
-    <a href="../12-science.html" class="back-btn">⬅ Back</a>
-</header>
+<h1>Class 12 – रसायन विज्ञान (Chemistry)</h1>
 
-<div class="chapter-list">
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/01-the-solid-state.pdf">
-        1. The Solid State
-    </a>
+<h2>📘 भाग 1</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/02-solutions.pdf">
-        2. Solutions
-    </a>
+<div class="chapter-card" onclick="openNotes('12-chem-ch1.pdf')">अध्याय 1 – ठोस अवस्था</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch2.pdf')">अध्याय 2 – विलयन</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch3.pdf')">अध्याय 3 – वैद्युत रसायन</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch4.pdf')">अध्याय 4 – रासायनिक गतिकी</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch5.pdf')">अध्याय 5 – पृष्ठ रसायन</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/03-electrochemistry.pdf">
-        3. Electrochemistry
-    </a>
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/04-chemical-kinetics.pdf">
-        4. Chemical Kinetics
-    </a>
+<h2>📗 भाग 2</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/05-surface-chemistry.pdf">
-        5. Surface Chemistry
-    </a>
+<div class="chapter-card" onclick="openNotes('12-chem-ch6.pdf')">अध्याय 6 – धातु विज्ञान</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch7.pdf')">अध्याय 7 – p-ब्लॉक तत्त्व</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch8.pdf')">अध्याय 8 – d और f ब्लॉक तत्त्व</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch9.pdf')">अध्याय 9 – समन्वय यौगिक</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch10.pdf')">अध्याय 10 – हेलोएल्केन एवं हेलोएरीन</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch11.pdf')">अध्याय 11 – ऐल्कोहॉल, फिनॉल व ईथर</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch12.pdf')">अध्याय 12 – ऐल्डिहाइड, कीटोन व कार्बोक्सिलिक अम्ल</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch13.pdf')">अध्याय 13 – ऐमीन</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch14.pdf')">अध्याय 14 – जैव अणु</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch15.pdf')">अध्याय 15 – बहुलक</div>
+<div class="chapter-card" onclick="openNotes('12-chem-ch16.pdf')">अध्याय 16 – दैनंदिन जीवन में रसायन</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/06-general-principles-isolation-metals.pdf">
-        6. General Principles & Processes of Isolation of Metals
-    </a>
 
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/07-p-block-elements.pdf">
-        7. p-Block Elements
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/08-d-and-f-block-elements.pdf">
-        8. d- & f-Block Elements
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/09-coordination-compounds.pdf">
-        9. Coordination Compounds
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/10-haloalkanes-and-haloarenes.pdf">
-        10. Haloalkanes & Haloarenes
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/11-alcohols-phenols-ethers.pdf">
-        11. Alcohols, Phenols & Ethers
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/12-aldehydes-ketones-carboxylic-acids.pdf">
-        12. Aldehydes, Ketones & Carboxylic Acids
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/13-organic-nitrogen-compounds.pdf">
-        13. Organic Compounds Containing Nitrogen
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/14-biomolecules.pdf">
-        14. Biomolecules
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/15-polymers.pdf">
-        15. Polymers
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-chemistry/16-chemistry-in-everyday-life.pdf">
-        16. Chemistry in Everyday Life
-    </a>
-
-</div>
+<script>
+function openNotes(file) {
+    window.location.href = "notes-viewer.html?file=" + file;
+}
+</script>
 
 </body>
 </html>
