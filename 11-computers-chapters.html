@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 Computer – Chapters</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#eef7ff;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#007bff;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:700;
+    }
+    .container{
+        padding:20px;
+    }
+    .chapter{
+        background:white;
+        padding:15px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.25s;
+    }
+    .chapter:hover{
+        transform:scale(1.04);
+        box-shadow:0 6px 15px rgba(0,0,0,0.25);
+    }
+    .arrow{
+        font-size:22px;
+        color:#007bff;
+    }
+    h2{
+        margin-top:25px;
+        color:#007bff;
+        font-size:20px;
+        font-weight:700;
+        border-left:5px solid #007bff;
+        padding-left:10px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 11 – Computer Chapters</header>
+
+<div class="container">
+
+    <h2>Complete Syllabus (Bihar Board)</h2>
+
+    <div class="chapter" onclick="openPDF('comp1-intro.pdf')">
+        1. Introduction to Computer System <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp2-hardware.pdf')">
+        2. Computer Hardware Components <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp3-software.pdf')">
+        3. Software and its Types <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp4-os.pdf')">
+        4. Operating System Basics <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp5-dbms.pdf')">
+        5. Database Management System (DBMS) <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp6-networking.pdf')">
+        6. Computer Networking <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp7-internet.pdf')">
+        7. Internet & Web Technology <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp8-cyber.pdf')">
+        8. Cyber Security & Ethics <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp9-html.pdf')">
+        9. HTML Basics <span class="arrow">›</span>
+    </div>
+
+    <div class="chapter" onclick="openPDF('comp10-programming.pdf')">
+        10. Introduction to Programming (C / Python) <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPDF(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
