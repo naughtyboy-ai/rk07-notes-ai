@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 English</title>
+
+    <style>
+        body { font-family: Arial; background:#f3f6ff; padding:20px; }
+        h1 { text-align:center; }
+        .chapter-card {
+            background:#fff; padding:15px; margin:10px 0;
+            border-radius:10px; font-size:19px; font-weight:600;
+            box-shadow:0 4px 12px rgba(0,0,0,0.1);
+            cursor:pointer; transition:.3s;
+        }
+        .chapter-card:hover { background:#e4f1ff; transform:translateY(-3px); }
+    </style>
+</head>
+
+<body>
+
+<h1>Class 10 – English Chapters</h1>
+
+<div class="chapter-card" onclick="openNotes('10-eng-ch1.pdf')">Chapter 1 – A Letter to God</div>
+<div class="chapter-card" onclick="openNotes('10-eng-ch2.pdf')">Chapter 2 – Nelson Mandela</div>
+<div class="chapter-card" onclick="openNotes('10-eng-ch3.pdf')">Chapter 3 – Two Stories About Flying</div>
+<div class="chapter-card" onclick="openNotes('10-eng-ch4.pdf')">Chapter 4 – From the Diary of Anne Frank</div>
+<div class="chapter-card" onclick="openNotes('10-eng-ch5.pdf')">Chapter 5 – The Hundred Dresses</div>
+
+<script>
+function openNotes(f){
+    window.location.href = "notes-viewer.html?file=" + f;
+}
+</script>
+
+</body>
+</html>
