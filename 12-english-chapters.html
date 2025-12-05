@@ -3,108 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 English – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+<title>Class 12 English Chapters</title>
+
+<style>
+    body{font-family:Arial;background:#f5f5f5;padding:20px;margin:0;}
+    h1{text-align:center;font-size:30px;margin-bottom:10px;}
+    h2{margin-top:30px;font-size:22px;color:#222;}
+    .chapter-card{
+        background:white;padding:14px 15px;margin:10px 0;border-radius:8px;
+        font-size:17px;box-shadow:0 3px 6px rgba(0,0,0,0.1);cursor:pointer;
+        font-weight:600;transition:.3s;
+    }
+    .chapter-card:hover{background:#e8f4ff;transform:translateY(-2px);}
+</style>
+
 </head>
 <body>
 
-<header>
-    <h2>Class 12 – English</h2>
-    <a href="../12-science.html" class="back-btn">⬅ Back</a>
-</header>
+<h1>Class 12 – English</h1>
 
-<div class="chapter-list">
+<h2>📘 Flamingo (Prose)</h2>
 
-    <!-- Flamingo (Prose) -->
-    <h3 style="margin-top:20px;">📘 Flamingo – Prose</h3>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch1.pdf')">Chapter 1 – The Last Lesson</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch2.pdf')">Chapter 2 – Lost Spring</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch3.pdf')">Chapter 3 – Deep Water</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch4.pdf')">Chapter 4 – The Rattrap</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch5.pdf')">Chapter 5 – Indigo</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch6.pdf')">Chapter 6 – Poets and Pancakes</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch7.pdf')">Chapter 7 – The Interview</div>
+<div class="chapter-card" onclick="openNotes('12-eng-flamingo-ch8.pdf')">Chapter 8 – Going Places</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-english/01-the-last-lesson.pdf">
-        1. The Last Lesson
-    </a>
+<h2>📙 Flamingo (Poetry)</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-english/02-lost-spring.pdf">
-        2. Lost Spring
-    </a>
+<div class="chapter-card" onclick="openNotes('12-eng-poem1.pdf')">Poem 1 – My Mother at Sixty-Six</div>
+<div class="chapter-card" onclick="openNotes('12-eng-poem2.pdf')">Poem 2 – An Elementary School Classroom in a Slum</div>
+<div class="chapter-card" onclick="openNotes('12-eng-poem3.pdf')">Poem 3 – Keeping Quiet</div>
+<div class="chapter-card" onclick="openNotes('12-eng-poem4.pdf')">Poem 4 – A Thing of Beauty</div>
+<div class="chapter-card" onclick="openNotes('12-eng-poem5.pdf')">Poem 5 – Aunt Jennifer’s Tigers</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-english/03-deep-water.pdf">
-        3. Deep Water
-    </a>
+<h2>📗 Vistas (Supplementary)</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-english/04-the-rattrap.pdf">
-        4. The Rattrap
-    </a>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch1.pdf')">Chapter 1 – The Third Level</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch2.pdf')">Chapter 2 – The Tiger King</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch3.pdf')">Chapter 3 – Journey to the End of the Earth</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch4.pdf')">Chapter 4 – The Enemy</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch5.pdf')">Chapter 5 – Should Wizard Hit Mommy?</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch6.pdf')">Chapter 6 – On the Face of It</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch7.pdf')">Chapter 7 – Evans Tries an O-Level</div>
+<div class="chapter-card" onclick="openNotes('12-eng-vistas-ch8.pdf')">Chapter 8 – Memories of Childhood</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-english/05-indigo.pdf">
-        5. Indigo
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/06-going-places.pdf">
-        6. Going Places
-    </a>
-
-
-
-    <!-- Flamingo (Poetry) -->
-    <h3 style="margin-top:20px;">📗 Flamingo – Poetry</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/07-my-mother-at-sixty-six.pdf">
-        1. My Mother at Sixty-Six
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/08-an-elementary-school-classroom.pdf">
-        2. An Elementary School Classroom in a Slum
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/09-keeping-quiet.pdf">
-        3. Keeping Quiet
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/10-a-thing-of-beauty.pdf">
-        4. A Thing of Beauty
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/11-aunt-jennifers-tigers.pdf">
-        5. Aunt Jennifer’s Tigers
-    </a>
-
-
-
-    <!-- Vistas Supplementary -->
-    <h3 style="margin-top:20px;">📙 Vistas – Supplementary Reader</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/12-the-third-level.pdf">
-        1. The Third Level
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/13-the-tiger-king.pdf">
-        2. The Tiger King
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/14-journey-to-the-end-of-the-earth.pdf">
-        3. Journey to the End of the Earth
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/15-the-enemy.pdf">
-        4. The Enemy
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/16-should-wizard-hit-mommy.pdf">
-        5. Should Wizard Hit Mommy?
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/17-on-the-face-of-it.pdf">
-        6. On the Face of It
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/18-evans-tries-an-o-level.pdf">
-        7. Evans Tries an O-Level
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-english/19-memories-of-childhood.pdf">
-        8. Memories of Childhood
-    </a>
-
-</div>
+<script>
+function openNotes(file){window.location.href = "notes-viewer.html?file=" + file;}
+</script>
 
 </body>
 </html>
