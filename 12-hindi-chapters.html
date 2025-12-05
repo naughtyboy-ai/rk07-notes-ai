@@ -1,92 +1,48 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 Hindi – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 Hindi Chapters</title>
+
+    <style>
+        body{font-family:Arial;background:#f5f5f5;padding:20px;margin:0;}
+        h1{text-align:center;font-size:30px;margin-bottom:10px;}
+        h2{margin-top:30px;font-size:22px;color:#222;}
+        .chapter-card{
+            background:white;padding:14px 15px;margin:10px 0;border-radius:8px;
+            font-size:17px;box-shadow:0 3px 6px rgba(0,0,0,0.1);cursor:pointer;
+            font-weight:600;transition:.3s;
+        }
+        .chapter-card:hover{background:#e8f4ff;transform:translateY(-2px);}
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h2>Class 12 – Hindi (Core)</h2>
-    <a href="../12-science.html" class="back-btn">⬅ वापस</a>
-</header>
+<h1>Class 12 – हिंदी</h1>
 
-<div class="chapter-list">
+<h2>📘 आरोह (Aaroh)</h2>
 
-    <!-- आधिकारिक पाठ्यपुस्तक "आरोह" – गद्य -->
-    <h3 style="margin-top:20px;">📘 आरोह – गद्य</h3>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch1.pdf')">अध्याय 1 – आलों-अलस सुबह</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch2.pdf')">अध्याय 2 – जूझ</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch3.pdf')">अध्याय 3 – भीड़ में खोया आदमी</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch4.pdf')">अध्याय 4 – कुत्ता</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch5.pdf')">अध्याय 5 – पत्र</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch6.pdf')">अध्याय 6 – बाजार दर्शन</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch7.pdf')">अध्याय 7 – नमक</div>
+<div class="chapter-card" onclick="openNotes('12-hin-aaroh-ch8.pdf')">अध्याय 8 – यात्रा वृत्तांत</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-hindi/01-ahwaan.pdf">
-        1. आह्वान
-    </a>
+<h2>📙 वितान (Vitan)</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-hindi/02-kathakaar.pdf">
-        2. काठगोदाम से आया हुआ आदमी
-    </a>
+<div class="chapter-card" onclick="openNotes('12-hin-vitan-ch1.pdf')">अध्याय 1 – सिल्वर वैज</div>
+<div class="chapter-card" onclick="openNotes('12-hin-vitan-ch2.pdf')">अध्याय 2 – जंगली और जनजातीय जीवन</div>
+<div class="chapter-card" onclick="openNotes('12-hin-vitan-ch3.pdf')">अध्याय 3 – लव ऑफ़ लाइफ</div>
+<div class="chapter-card" onclick="openNotes('12-hin-vitan-ch4.pdf')">अध्याय 4 – कुँवर सिंह</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-hindi/03-asura.pdf">
-        3. असहाय
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/04-teen-rang.pdf">
-        4. तीन रंग
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/05-jahreeli-hawa.pdf">
-        5. जहरीली हवा
-    </a>
-
-
-
-
-    <!-- आरोह – पद्य -->
-    <h3 style="margin-top:20px;">📗 आरोह – पद्य</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/06-kabir-ke-dohe.pdf">
-        1. कबीर के दोहे
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/07-sur-ke-pad.pdf">
-        2. सूर के पद
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/08-nirala-ki-kavita.pdf">
-        3. निराला की कविता
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/09-bharat-swatantrata.pdf">
-        4. भारत: स्वातंत्र्य
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/10-mahakavi-ke-vichar.pdf">
-        5. महाकवि के विचार
-    </a>
-
-
-
-
-    <!-- वितान – पूरक पाठ्यपुस्तक -->
-    <h3 style="margin-top:20px;">📙 वितान – पूरक पाठ्यपुस्तक</h3>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/11-apna-ghar.pdf">
-        1. अपना घर
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/12-akeli.pdf">
-        2. अकेली
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/13-bachpan.pdf">
-        3. बचपन
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-hindi/14-sanskriti.pdf">
-        4. संस्कृति
-    </a>
-
-</div>
+<script>
+function openNotes(file){window.location.href = "notes-viewer.html?file=" + file;}
+</script>
 
 </body>
 </html>
