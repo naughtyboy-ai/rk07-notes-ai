@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Test Section</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes Viewer</title>
+  <link rel="stylesheet" href="notes.css">
 </head>
+
 <body>
 
-<h1 class="title" style="text-align:center;margin-top:30px;">📝 Test Section</h1>
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="back-btn" onclick="history.back()">⟵</button>
 
-<div class="tile-box" style="margin-top:30px">
-  <a class="tile glow" href="#">Chapter-wise Test</a>
-  <a class="tile glow" href="#">Full Syllabus Test</a>
-  <a class="tile glow" href="#">Practice MCQs</a>
-</div>
+  <div class="title">Notes Viewer</div>
+
+  <div class="actions">
+    <button id="zoomOut">➖</button>
+    <button id="zoomIn">➕</button>
+    <button id="fullscreenBtn">⛶</button>
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</header>
+
+<!-- LOADING SHIMMER -->
+<div id="loader" class="loader">Loading PDF…</div>
+
+<!-- PDF FRAME -->
+<iframe id="pdfFrame" class="viewer" src=""></iframe>
+
+<script src="notes.js"></script>
 
 </body>
 </html>
