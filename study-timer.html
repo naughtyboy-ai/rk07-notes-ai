@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Timer</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-start;
+            align-items:center;
+            padding-top:40px;
+            background:#0c0f22;
+            color:white;
+        }
+
+        h1{
+            letter-spacing:2px;
+            margin-bottom:10px;
+        }
+
+        .clock-box, .timer-box{
+            background:rgba(255,255,255,0.05);
+            padding:25px;
+            width:320px;
+            border-radius:20px;
+            box-shadow:0 0 20px rgba(0,0,0,0.4);
+            backdrop-filter:blur(10px);
+            text-align:center;
+            margin-top:20px;
+        }
+
+        #clock, #clock2{
+            font-size:32px;
+            font-weight:bold;
+            margin:15px 0;
+        }
+
+        #display{
+            font-size:50px;
+            margin:20px 0;
+            font-weight:bold;
+        }
+
+        button{
+            padding:12px 20px;
+            margin:5px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:16px;
+            background:#4f46e5;
+            color:white;
+            transition:0.3s;
+        }
+        button:hover{
+            transform:scale(1.07);
+            background:#6c63ff;
+        }
+
+        input{
+            width:80px;
+            padding:10px;
+            border-radius:8px;
+            border:none;
+            font-size:16px;
+            margin-bottom:10px;
+            text-align:center;
+        }
+
+        a{
+            color:#43afff;
+            margin-top:20px;
+            display:block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Study Timer</h1>
+
+<!-- LIVE DIGITAL CLOCK -->
+<div class="clock-box">
+    <h2>Live Clock</h2>
+    <div id="clock"></div>
+</div>
+
+<!-- HMS + MS REALTIME CLOCK -->
+<div class="clock-box">
+    <h2>H : M : S : MS Clock</h2>
+    <div id="clock2"></div>
+</div>
+
+<!-- STUDY TIMER -->
+<div class="timer-box">
+    <h2>Timer</h2>
+
+    <div id="display">25:00</div>
+
+    <button onclick="startPomodoro()">Pomodoro (25m)</button>
+    <button onclick="startShortBreak()">Short Break (5m)</button>
+    <button onclick="startLongBreak()">Long Break (15m)</button>
+
+    <br><br>
+
+    <input type="number" id="customMin" placeholder="Min">
+    <button onclick="startCustom()">Start Custom</button>
+
+    <br><br>
+
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+
+</div>
+
+<a href="index.html">⬅ Back to Home</a>
+
+
+<script>
+/* -------------------- LIVE DIGITAL CLOCK -------------------- */
+setInterval(() => {
+    let now = new Date();
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString();
+}, 1000);
+
+/* ---------------- H : M : S : MS CLOCK ---------------------- */
+setInterval(() => {
+    let now = new Date();
+    let h = now.getHours().toString().padStart(2,"0");
+    let m = now.getMinutes().toString().padStart(2,"0");
+    let s = now.getSeconds().toString().padStart(2,"0");
+    let ms = now.getMilliseconds().toString().padStart(3,"0");
+
+    document.getElementById("clock2").textContent =
+        `${h} : ${m} : ${s} : ${ms}`;
+}, 1);
+
+
+/* -------------------- STUDY TIMER LOGIC ---------------------- */
+
+let timer;
+let remaining;
+
+function startTimer(minutes){
+    clearInterval(timer);
+    remaining = minutes * 60;
+
+    timer = setInterval(() => {
+        let m = Math.floor(remaining / 60);
+        let s = remaining % 60;
+
+        document.getElementById("display").textContent =
+            `${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+
+        if(remaining <= 0){
+            clearInterval(timer);
+            alert("Time’s up!");
+        }
+        remaining--;
+    }, 1000);
+}
+
+function startPomodoro(){ startTimer(25); }
+function startShortBreak(){ startTimer(5); }
+function startLongBreak(){ startTimer(15); }
+
+function startCustom(){
+    let m = document.getElementById("customMin").value;
+    if(m > 0) startTimer(m);
+}
+
+function pauseTimer(){ clearInterval(timer); }
+
+function resetTimer(){
+    clearInterval(timer);
+    document.getElementById("display").textContent = "25:00";
+}
+</script>
+
+</body>
+</html>
