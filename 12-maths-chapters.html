@@ -1,73 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 12 Mathematics – Chapters</title>
-<link rel="stylesheet" href="../styles/subject-style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 Maths Chapters</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            font-size: 22px;
+            color: #222;
+        }
+
+        .chapter-card {
+            background: white;
+            padding: 14px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 17px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .chapter-card:hover {
+            background: #e8f4ff;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h2>Class 12 – Mathematics</h2>
-    <a href="../12-science.html" class="back-btn">⬅ Back</a>
-</header>
+<h1>Class 12 – गणित (Maths)</h1>
 
-<div class="chapter-list">
+<h2>📘 Mathematics – NCERT</h2>
 
-    <a class="chapter-card" href="../notes-viewer/12-maths/01-relations-and-functions.pdf">
-        1. Relations and Functions
-    </a>
+<div class="chapter-card" onclick="openNotes('12-maths-ch1.pdf')">अध्याय 1 – Relations and Functions</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch2.pdf')">अध्याय 2 – Inverse Trigonometric Functions</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch3.pdf')">अध्याय 3 – Matrices</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch4.pdf')">अध्याय 4 – Determinants</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch5.pdf')">अध्याय 5 – Continuity and Differentiability</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch6.pdf')">अध्याय 6 – Applications of Derivatives</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch7.pdf')">अध्याय 7 – Integrals</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch8.pdf')">अध्याय 8 – Applications of Integrals</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch9.pdf')">अध्याय 9 – Differential Equations</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch10.pdf')">अध्याय 10 – Vector Algebra</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch11.pdf')">अध्याय 11 – Three Dimensional Geometry</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch12.pdf')">अध्याय 12 – Linear Programming</div>
+<div class="chapter-card" onclick="openNotes('12-maths-ch13.pdf')">अध्याय 13 – Probability</div>
 
-    <a class="chapter-card" href="../notes-viewer/12-maths/02-inverse-trigonometric-functions.pdf">
-        2. Inverse Trigonometric Functions
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/03-matrices.pdf">
-        3. Matrices
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/04-determinants.pdf">
-        4. Determinants
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/05-continuity-and-differentiability.pdf">
-        5. Continuity and Differentiability
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/06-applications-of-derivatives.pdf">
-        6. Applications of Derivatives
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/07-integrals.pdf">
-        7. Integrals
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/08-applications-of-integrals.pdf">
-        8. Applications of Integrals
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/09-differential-equations.pdf">
-        9. Differential Equations
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/10-vector-algebra.pdf">
-        10. Vector Algebra
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/11-three-dimensional-geometry.pdf">
-        11. Three Dimensional Geometry
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/12-linear-programming.pdf">
-        12. Linear Programming
-    </a>
-
-    <a class="chapter-card" href="../notes-viewer/12-maths/13-probability.pdf">
-        13. Probability
-    </a>
-
-</div>
+<script>
+function openNotes(file) {
+    window.location.href = "notes-viewer.html?file=" + file;
+}
+</script>
 
 </body>
 </html>
