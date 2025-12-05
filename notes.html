@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes Viewer</title>
+  <link rel="stylesheet" href="notes.css">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <button class="back-btn" onclick="history.back()">⟵</button>
+
+  <div class="title">Notes Viewer</div>
+
+  <div class="actions">
+    <button id="zoomOut">➖</button>
+    <button id="zoomIn">➕</button>
+    <button id="fullscreenBtn">⛶</button>
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</header>
+
+<!-- LOADING SHIMMER -->
+<div id="loader" class="loader">Loading PDF…</div>
+
+<!-- PDF FRAME -->
+<iframe id="pdfFrame" class="viewer" src=""></iframe>
+
+<script src="notes.js"></script>
+
+</body>
+</html>
