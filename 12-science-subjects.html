@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 12 – Science Subjects</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f3f3f3;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#6200ea;
+        color:#fff;
+        padding:15px;
+        text-align:center;
+        font-size:22px;
+        font-weight:bold;
+    }
+    .container{
+        padding:20px;
+    }
+    .subject{
+        background:white;
+        padding:18px;
+        margin:12px 0;
+        border-radius:10px;
+        font-size:20px;
+        font-weight:600;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .subject:hover{
+        transform:scale(1.03);
+        box-shadow:0 6px 12px rgba(0,0,0,0.2);
+    }
+    .arrow{
+        font-size:22px;
+        font-weight:bold;
+        color:#6200ea;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>Class 12 – Science Subjects</header>
+
+<div class="container">
+
+    <div class="subject" onclick="openPage('12-physics-chapters.html')">
+        Physics <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-chemistry-chapters.html')">
+        Chemistry <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-maths-chapters.html')">
+        Mathematics <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-biology-chapters.html')">
+        Biology <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-english-chapters.html')">
+        English <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-hindi-chapters.html')">
+        Hindi <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-computer-chapters.html')">
+        Computer Science / IP <span class="arrow">›</span>
+    </div>
+
+    <div class="subject" onclick="openPage('12-physical-education-chapters.html')">
+        Physical Education <span class="arrow">›</span>
+    </div>
+
+</div>
+
+<script>
+function openPage(name){
+    window.location.href = name;
+}
+</script>
+
+</body>
+</html>
