@@ -1,26 +1,163 @@
-<!doctype html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Class 9 — Maths Chapters</title>
-<link rel="stylesheet" href="site.css"></head>
-<body>
-<div class="container">
-  <header class="topbar"><div class="brand"><img src="profile.jpg"><h1>Class 9 — Maths</h1></div>
-  <div><button class="btn" onclick="goto('subjects-9.html')">Back</button></div></header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 9 – Mathematics</title>
 
-  <div class="block"><h2>Chapters</h2>
-    <ul class="chap-list">
-      <li onclick="goto('viewer.html?file=9_maths_ch1.pdf')">Ch 1 — Number Systems</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch2.pdf')">Ch 2 — Polynomials</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch3.pdf')">Ch 3 — Coordinate Geometry</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch4.pdf')">Ch 4 — Linear Equations</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch5.pdf')">Ch 5 — Triangles</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch6.pdf')">Ch 6 — Quadrilaterals</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch7.pdf')">Ch 7 — Areas</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch8.pdf')">Ch 8 — Circles</li>
-      <li onclick="goto('viewer.html?file=9_maths_ch9.pdf')">Ch 9 — Statistics</li>
-    </ul>
-  </div>
+<style>
+    body {
+        font-family: Poppins, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f4ff;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        padding: 25px 0;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    p {
+        opacity: 0.7;
+        font-size: 16px;
+    }
+
+    .chapters {
+        margin-top: 25px;
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .chapter-card {
+        background: white;
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: .25s;
+    }
+
+    .chapter-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .chapter-title {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        background: #4f8cff;
+        border-radius: 8px;
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 8px;
+    }
+
+    .btn:hover {
+        opacity: .85;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Class 9 – Mathematics</h1>
+    <p>Select a chapter to open the PDF</p>
+
+    <div class="chapters">
+
+        <div class="chapter-card">
+            <div class="chapter-title">Number Systems</div>
+            <a class="btn" onclick="openPDF('9-math-number-systems.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Polynomials</div>
+            <a class="btn" onclick="openPDF('9-math-polynomials.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Coordinate Geometry</div>
+            <a class="btn" onclick="openPDF('9-math-coordinate-geometry.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Linear Equations in Two Variables</div>
+            <a class="btn" onclick="openPDF('9-math-linear-equations.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Introduction to Euclid’s Geometry</div>
+            <a class="btn" onclick="openPDF('9-math-euclid.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Lines & Angles</div>
+            <a class="btn" onclick="openPDF('9-math-lines-angles.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Triangles</div>
+            <a class="btn" onclick="openPDF('9-math-triangles.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Quadrilaterals</div>
+            <a class="btn" onclick="openPDF('9-math-quadrilaterals.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Areas of Parallelogram & Triangle</div>
+            <a class="btn" onclick="openPDF('9-math-parallelogram-area.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Circles</div>
+            <a class="btn" onclick="openPDF('9-math-circles.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Surface Areas & Volumes</div>
+            <a class="btn" onclick="openPDF('9-math-surface-volumes.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Statistics</div>
+            <a class="btn" onclick="openPDF('9-math-statistics.pdf')">Open</a>
+        </div>
+
+        <div class="chapter-card">
+            <div class="chapter-title">Probability</div>
+            <a class="btn" onclick="openPDF('9-math-probability.pdf')">Open</a>
+        </div>
+
+    </div>
 </div>
-<script src="site.js"></script>
-</body></html>
+
+<script>
+function openPDF(name){
+    window.location.href = "notes/" + name;
+}
+</script>
+
+</body>
+</html>
