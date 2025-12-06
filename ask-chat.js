@@ -469,3 +469,99 @@
   function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]); }
 
 })();
+
+// SMART OFFLINE CHATBOT JS
+const input = document.getElementById("chatInput");
+const sendBtn = document.getElementById("chatSend");
+const chatBody = document.getElementById("chatBody");
+
+// --- Add message to chat ---
+function addMessage(text, sender="bot") {
+    const div = document.createElement("div");
+    div.className = `msg ${sender}`;
+    div.innerText = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// --- Typing animation ---
+function showTyping() {
+    const div = document.createElement("div");
+    div.className = "typing bot";
+    div.id = "typingDot";
+    div.innerHTML = "<span></span><span></span><span></span>";
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+function removeTyping() {
+    const dot = document.getElementById("typingDot");
+    if (dot) dot.remove();
+}
+
+// --- Math Solver ---
+function solveMath(expr) {
+    try {
+        expr = expr
+            .replace(/sin/gi, "Math.sin")
+            .replace(/cos/gi, "Math.cos")
+            .replace(/tan/gi, "Math.tan")
+            .replace(/log/gi, "Math.log10")
+            .replace(/√/g, "Math.sqrt")
+            .replace(/\^/g, "**");
+
+        // Convert degrees to radians for trig
+        expr = expr.replace(/Math\.(sin|cos|tan)\((.*?)\)/g,
+            (m, fn, val) => `Math.${fn}(((${val}) * Math.PI) / 180)`
+        );
+
+        return eval(expr);
+    } catch {
+        return null;
+    }
+}
+
+// --- Command Handler ---
+function smartReply(q) {
+    q = q.toLowerCase();
+
+    // PDF open
+    if (q.includes("open") && q.includes("pdf")) {
+        return "Opening PDF… (Aap filename likho, main open kar dunga)";
+    }
+
+    // Page open
+    if (q.includes("open") && q.includes("page")) {
+        return "Page khola ja raha hai…";
+    }
+
+    // Calendar
+    if (q.includes("calendar")) {
+        const date = new Date();
+        return `Aaj ki date: ${date.toDateString()}`;
+    }
+
+    // Math solve check
+    const mathResult = solveMath(q);
+    if (mathResult !== null) {
+        return `Answer = ${mathResult}`;
+    }
+
+    // Default
+    return "Samajh gaya! 👍 Aap aur kuch puch sakte ho.";
+}
+
+// --- Main Send Handler ---
+sendBtn.onclick = () => {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, "user");
+    input.value = "";
+
+    showTyping();
+
+    setTimeout(() => {
+        removeTyping();
+        addMessage(smartReply(text), "bot");
+    }, 600);
+};
