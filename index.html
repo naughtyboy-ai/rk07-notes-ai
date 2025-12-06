@@ -121,6 +121,37 @@
         <button class="tool" onclick="showMotivation()">Daily Motivation</button>
       </div>
     </section>
+   
+
+  <!-- BAQI PAGE CONTENT -->
+
+  <!-- Timetable Section (yaha paste karna hai) -->
+  <section class="timetable-box">
+    <h2>Generate Timetable</h2>
+
+    <select id="classSelect">
+      <option value="12 science">12 Science</option>
+      <option value="12 commerce">12 Commerce</option>
+      <option value="12 arts">12 Arts</option>
+      <option value="11 science">11 Science</option>
+    </select>
+
+    <button onclick="generateTimetable(document.getElementById('classSelect').value)">
+      Generate
+    </button>
+
+    <div id="result"></div>
+  </section>
+
+
+  <!-- BOTTOM WAVE -->
+<svg id="bottomWave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"
+     style="position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; z-index: -1;">
+    <path id="bottomWavePath" d="" fill="rgba(255,255,255,0.05)"></path>
+</svg>
+
+
+  
 
     <footer class="site-footer">
       © <span id="year"></span> Rohit ki Notes
@@ -129,7 +160,7 @@
   </main>
 
   <!-- ================= JS START ================= -->
-
+<script src="timetable.js"></script>
   <script>
     function goto(p) { window.location.href = p; }
 
@@ -324,10 +355,5 @@
       navigator.serviceWorker.register("service-worker.js");
     }
   </script>
-    
-<!-- WAVE (moved to bottom) -->
-<svg id="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" class="wave-bottom">
-  <path id="wavePath" d="" fill="rgba(255,255,255,0.03)"></path>
-</svg>
 </body>
 </html>
