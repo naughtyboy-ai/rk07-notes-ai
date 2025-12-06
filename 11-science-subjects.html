@@ -1,95 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 11 – Science Subjects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 Science Subjects</title>
 
-<style>
-    body{
-        font-family: Arial, sans-serif;
-        background:#eef2ff;
-        margin:0;
-        padding:0;
-    }
-    header{
-        background:#0059ff;
-        color:#fff;
-        padding:15px;
-        text-align:center;
-        font-size:22px;
-        font-weight:bold;
-    }
-    .container{
-        padding:20px;
-    }
-    .subject{
-        background:white;
-        padding:18px;
-        margin:12px 0;
-        border-radius:10px;
-        font-size:20px;
-        font-weight:600;
-        box-shadow:0 4px 10px rgba(0,0,100,0.1);
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        cursor:pointer;
-        transition:0.2s;
-    }
-    .subject:hover{
-        transform:scale(1.03);
-        box-shadow:0 6px 12px rgba(0,0,0,0.2);
-    }
-    .arrow{
-        font-size:22px;
-        font-weight:bold;
-        color:#0059ff;
-    }
-</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f2f2f2;
+        }
 
+        h1 { text-align: center; margin-bottom: 25px; }
+
+        .card {
+            background: white;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: #e8faff;
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
-
 <body>
 
-<header>Class 11 – Science Subjects</header>
+<h1>Class 11 — Science Subjects</h1>
 
-<div class="container">
-
-    <div class="subject" onclick="openPage('11-physics-chapters.html')">
-        Physics <span class="arrow">›</span>
-    </div>
-
-    <div class="subject" onclick="openPage('11-chemistry-chapters.html')">
-        Chemistry <span class="arrow">›</span>
-    </div>
-
-    <div class="subject" onclick="openPage('11-biology-chapters.html')">
-        Biology <span class="arrow">›</span>
-    </div>
-
-    <div class="subject" onclick="openPage('11-maths-chapters.html')">
-        Mathematics <span class="arrow">›</span>
-    </div>
-
-    <div class="subject" onclick="openPage('11-english-chapters.html')">
-        English <span class="arrow">›</span>
-    </div>
-
-    <div class="subject" onclick="openPage('11-hindi-chapters.html')">
-        Hindi <span class="arrow">›</span>
-    </div>
-
-    <div class="subject" onclick="openPage('11-computer-science-chapters.html')">
-        Computer Science <span class="arrow">›</span>
-    </div>
-
-</div>
+<div class="card" onclick="goto('11-science-physics-chapters.html')">Physics</div>
+<div class="card" onclick="goto('11-science-chemistry-chapters.html')">Chemistry</div>
+<div class="card" onclick="goto('11-science-biology-chapters.html')">Biology</div>
+<div class="card" onclick="goto('11-science-maths-chapters.html')">Maths</div>
+<div class="card" onclick="goto('11-science-english-chapters.html')">English</div>
+<div class="card" onclick="goto('11-science-hindi-chapters.html')">Hindi</div>
+<div class="card" onclick="goto('11-science-computer-chapters.html')">Computer</div>
 
 <script>
-function openPage(name){
-    window.location.href = name;
-}
+function goto(page) { window.location.href = page; }
 </script>
 
 </body>
