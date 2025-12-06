@@ -544,3 +544,20 @@ body.dark .bot-msg {
 .home-btn:active {
     transform: scale(0.88);
 }
+.motivation-box {
+  margin: 40px 0;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+}
+
+.motivation-box h2 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.motivation-list li {
+  margin: 6px 0;
+  line-height: 1.6;
+}
