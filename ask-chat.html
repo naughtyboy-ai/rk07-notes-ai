@@ -10,18 +10,17 @@
         margin: 0;
         padding: 0;
         font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #0a0f24, #13182f, #1b2347);
+        background: #0d1117;
         color: white;
     }
 
     .header {
         padding: 20px;
         text-align: center;
-        background: rgba(255,255,255,0.05);
         font-size: 26px;
         font-weight: bold;
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        background: #151b23;
+        border-bottom: 1px solid #2a3240;
     }
 
     .chat-box {
@@ -42,14 +41,13 @@
     }
 
     .user {
-        background: rgba(0, 200, 255, 0.25);
+        background: #007bff40;
         align-self: flex-end;
-        margin-left: auto;
     }
 
     .ai {
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: #ffffff18;
+        border: 1px solid #ffffff15;
         align-self: flex-start;
     }
 
@@ -62,8 +60,7 @@
         display: flex;
         padding: 15px;
         gap: 10px;
-        background: rgba(0,0,0,0.25);
-        backdrop-filter: blur(6px);
+        background: #151b23;
     }
 
     input {
@@ -73,7 +70,7 @@
         border: none;
         outline: none;
         font-size: 16px;
-        background: rgba(255,255,255,0.12);
+        background: #ffffff15;
         color: white;
     }
 
@@ -81,15 +78,10 @@
         padding: 14px 18px;
         border: none;
         border-radius: 8px;
-        background: #00b7ff;
+        background: #00c3ff;
         color: black;
         font-weight: bold;
         cursor: pointer;
-        transition: 0.3s;
-    }
-
-    button:hover {
-        transform: scale(1.05);
     }
 
     /* Typing Animation */
@@ -132,25 +124,39 @@ async function sendMessage() {
     let input = document.getElementById("userInput");
     let text = input.value.trim();
     if (!text) return;
-    
+
     addMessage(text, "user");
     input.value = "";
 
-    // Add typing bubble
     let typing = addMessage("Thinking", "ai", true);
 
-    // NEW WORKING API
-    let res = await fetch("https://opengpt.akked.store/v1/chat/completions", {
+    // TEST: Console check
+    console.log("Sending request...");
+
+    // *** NEW WORKING API ***
+    let res = await fetch("https://free-gpt-api.calicom.org/v1/chat/completions", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             model: "gpt-4o-mini",
             messages: [{ role: "user", content: text }]
         })
+    }).catch(err => {
+        typing.classList.remove("typing");
+        typing.innerHTML = "❌ Network Error: " + err;
+        return;
     });
 
-    let data = await res.json();
+    let data = await res.json().catch(err => {
+        typing.classList.remove("typing");
+        typing.innerHTML = "❌ API Error: " + err;
+        return;
+    });
+
     typing.classList.remove("typing");
+
+    console.log("Response:", data);
+
     typing.innerHTML = data.choices[0].message.content;
 }
 </script>
