@@ -6,182 +6,140 @@
 <title>Ask Chat – Rohit ki Notes</title>
 
 <style>
-    :root {
-        --bg-light: #f0f2f5;
-        --bg-dark: #0d1117;
-        --text-light: #222;
-        --text-dark: #e6e6e6;
-
-        --user-msg: #10a37f;
-        --bot-msg: #ffffff;
-        --bot-dark: #1c1f26;
-
-        --header-gradient: linear-gradient(90deg, #0f8b6f, #0aa57e);
-    }
-
     body {
-        margin: 0;
+        margin:0;
         font-family: "Poppins", sans-serif;
-        background: var(--bg-light);
-        color: var(--text-light);
+        background: var(--bg);
+        color: var(--text);
         transition: 0.3s ease;
     }
 
-    [data-theme="dark"] {
-        background: var(--bg-dark);
-        color: var(--text-dark);
+    :root {
+        --bg: #f5f5f5;
+        --text: #222;
+        --chat-user: #007bff;
+        --chat-bot: #ffffff;
+        --shadow: rgba(0,0,0,0.15);
     }
 
-    /* HEADER ------------------------- */
+    [data-theme="dark"] {
+        --bg: #0d1117;
+        --text: #e6e6e6;
+        --chat-user: #005eff;
+        --chat-bot: #1c1f26;
+        --shadow: rgba(255,255,255,0.08);
+    }
+
     header {
-        background: var(--header-gradient);
-        padding: 14px 18px;
-        color: #fff;
-        font-size: 21px;
+        padding: 12px 18px;
+        font-size: 20px;
         font-weight: 600;
+        background: var(--chat-user);
+        color: #fff;
         display: flex;
         align-items: center;
         gap: 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
+
     header button {
         background: none;
         border: none;
         color: #fff;
-        font-size: 24px;
+        font-size: 22px;
         cursor: pointer;
     }
 
-    /* CHAT CONTAINER ----------------- */
-    .chat-wrap {
-        max-width: 750px;
-        margin: auto;
-        padding: 15px;
-    }
-
     .chat-body {
-        height: calc(100vh - 150px);
+        padding: 15px;
+        height: calc(100vh - 170px);
         overflow-y: auto;
-        padding-right: 6px;
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        scroll-behavior: smooth;
+        gap: 12px;
     }
 
-    /* CHAT BUBBLES ------------------- */
     .msg {
-        max-width: 80%;
-        padding: 12px 16px;
-        border-radius: 14px;
-        font-size: 15.5px;
-        line-height: 1.5;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-        animation: fadeIn .25s ease;
+        max-width: 75%;
+        padding: 12px 15px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px var(--shadow);
+        font-size: 15px;
+        white-space: pre-wrap;
     }
 
-    .bot {
-        align-self: flex-start;
-        background: var(--bot-msg);
+    .bot { align-self: flex-start; background: var(--chat-bot); }
+    .user { align-self: flex-end; background: var(--chat-user); color:#fff; }
+
+    /* Model Selector */
+    .model-box{
+        background:#fff2;
+        backdrop-filter: blur(8px);
+        padding:10px;
+        border-bottom:1px solid #ccc3;
+        display:flex;
+        justify-content:center;
+        gap:10px;
     }
-    [data-theme="dark"] .bot {
-        background: var(--bot-dark);
+    select{
+        padding:8px 10px;
+        border-radius:6px;
     }
 
-    .user {
-        align-self: flex-end;
-        background: var(--user-msg);
-        color: #fff;
-    }
-
-    .time {
-        font-size: 11px;
-        opacity: 0.6;
-        margin-top: 3px;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(6px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* TYPING ------------------------- */
-    .typing {
-        padding: 12px 16px;
-        background: var(--bot-msg);
-        border-radius: 14px;
-        width: 60px;
-        display: flex;
-        gap: 5px;
-    }
-    [data-theme="dark"] .typing {
-        background: var(--bot-dark);
-    }
-
-    .typing span {
-        width: 9px;
-        height: 9px;
-        background: gray;
-        border-radius: 50%;
-        animation: blink 1s infinite alternate;
-    }
-
-    .typing span:nth-child(2) { animation-delay: .2s; }
-    .typing span:nth-child(3) { animation-delay: .4s; }
-
-    @keyframes blink {
-        from { opacity: 0.3; transform: translateY(2px); }
-        to { opacity: 1; transform: translateY(-1px); }
-    }
-
-    /* INPUT BAR ---------------------- */
     .chat-input {
-        position: fixed;
-        bottom: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 95%;
-        max-width: 750px;
-        background: #fff;
-        border-radius: 60px;
+        height: 70px;
+        padding: 10px;
+        background: var(--bg);
         display: flex;
+        gap: 10px;
         align-items: center;
-        border: 1px solid #ccc;
-        padding: 6px 12px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-
-    [data-theme="dark"] .chat-input {
-        background: #1a1f25;
-        border: 1px solid #333;
+        border-top: 1px solid #ccc2;
     }
 
     .chat-input input {
         flex: 1;
-        border: none;
-        outline: none;
-        padding: 12px;
-        border-radius: 40px;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 10px;
+        border: 1px solid #ccc5;
         font-size: 16px;
-        background: transparent;
-        color: inherit;
     }
 
     .chat-input button {
-        background: var(--user-msg);
-        color: white;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
+        background: var(--chat-user);
+        color: #fff;
         border: none;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
         font-size: 18px;
-        cursor: pointer;
-        transition: 0.2s;
     }
-    .chat-input button:active { transform: scale(0.92); }
+
+    /* Typing animation (...) */
+    .typing {
+        display: inline-block;
+        width: 30px;
+        height: 10px;
+        position: relative;
+    }
+
+    .typing span {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #888;
+        border-radius: 50%;
+        animation: blink 1.4s infinite;
+    }
+
+    .typing span:nth-child(1) { left: 0px; animation-delay: 0s; }
+    .typing span:nth-child(2) { left: 10px; animation-delay: 0.2s; }
+    .typing span:nth-child(3) { left: 20px; animation-delay: 0.4s; }
+
+    @keyframes blink {
+        0% { opacity: .2; }
+        20% { opacity: 1; }
+        100% { opacity: .2; }
+    }
 </style>
 </head>
 
@@ -192,71 +150,99 @@
     Ask Chat
 </header>
 
-<div class="chat-wrap">
-    <div class="chat-body" id="chatBody">
-        <div class="msg bot">
-            Hi Rohit 👋 <br>I'm your study chat assistant! Ask anything.
-            <div class="time">now</div>
-        </div>
-    </div>
+<div class="model-box">
+    <select id="modelSelect">
+        <option value="offline">Offline Bot (Free)</option>
+        <option value="gemini">Gemini Free API</option>
+    </select>
+</div>
+
+<div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi Rohit 👋! Choose AI model above and start chatting.</div>
 </div>
 
 <div class="chat-input">
-    <input id="chatInput" placeholder="Message..." />
+    <input id="chatInput" placeholder="Type your message..." />
     <button id="chatSend">➤</button>
 </div>
 
 <script>
-    const input = document.getElementById("chatInput");
-    const send = document.getElementById("chatSend");
-    const body = document.getElementById("chatBody");
+document.getElementById("chatSend").addEventListener("click", sendMsg);
+document.getElementById("chatInput").addEventListener("keydown", e => {
+    if(e.key === "Enter") sendMsg();
+});
 
-    function addMessage(text, type){
-        const box = document.createElement("div");
-        box.className = "msg " + type;
+async function sendMsg() {
+    let input = document.getElementById("chatInput");
+    let text = input.value.trim();
+    if (!text) return;
 
-        const t = document.createElement("div");
-        t.innerHTML = text;
+    input.value = "";
 
-        const time = document.createElement("div");
-        time.className = "time";
-        time.textContent = new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+    addMsg(text, "user");
 
-        box.appendChild(t);
-        box.appendChild(time);
-        body.appendChild(box);
-        body.scrollTop = body.scrollHeight;
-    }
+    let model = document.getElementById("modelSelect").value;
 
-    function addTyping(){
-        const div = document.createElement("div");
-        div.className = "typing";
-        div.id = "typing";
-        div.innerHTML = "<span></span><span></span><span></span>";
-        body.appendChild(div);
-        body.scrollTop = body.scrollHeight;
-    }
+    if (model === "offline") offlineAnswer(text);
+    else if (model === "gemini") geminiAnswer(text);
+}
 
-    function removeTyping(){
-        const t = document.getElementById("typing");
-        if(t) t.remove();
-    }
+function addMsg(msg, type) {
+    let box = document.getElementById("chatBody");
+    let div = document.createElement("div");
+    div.className = "msg " + type;
+    div.textContent = msg;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+    return div;
+}
 
-    send.onclick = () => {
-        const msg = input.value.trim();
-        if(!msg) return;
+/* ---------------- TYPING ANIMATION ---------------- */
+function showTyping() {
+    let box = document.getElementById("chatBody");
+    let div = document.createElement("div");
+    div.className = "msg bot";
+    div.innerHTML = `<div class="typing">
+                        <span></span><span></span><span></span>
+                     </div>`;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+    return div;
+}
 
-        addMessage(msg, "user");
-        input.value = "";
+/* ---------- OFFLINE MODEL ---------- */
+function offlineAnswer(q) {
+    let typing = showTyping();
 
-        addTyping();
+    setTimeout(() => {
+        typing.remove();
+        addMsg("Nice question! I'm your offline helper 😊", "bot");
+    }, 1200);
+}
 
-        setTimeout(()=>{
-            removeTyping();
-            // BOT REPLY:
-            addMessage("This is a demo reply. You can connect this to API later!", "bot");
-        }, 900);
-    };
+/* ---------- GEMINI MODEL ---------- */
+async function geminiAnswer(q) {
+    let API_KEY = "PUT-YOUR-GEMINI-KEY-HERE";
+
+    let typing = showTyping();
+
+    let url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + API_KEY;
+    
+    let body = { contents: [{ parts: [{ text: q }] }] };
+
+    let res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(body)
+    });
+
+    let data = await res.json();
+    let reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Error: API key not working";
+
+    setTimeout(() => {
+        typing.remove();
+        addMsg(reply, "bot");
+    }, 800);
+}
 </script>
 
 </body>
