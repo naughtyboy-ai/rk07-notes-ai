@@ -6,99 +6,125 @@
 <title>Ask Chat – Rohit ki Notes</title>
 
 <style>
+    :root {
+        --bg-light: #f0f2f5;
+        --bg-dark: #0d1117;
+        --text-light: #222;
+        --text-dark: #e6e6e6;
+
+        --user-msg: #10a37f;
+        --bot-msg: #ffffff;
+        --bot-dark: #1c1f26;
+
+        --header-gradient: linear-gradient(90deg, #0f8b6f, #0aa57e);
+    }
+
     body {
-        margin:0;
+        margin: 0;
         font-family: "Poppins", sans-serif;
-        background: var(--bg);
-        color: var(--text);
+        background: var(--bg-light);
+        color: var(--text-light);
         transition: 0.3s ease;
     }
 
-    :root {
-        --bg: #f5f5f5;
-        --text: #222;
-        --chat-user: #007bff;
-        --chat-bot: #ffffff;
-        --shadow: rgba(0,0,0,0.15);
-    }
-
     [data-theme="dark"] {
-        --bg: #0d1117;
-        --text: #e6e6e6;
-        --chat-user: #005eff;
-        --chat-bot: #1c1f26;
-        --shadow: rgba(255,255,255,0.08);
+        background: var(--bg-dark);
+        color: var(--text-dark);
     }
 
+    /* HEADER ------------------------- */
     header {
-        padding: 12px 18px;
-        font-size: 20px;
-        font-weight: 600;
-        background: var(--chat-user);
+        background: var(--header-gradient);
+        padding: 14px 18px;
         color: #fff;
+        font-size: 21px;
+        font-weight: 600;
         display: flex;
         align-items: center;
         gap: 12px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-
     header button {
         background: none;
         border: none;
         color: #fff;
-        font-size: 22px;
+        font-size: 24px;
         cursor: pointer;
     }
 
-    .chat-body {
+    /* CHAT CONTAINER ----------------- */
+    .chat-wrap {
+        max-width: 750px;
+        margin: auto;
         padding: 15px;
-        height: calc(100vh - 140px);
+    }
+
+    .chat-body {
+        height: calc(100vh - 150px);
         overflow-y: auto;
+        padding-right: 6px;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 14px;
+        scroll-behavior: smooth;
     }
 
     /* CHAT BUBBLES ------------------- */
     .msg {
-        max-width: 75%;
-        padding: 12px 15px;
-        border-radius: 12px;
-        box-shadow: 0 3px 12px var(--shadow);
-        font-size: 15px;
-        animation: fadeIn 0.25s ease;
+        max-width: 80%;
+        padding: 12px 16px;
+        border-radius: 14px;
+        font-size: 15.5px;
+        line-height: 1.5;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        animation: fadeIn .25s ease;
     }
 
     .bot {
         align-self: flex-start;
-        background: var(--chat-bot);
-        border: 1px solid rgba(0,0,0,0.05);
+        background: var(--bot-msg);
+    }
+    [data-theme="dark"] .bot {
+        background: var(--bot-dark);
     }
 
     .user {
         align-self: flex-end;
-        background: var(--chat-user);
+        background: var(--user-msg);
         color: #fff;
     }
 
+    .time {
+        font-size: 11px;
+        opacity: 0.6;
+        margin-top: 3px;
+    }
+
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
+        from { opacity: 0; transform: translateY(6px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* TYPING DOTS ----------------- */
+    /* TYPING ------------------------- */
     .typing {
+        padding: 12px 16px;
+        background: var(--bot-msg);
+        border-radius: 14px;
+        width: 60px;
         display: flex;
-        gap: 4px;
-        padding: 12px 15px;
-        background: var(--chat-bot);
-        border-radius: 12px;
-        width: 50px;
+        gap: 5px;
+    }
+    [data-theme="dark"] .typing {
+        background: var(--bot-dark);
     }
 
     .typing span {
-        width: 8px;
-        height: 8px;
-        background: #888;
+        width: 9px;
+        height: 9px;
+        background: gray;
         border-radius: 50%;
         animation: blink 1s infinite alternate;
     }
@@ -107,48 +133,55 @@
     .typing span:nth-child(3) { animation-delay: .4s; }
 
     @keyframes blink {
-        from { opacity: .3; transform: translateY(2px); }
+        from { opacity: 0.3; transform: translateY(2px); }
         to { opacity: 1; transform: translateY(-1px); }
     }
 
-    /* INPUT AREA ------------------ */
+    /* INPUT BAR ---------------------- */
     .chat-input {
-        height: 70px;
-        padding: 10px;
-        background: var(--bg);
+        position: fixed;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 750px;
+        background: #fff;
+        border-radius: 60px;
         display: flex;
-        gap: 10px;
         align-items: center;
-        border-top: 1px solid #ccc2;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    [data-theme="dark"] .chat-input {
+        background: #1a1f25;
+        border: 1px solid #333;
     }
 
     .chat-input input {
         flex: 1;
-        height: 44px;
-        padding: 0 14px;
-        border-radius: 10px;
-        border: 1px solid #ccc5;
-        font-size: 16px;
+        border: none;
         outline: none;
-        background: var(--chat-bot);
-        color: var(--text);
+        padding: 12px;
+        border-radius: 40px;
+        font-size: 16px;
+        background: transparent;
+        color: inherit;
     }
 
     .chat-input button {
-        background: var(--chat-user);
-        color: #fff;
-        border: none;
-        width: 46px;
-        height: 46px;
+        background: var(--user-msg);
+        color: white;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
+        border: none;
         font-size: 18px;
         cursor: pointer;
         transition: 0.2s;
     }
-
-    .chat-input button:active {
-        transform: scale(0.9);
-    }
+    .chat-input button:active { transform: scale(0.92); }
 </style>
 </head>
 
@@ -159,16 +192,72 @@
     Ask Chat
 </header>
 
-<div class="chat-body" id="chatBody">
-    <div class="msg bot">Hi Rohit 👋! Ask me anything about this website.</div>
+<div class="chat-wrap">
+    <div class="chat-body" id="chatBody">
+        <div class="msg bot">
+            Hi Rohit 👋 <br>I'm your study chat assistant! Ask anything.
+            <div class="time">now</div>
+        </div>
+    </div>
 </div>
 
 <div class="chat-input">
-    <input id="chatInput" placeholder="Type your message..." />
+    <input id="chatInput" placeholder="Message..." />
     <button id="chatSend">➤</button>
 </div>
 
-<script src="ask-chat.js"></script>
+<script>
+    const input = document.getElementById("chatInput");
+    const send = document.getElementById("chatSend");
+    const body = document.getElementById("chatBody");
+
+    function addMessage(text, type){
+        const box = document.createElement("div");
+        box.className = "msg " + type;
+
+        const t = document.createElement("div");
+        t.innerHTML = text;
+
+        const time = document.createElement("div");
+        time.className = "time";
+        time.textContent = new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+
+        box.appendChild(t);
+        box.appendChild(time);
+        body.appendChild(box);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function addTyping(){
+        const div = document.createElement("div");
+        div.className = "typing";
+        div.id = "typing";
+        div.innerHTML = "<span></span><span></span><span></span>";
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function removeTyping(){
+        const t = document.getElementById("typing");
+        if(t) t.remove();
+    }
+
+    send.onclick = () => {
+        const msg = input.value.trim();
+        if(!msg) return;
+
+        addMessage(msg, "user");
+        input.value = "";
+
+        addTyping();
+
+        setTimeout(()=>{
+            removeTyping();
+            // BOT REPLY:
+            addMessage("This is a demo reply. You can connect this to API later!", "bot");
+        }, 900);
+    };
+</script>
 
 </body>
 </html>
