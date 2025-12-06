@@ -6,242 +6,147 @@
 <title>Ask Chat – Rohit ki Notes</title>
 
 <style>
-    body {
-        margin:0;
-        font-family: "Poppins", sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        transition: 0.3s ease;
-    }
+    body { margin:0; font-family: "Poppins", sans-serif; background:#f5f5f5; }
+    header { padding:12px 18px; background:#007bff; color:#fff; font-size:20px; display:flex; gap:12px; }
+    header button { background:none; border:none; color:#fff; font-size:22px; }
 
-    :root {
-        --bg: #f5f5f5;
-        --text: #222;
-        --chat-user: #007bff;
-        --chat-bot: #ffffff;
-        --shadow: rgba(0,0,0,0.15);
-    }
+    .model-box{ background:#e3f2fd; padding:10px; display:flex; justify-content:center; }
+    select{ padding:8px 10px; font-size:16px; }
 
-    [data-theme="dark"] {
-        --bg: #0d1117;
-        --text: #e6e6e6;
-        --chat-user: #005eff;
-        --chat-bot: #1c1f26;
-        --shadow: rgba(255,255,255,0.08);
-    }
+    .chat-body { height: calc(100vh - 170px); overflow-y:auto; padding:15px; display:flex; flex-direction:column; gap:12px; }
 
-    header {
-        padding: 12px 18px;
-        font-size: 20px;
-        font-weight: 600;
-        background: var(--chat-user);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+    .msg { max-width:75%; padding:12px 15px; border-radius:12px; font-size:15px; box-shadow:0 3px 10px rgba(0,0,0,0.15); white-space:pre-wrap; }
+    .user{ align-self:flex-end; background:#007bff; color:#fff; }
+    .bot{ align-self:flex-start; background:#fff; }
 
-    header button {
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 22px;
-        cursor: pointer;
-    }
+    .chat-input { height:70px; padding:10px; display:flex; gap:10px; border-top:1px solid #ccc3; }
+    .chat-input input { flex:1; padding:0 14px; border-radius:10px; border:1px solid #ccc; height:44px; font-size:16px; }
+    .chat-input button { width:46px; height:46px; border-radius:50%; background:#007bff; color:#fff; border:none; font-size:18px; }
 
-    .chat-body {
-        padding: 15px;
-        height: calc(100vh - 170px);
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .msg {
-        max-width: 75%;
-        padding: 12px 15px;
-        border-radius: 12px;
-        box-shadow: 0 3px 12px var(--shadow);
-        font-size: 15px;
-        white-space: pre-wrap;
-    }
-
-    .bot { align-self: flex-start; background: var(--chat-bot); }
-    .user { align-self: flex-end; background: var(--chat-user); color:#fff; }
-
-    /* Model Selector */
-    .model-box{
-        background:#fff2;
-        backdrop-filter: blur(8px);
-        padding:10px;
-        border-bottom:1px solid #ccc3;
-        display:flex;
-        justify-content:center;
-        gap:10px;
-    }
-    select{
-        padding:8px 10px;
-        border-radius:6px;
-    }
-
-    .chat-input {
-        height: 70px;
-        padding: 10px;
-        background: var(--bg);
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        border-top: 1px solid #ccc2;
-    }
-
-    .chat-input input {
-        flex: 1;
-        height: 44px;
-        padding: 0 14px;
-        border-radius: 10px;
-        border: 1px solid #ccc5;
-        font-size: 16px;
-    }
-
-    .chat-input button {
-        background: var(--chat-user);
-        color: #fff;
-        border: none;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        font-size: 18px;
-    }
-
-    /* Typing animation (...) */
-    .typing {
-        display: inline-block;
-        width: 30px;
-        height: 10px;
-        position: relative;
-    }
-
-    .typing span {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: #888;
-        border-radius: 50%;
-        animation: blink 1.4s infinite;
-    }
-
-    .typing span:nth-child(1) { left: 0px; animation-delay: 0s; }
-    .typing span:nth-child(2) { left: 10px; animation-delay: 0.2s; }
-    .typing span:nth-child(3) { left: 20px; animation-delay: 0.4s; }
-
-    @keyframes blink {
-        0% { opacity: .2; }
-        20% { opacity: 1; }
-        100% { opacity: .2; }
-    }
+    /* Typing Animation */
+    .typing { display:inline-flex; gap:5px; }
+    .typing span { width:8px; height:8px; border-radius:50%; background:#666; animation: blink 1s infinite; }
+    .typing span:nth-child(2){ animation-delay:.2s; }
+    .typing span:nth-child(3){ animation-delay:.4s; }
+    @keyframes blink { 0%{opacity:.3;} 50%{opacity:1;} 100%{opacity:.3;} }
 </style>
 </head>
 
 <body>
 
 <header>
-    <button onclick="history.back()">←</button>
-    Ask Chat
+    <button onclick="history.back()">←</button> Ask Chat
 </header>
 
 <div class="model-box">
     <select id="modelSelect">
         <option value="offline">Offline Bot (Free)</option>
-        <option value="gemini">Gemini Free API</option>
+        <option value="gemini">Gemini API</option>
     </select>
 </div>
 
 <div class="chat-body" id="chatBody">
-    <div class="msg bot">Hi Rohit 👋! Choose AI model above and start chatting.</div>
+    <div class="msg bot">Hi Rohit 👋! Start chatting…</div>
 </div>
 
 <div class="chat-input">
-    <input id="chatInput" placeholder="Type your message..." />
+    <input id="chatInput" placeholder="Type your message…">
     <button id="chatSend">➤</button>
 </div>
 
 <script>
-document.getElementById("chatSend").addEventListener("click", sendMsg);
+document.getElementById("chatSend").onclick = sendMsg;
 document.getElementById("chatInput").addEventListener("keydown", e => {
     if(e.key === "Enter") sendMsg();
 });
 
-async function sendMsg() {
-    let input = document.getElementById("chatInput");
-    let text = input.value.trim();
-    if (!text) return;
-
-    input.value = "";
-
-    addMsg(text, "user");
-
-    let model = document.getElementById("modelSelect").value;
-
-    if (model === "offline") offlineAnswer(text);
-    else if (model === "gemini") geminiAnswer(text);
-}
-
-function addMsg(msg, type) {
+function addMsg(text, type){
     let box = document.getElementById("chatBody");
     let div = document.createElement("div");
-    div.className = "msg " + type;
-    div.textContent = msg;
+    div.className = `msg ${type}`;
+    div.textContent = text;
     box.appendChild(div);
     box.scrollTop = box.scrollHeight;
     return div;
 }
 
-/* ---------------- TYPING ANIMATION ---------------- */
-function showTyping() {
+function showTyping(){
     let box = document.getElementById("chatBody");
     let div = document.createElement("div");
     div.className = "msg bot";
-    div.innerHTML = `<div class="typing">
-                        <span></span><span></span><span></span>
-                     </div>`;
+    div.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
     box.appendChild(div);
     box.scrollTop = box.scrollHeight;
     return div;
 }
 
-/* ---------- OFFLINE MODEL ---------- */
-function offlineAnswer(q) {
-    let typing = showTyping();
+function sendMsg(){
+    let input = document.getElementById("chatInput");
+    let q = input.value.trim();
+    if(!q) return;
+    input.value = "";
 
-    setTimeout(() => {
-        typing.remove();
-        addMsg("Nice question! I'm your offline helper 😊", "bot");
-    }, 1200);
+    addMsg(q, "user");
+
+    let model = document.getElementById("modelSelect").value;
+
+    if(model === "offline") offlineAI(q);
+    else if(model === "gemini") geminiAI(q);
 }
 
-/* ---------- GEMINI MODEL ---------- */
-async function geminiAnswer(q) {
-    let API_KEY = "PUT-YOUR-GEMINI-KEY-HERE";
-
+/* ----------------- SMART OFFLINE AI ----------------- */
+function offlineAI(query){
     let typing = showTyping();
 
-    let url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + API_KEY;
-    
-    let body = { contents: [{ parts: [{ text: q }] }] };
+    setTimeout(()=>{
 
-    let res = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify(body)
-    });
-
-    let data = await res.json();
-    let reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Error: API key not working";
-
-    setTimeout(() => {
         typing.remove();
-        addMsg(reply, "bot");
+
+        let q = query.toLowerCase();
+        let answer = "Sorry, I didn’t understand. Ask in simple words 😊";
+
+        if(q.includes("chemistry"))
+            answer = "Chemistry me atoms, molecules, reactions aur equations padhe jate hain 🔥";
+        
+        else if(q.includes("physics"))
+            answer = "Physics me motion, force, electricity, light, energy jaise topics aate hain ⚡";
+        
+        else if(q.includes("math"))
+            answer = "Math me algebra, trigonometry, calculus, matrices, probability jaise chapters hote hain ✏";
+        
+        else if(q.includes("history"))
+            answer = "History me ancient, medieval aur modern India ka detailed study hota hai 📜";
+
+        else if(q.includes("notes"))
+            answer = "Notes ke liye class choose karo → Science / Arts / Commerce 📘";
+        
+        else if(q.includes("hi") || q.includes("hello"))
+            answer = "Hi Rohit! 👋 How can I help you?";
+        
+        else if(q.includes("kaise"))
+            answer = "Main bilkul theek hoon 😄 tum batao?";
+
+        addMsg(answer, "bot");
+
     }, 800);
+}
+
+/* ----------------- GEMINI ONLINE AI ----------------- */
+async function geminiAI(query){
+    let typing = showTyping();
+    let API_KEY = "PUT-YOUR-GEMINI-KEY";
+
+    let url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + API_KEY;
+
+    let body = { contents: [{ parts: [{ text: query }] }] };
+
+    let res = await fetch(url, { method:"POST", body:JSON.stringify(body) });
+    let data = await res.json();
+
+    let reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "API error / Invalid key";
+
+    typing.remove();
+    addMsg(reply, "bot");
 }
 </script>
 
