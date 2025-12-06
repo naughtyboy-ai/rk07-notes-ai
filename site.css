@@ -39,3 +39,26 @@ select, input[type="search"]{width:100%;padding:10px;border-radius:8px;border:1p
   .brand h1{font-size:16px}
   .grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
 }
+/* UNIVERSAL HOME BUTTON */
+.home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background: #007bff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    cursor: pointer;
+    z-index: 9999;
+    transition: 0.2s;
+}
+
+.home-btn:active {
+    transform: scale(0.88);
+}
