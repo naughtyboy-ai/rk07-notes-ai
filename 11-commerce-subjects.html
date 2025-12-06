@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 11 – Commerce Subjects</title>
+
+<style>
+    body {font-family: Arial; background:#f2f2f2; padding:20px; margin:0;}
+    h1 {text-align:center; margin-bottom:25px;}
+
+    .card {
+        background:white;
+        padding:15px;
+        margin:10px 0;
+        border-radius:8px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        font-size:18px;
+        font-weight:600;
+        cursor:pointer;
+        transition:0.3s;
+    }
+    .card:hover {background:#eaffea; transform:translateY(-2px);}
+</style>
+
+</head>
+<body>
+
+<h1>Class 11 – Commerce</h1>
+
+<div class="card" onclick="goto('11-commerce-accounts-chapters.html')">
+    Accountancy
+</div>
+
+<div class="card" onclick="goto('11-commerce-business-studies-chapters.html')">
+    Business Studies
+</div>
+
+<div class="card" onclick="goto('11-commerce-economics-chapters.html')">
+    Economics
+</div>
+
+<div class="card" onclick="goto('11-commerce-maths-chapters.html')">
+    Applied Mathematics
+</div>
+
+<div class="card" onclick="goto('11-commerce-english-chapters.html')">
+    English
+</div>
+
+<script>
+function goto(link){
+    window.location.href = link;
+}
+</script>
+
+</body>
+</html>
