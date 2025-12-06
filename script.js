@@ -133,7 +133,29 @@ function animateWave() {
   requestAnimationFrame(animateWave);
 }
 animateWave();
+<script>
+// -------------------------------
+//  Bottom Wave Animation
+// -------------------------------
+const bottomWavePath = document.getElementById("bottomWavePath");
+let t2 = 0;
 
+function animateBottomWave() {
+  t2 += 0.03;
+  let path = "M0 0 ";
+
+  for (let x = 0; x <= 1440; x += 20) {
+    let y = 20 + Math.sin(x * 0.01 + t2) * 10;
+    path += `L ${x} ${y} `;
+  }
+
+  path += "L 1440 120 L 0 120 Z";
+  bottomWavePath.setAttribute("d", path);
+
+  requestAnimationFrame(animateBottomWave);
+}
+animateBottomWave();
+</script>
 /* ==========================================================
    CHAT WIDGET
 ===========================================================*/
