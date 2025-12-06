@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- Background canvas (handled by script.js) -->
+  <!-- Background canvas -->
   <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
   <!-- SVG wave -->
@@ -30,25 +30,23 @@
       </div>
     </div>
 
-      <!-- THEME SWITCH: slide toggle -->
-      <div class="theme-toggle">
-        <input id="themeSwitch" type="checkbox" />
-        <label for="themeSwitch" class="slider">
-          <span class="icon sun">☀️</span>
-          <span class="icon moon">🌙</span>
-        </label>
-      </div>
+    <div class="theme-toggle">
+      <input id="themeSwitch" type="checkbox" />
+      <label for="themeSwitch" class="slider">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </label>
     </div>
   </header>
 
-  <!-- SIDE MENU (icons added) -->
+  <!-- SIDE MENU -->
   <aside id="sideMenu" class="side-menu" aria-hidden="true">
     <nav>
-      <a href="index.html">🏠  Home</a>
-      <a href="classes.html">📘  Classes</a>
-      <a href="study-timer.html">⏳  Study Timer</a>
-      <a href="calendar.html">📅  Calendar</a>
-      <a href="tests.html">📝  Tests</a>
+      <a href="index.html">🏠 Home</a>
+      <a href="classes.html">📘 Classes</a>
+      <a href="study-timer.html">⏳ Study Timer</a>
+      <a href="calendar.html">📅 Calendar</a>
+      <a href="tests.html">📝 Tests</a>
       <a href="ask-chat.html">🤖 Chat</a>
     </nav>
     <div class="side-footer">
@@ -56,13 +54,13 @@
     </div>
   </aside>
 
-  <!-- Overlay for side menu -->
+  <!-- Overlay -->
   <div id="overlay" class="overlay" aria-hidden="true"></div>
 
   <!-- MAIN CONTENT -->
   <main class="main">
 
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <section class="hero">
       <div class="hero-inner">
         <h1>Power <span class="accent">∝</span> Work</h1>
@@ -74,8 +72,7 @@
           <button class="btn ghost" onclick="goto('calendar.html')">Calendar</button>
         </div>
 
-        <!-- CARDS ROW with "New" badges (HTML hooks for CSS/JS animation) -->
-        <div class="cards-row" aria-hidden="false">
+        <div class="cards-row">
           <a class="card card3d" href="classes.html">
             <div class="card-top">
               <span class="emoji">📘</span>
@@ -106,7 +103,7 @@
       </div>
     </section>
 
-    <!-- LONG FEATURES -->
+    <!-- FEATURES -->
     <section class="features">
       <h2>Why Rohit ki Notes?</h2>
       <div class="feature-grid">
@@ -139,5 +136,134 @@
     </footer>
 
   </main>
+
+
+<!-- ============= JAVASCRIPT START ============= -->
+<script>
+// -------------------------------
+//  Navigation Function
+// -------------------------------
+function goto(page) {
+  window.location.href = page;
+}
+
+// -------------------------------
+//  Side Menu
+// -------------------------------
+const sideMenu = document.getElementById("sideMenu");
+const overlay = document.getElementById("overlay");
+const menuBtn = document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click", () => {
+  sideMenu.classList.add("open");
+  overlay.classList.add("show");
+});
+
+overlay.addEventListener("click", () => {
+  sideMenu.classList.remove("open");
+  overlay.classList.remove("show");
+});
+
+// -------------------------------
+//  Theme Toggle
+// -------------------------------
+const themeSwitch = document.getElementById("themeSwitch");
+
+themeSwitch.addEventListener("change", () => {
+  if (themeSwitch.checked) {
+    document.body.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// Load saved theme
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  themeSwitch.checked = true;
+}
+
+// -------------------------------
+//  Auto Year
+// -------------------------------
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// -------------------------------
+//  Daily Motivation
+// -------------------------------
+function showMotivation() {
+  const lines = [
+    "Success = Consistency × Hard Work!",
+    "Today's grind makes tomorrow shine!",
+    "If you can dream it, you can do it!",
+    "Winners focus on winning!",
+    "Believe in yourself!"
+  ];
+  alert(lines[Math.floor(Math.random() * lines.length)]);
+}
+
+// -------------------------------
+//  Background Animation
+// -------------------------------
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let circles = [];
+for (let i = 0; i < 40; i++) {
+  circles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 3 + 1,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4
+  });
+}
+
+function animateBg() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  circles.forEach((c) => {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.25)";
+    ctx.fill();
+    c.x += c.dx;
+    c.y += c.dy;
+
+    if (c.x < 0 || c.x > canvas.width) c.dx *= -1;
+    if (c.y < 0 || c.y > canvas.height) c.dy *= -1;
+  });
+  requestAnimationFrame(animateBg);
+}
+animateBg();
+
+// -------------------------------
+//  Wave Animation
+// -------------------------------
+const wavePath = document.getElementById("wavePath");
+let t = 0;
+
+function animateWave() {
+  t += 0.03;
+  let path = "M0 60 ";
+
+  for (let x = 0; x <= 1440; x += 20) {
+    let y = 60 + Math.sin(x * 0.01 + t) * 10;
+    path += `L ${x} ${y} `;
+  }
+
+  path += "L 1440 120 L 0 120 Z";
+  wavePath.setAttribute("d", path);
+
+  requestAnimationFrame(animateWave);
+}
+animateWave();
+
+</script>
+<!-- ============= JAVASCRIPT END ============= -->
+
 </body>
 </html>
