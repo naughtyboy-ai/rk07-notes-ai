@@ -1,8 +1,7 @@
-// ask-chat.js — Smart tools engine (no external key required)
-// Features: detect commands, open PDF/link, calendar modal, safe calculator, create/show/download notes, time/date
-
+// ask-chat.js — Smart tools engine with safe math functions (sin, cos, tan, log, sqrt, ^)
+// No eval for math, safe tokenizer + shunting-yard + RPN evaluator
 (() => {
-  // Basic elements
+  // ---- DOM elements (must exist in ask-chat.html) ----
   const chatWindow = document.getElementById('chatWindow');
   const input = document.getElementById('chatInput');
   const sendBtn = document.getElementById('sendBtn');
@@ -10,19 +9,42 @@
   const modalContent = document.getElementById('modalContent');
   const notesCount = document.getElementById('notesCount');
 
-  // init
+  if (!chatWindow || !input || !sendBtn) {
+    console.warn('ask-chat.js: Required DOM elements missing (chatWindow/chatInput/sendBtn).');
+  }
+
+  // ---- Initialization ----
   updateNotesCount();
-  addBotMsg("Hi Rohit 👋 — I'm your study assistant. Try commands like: 'open pdf ch1.pdf', 'calendar', 'calculate 23*7', 'create note: todo'.");
+  addBotMsg("Hi Rohit 👋 — I'm your study assistant. Try commands like: 'open pdf ch1.pdf', 'calendar', 'calculate 23*7', 'create note: todo', or math like sin(90), log(100), sqrt(144).");
 
-  // send handler
-  sendBtn.addEventListener('click', onSend);
-  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') onSend(); });
+  sendBtn && sendBtn.addEventListener('click', onSend);
+  input && input.addEventListener('keydown', (e) => { if (e.key === 'Enter') onSend(); });
 
-  // PUBLIC runCommand to call from Quick buttons
-  window.runCommand = (text) => { input.value = text; onSend(); };
+  // expose quick-run for buttons
+  window.runCommand = (text) => { if (!input) return; input.value = text; onSend(); };
 
-  // main send
+  // ---- UI helpers ----
+  function addUserMsg(text) {
+    if (!chatWindow) return;
+    const d = document.createElement('div'); d.className = 'msg user'; d.textContent = text;
+    chatWindow.appendChild(d); chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+  function addBotMsg(text) {
+    if (!chatWindow) return;
+    const d = document.createElement('div'); d.className = 'msg bot'; d.textContent = text;
+    chatWindow.appendChild(d); chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+  function showTyping() {
+    if (!chatWindow) return null;
+    const el = document.createElement('div'); el.className = 'msg bot typing';
+    el.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+    chatWindow.appendChild(el); chatWindow.scrollTop = chatWindow.scrollHeight;
+    return el;
+  }
+
+  // ---- Main send handler ----
   function onSend() {
+    if (!input) return;
     const raw = input.value.trim();
     if (!raw) return;
     addUserMsg(raw);
@@ -30,116 +52,119 @@
     handleCommand(raw);
   }
 
-  // Message helpers
-  function addUserMsg(text) {
-    const d = document.createElement('div'); d.className = 'msg user'; d.textContent = text; chatWindow.appendChild(d); chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-  function addBotMsg(text) {
-    const d = document.createElement('div'); d.className = 'msg bot'; d.textContent = text; chatWindow.appendChild(d); chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
+  // ---- Normalizer ----
+  function normalize(s) { return String(s || '').trim().toLowerCase(); }
 
-  // typing UI (returns element)
-  function showTyping() {
-    const el = document.createElement('div'); el.className = 'msg bot';
-    const inner = document.createElement('div'); inner.className = 'typing'; inner.innerHTML = '<span></span><span></span><span></span>';
-    el.appendChild(inner); chatWindow.appendChild(el); chatWindow.scrollTop = chatWindow.scrollHeight;
-    return el;
-  }
-
-  // Basic naturalization
-  function normalize(s) { return s.trim().toLowerCase(); }
-
-  // Command dispatcher
+  // ---- COMMAND DISPATCHER ----
   async function handleCommand(raw) {
     const cmd = normalize(raw);
 
-    // Patterns
-    if (cmd.startsWith('open pdf')) {
-      // user can pass filename or full url
-      const arg = raw.slice(8).trim();
+    // open pdf
+    if (cmd.startsWith('open pdf') || cmd.includes('open pdf ')) {
+      const arg = raw.replace(/^open\s*pdf\s*/i,'').trim();
       await doOpenPDF(arg);
       return;
     }
 
-    if (cmd.startsWith('open link') || cmd.startsWith('open')) {
-      // open link if valid url present after 'open link' or 'open'
-      const url = raw.replace(/^open(link)?\s*/i, '').trim();
+    // explicit open link
+    if (cmd.startsWith('open link') || /^open\s+https?:\/\//i.test(raw)) {
+      const url = raw.replace(/^open(link)?\s*/i,'').trim();
       if (isValidUrl(url)) {
         addBotMsg('Opening link...');
         window.open(url, '_blank');
-      } else {
-        addBotMsg('No valid URL found. Use: open link https://example.com');
-      }
+      } else addBotMsg('No valid URL found. Use: open link https://example.com');
       return;
     }
 
-    if (cmd === 'calendar' || cmd === 'show calendar') {
+    // generic "open" may be for pages
+    if (cmd.startsWith('open ')) {
+      const target = raw.replace(/^open\s*/i,'').trim();
+      // class/page shortcuts
+      if (/class\s*9/.test(target)) { addBotMsg('Opening Class 9 page...'); goto('class9-subjects.html'); return; }
+      if (/class\s*11/.test(target)) { addBotMsg('Opening Class 11 page...'); goto('11-streams.html'); return; }
+      if (/class\s*12/.test(target)) { addBotMsg('Opening Class 12 page...'); goto('12-streams.html'); return; }
+      // else try url
+      if (isValidUrl(target)) { addBotMsg('Opening link...'); window.open(target, '_blank'); return; }
+      addBotMsg('Could not identify what to open. Try "open pdf <filename>" or "open link https://..."');
+      return;
+    }
+
+    // calendar
+    if (cmd === 'calendar' || cmd === 'show calendar' || cmd.includes('calendar')) {
       showCalendarModal();
       return;
     }
 
-    if (cmd.startsWith('calculate') || cmd.startsWith('calc') || cmd.match(/^[0-9\(\)]/)) {
-      // allow variants: "calculate 2+3" or just "2+3"
-      const expr = raw.replace(/^(calculate|calc)\s*/i, '');
-      doCalculate(expr);
-      return;
-    }
-
-    if (cmd === 'time' || cmd === 'date' || cmd==='what time' || cmd==='what is time') {
+    // time / date
+    if (['time','date','what time','what is time','current time'].some(k => cmd === k || cmd.includes(k))) {
       const now = new Date();
       addBotMsg('Current date & time: ' + now.toLocaleString());
       return;
     }
 
+    // download / export notes
+    if (cmd === 'download notes' || cmd === 'export notes') { downloadNotesFile(); return; }
+
+    // show notes
+    if (cmd === 'show notes' || cmd === 'notes' || cmd === 'view notes') { showNotesModal(); return; }
+
+    // create note
     if (cmd.startsWith('create note:') || cmd.startsWith('create note')) {
       const note = raw.split(/create note:?\s*/i)[1] || '';
       if (!note) { addBotMsg('Please provide note text. Example: create note: Revise optics'); return; }
-      saveNote(note);
-      addBotMsg('Note saved ✔');
-      return;
+      saveNote(note); addBotMsg('Note saved ✔'); return;
     }
 
-    if (cmd === 'show notes' || cmd === 'notes' || cmd === 'view notes') {
-      showNotesModal();
-      return;
-    }
-
-    if (cmd === 'download notes' || cmd === 'export notes') {
-      downloadNotesFile();
-      return;
-    }
-
+    // delete note
     if (cmd.startsWith('delete note')) {
-      // delete note #n or delete note: exact text
       const rest = raw.split(/delete note:?\s*/i)[1];
       if (!rest) { addBotMsg('Specify note number or exact text to delete. e.g., delete note 2'); return; }
-      deleteNote(rest);
+      deleteNote(rest); return;
+    }
+
+    // calculation shorthand: "calculate ..." or expression starts with digits or function names
+    if (cmd.startsWith('calculate') || cmd.startsWith('calc') || /^[0-9\-\+\(\.]/.test(cmd) || /^\s*(sin|cos|tan|log|sqrt|ln)\b/.test(cmd)) {
+      const expr = raw.replace(/^(calculate|calc)\s*/i, '');
+      const typing = showTyping();
+      setTimeout(()=>{
+        typing && typing.remove();
+        const out = trySolveMath(expr);
+        if (out.ok) addBotMsg(`${expr} = ${out.value}`);
+        else addBotMsg('Calculation error: ' + out.error + ' (use examples: sin(90), cos(0), sqrt(144), log(100), 2^8, (12+3)/5 )');
+      }, 250);
       return;
     }
 
-    // If none of the tools matched -> fallback to conversational offline responder
+    // open pdf by "chapter" mention: open chapter 3
+    const mChapter = cmd.match(/chapter\s+(\d+)/);
+    if (mChapter) {
+      const filename = `ch${mChapter[1]}.pdf`;
+      await doOpenPDF(filename);
+      return;
+    }
+
+    // fallback to conversational responder
     conversationalReply(raw);
   }
 
-  // ---------------- TOOLS IMPLEMENTATION ----------------
+  // ---- TOOLS IMPLEMENTATION ----
 
-  // 1) Open PDF handler (attempt to open local file path or remote url)
+  // navigate helper (simple)
+  function goto(path) {
+    try { window.location.href = path; } catch(e){ console.warn(e); }
+  }
+
+  // 1) Open PDF handler
   async function doOpenPDF(arg) {
     if (!arg) { addBotMsg('Specify PDF filename or url, e.g., open pdf 12-phy-ch1.pdf or open pdf https://...'); return; }
-
-    // if looks like url
     if (isValidUrl(arg)) {
       addBotMsg('Opening PDF link...');
-      window.open(arg, '_blank');
-      return;
+      window.open(arg, '_blank'); return;
     }
-    // else assume local file in same folder
+    // assume local file name
     const filename = arg;
-    // If notes-viewer exists, open via notes-viewer
     addBotMsg('Opening PDF: ' + filename);
-    // try notes-viewer.html?file=...
     const viewer = 'notes-viewer.html?file=' + encodeURIComponent(filename);
-    // open in new tab (user can host files)
     window.open(viewer, '_blank');
   }
 
@@ -149,7 +174,7 @@
     const year = today.getFullYear();
     const month = today.getMonth();
     const first = new Date(year, month, 1);
-    const startDay = first.getDay(); // 0..6 (Sun..Sat)
+    const startDay = first.getDay();
     const daysInMonth = new Date(year, month+1, 0).getDate();
 
     let html = `<h2>Calendar — ${today.toLocaleString(undefined, {month:'long'})} ${year}</h2>`;
@@ -166,124 +191,15 @@
     openModal(html);
   }
 
-  // 3) Safe calculator
-  function doCalculate(expr) {
-    const safe = sanitizeMath(expr);
-    if (!safe) { addBotMsg('Invalid expression. Only numbers and +-*/().%^ allowed. Example: calculate (12+3)*2'); return; }
-    try {
-      const result = evaluateSafe(safe);
-      addBotMsg(`${expr} = ${result}`);
-    } catch (e) {
-      addBotMsg('Calculation error: ' + e.message);
-    }
-  }
-
-  // safe math: only digits, operators, parentheses, decimal, spaces, ^ for power, % for mod
-  function sanitizeMath(s) {
-    if (!s) return null;
-    // replace unicode × ÷ etc
-    s = s.replace(/×/g,'*').replace(/÷/g,'/').replace(/—/g,'-').replace(/–/g,'-').replace(/×/g,'*');
-    // allow only these chars
-    if (/[^0-9+\-*/().%\^ \t]/.test(s)) return null;
-    // prevent repeated dangerous sequences
-    if (/[a-zA-Z]/.test(s)) return null;
-    return s;
-  }
-
-  // evaluate math expression safely (no eval)
-  function evaluateSafe(expr) {
-    // implement simple parser: support + - * / % ^ and parentheses and decimals
-    // convert ^ to Math.pow usage during parse by replacing a^b with pow(a,b) via algorithm
-    // For simplicity, implement shunting-yard to RPN then eval
-    const ops = {
-      '+': {prec:1, assoc:'L'}, '-': {prec:1, assoc:'L'},
-      '*': {prec:2, assoc:'L'}, '/': {prec:2, assoc:'L'}, '%': {prec:2, assoc:'L'},
-      '^': {prec:3, assoc:'R'}
-    };
-
-    function toTokens(s) {
-      const tokens = [];
-      let num = '';
-      for (let i=0;i<s.length;i++){
-        const ch = s[i];
-        if ((ch>='0'&&ch<='9') || ch=='.') { num += ch; continue; }
-        if (ch === ' ' || ch === '\t') { if (num){ tokens.push(num); num=''; } continue; }
-        if (num){ tokens.push(num); num=''; }
-        if (ch in ops || ch==='(' || ch===')') tokens.push(ch);
-        else throw new Error('Invalid char in expression');
-      }
-      if (num) tokens.push(num);
-      return tokens;
-    }
-
-    function toRPN(tokens) {
-      const out = [], stack = [];
-      for (let t of tokens) {
-        if (!isNaN(t)) out.push(t);
-        else if (t in ops) {
-          while (stack.length){
-            const o2 = stack[stack.length-1];
-            if (o2 in ops && ((ops[t].assoc==='L' && ops[t].prec <= ops[o2].prec) || (ops[t].assoc==='R' && ops[t].prec < ops[o2].prec))){
-              out.push(stack.pop());
-            } else break;
-          }
-          stack.push(t);
-        } else if (t === '(') stack.push(t);
-        else if (t === ')') {
-          while (stack.length && stack[stack.length-1] !== '(') out.push(stack.pop());
-          if (!stack.length) throw new Error('Mismatched parentheses');
-          stack.pop();
-        } else throw new Error('Unknown token ' + t);
-      }
-      while (stack.length) {
-        const x = stack.pop();
-        if (x==='('||x===')') throw new Error('Mismatched parentheses');
-        out.push(x);
-      }
-      return out;
-    }
-
-    function evalRPN(rpn) {
-      const st = [];
-      for (let t of rpn){
-        if (!isNaN(t)) st.push(parseFloat(t));
-        else {
-          const b = st.pop(); const a = st.pop();
-          if (t === '+') st.push(a+b);
-          else if (t === '-') st.push(a-b);
-          else if (t === '*') st.push(a*b);
-          else if (t === '/') st.push(a/b);
-          else if (t === '%') st.push(a%b);
-          else if (t === '^') st.push(Math.pow(a,b));
-          else throw new Error('Unknown op ' + t);
-        }
-      }
-      if (st.length !== 1) throw new Error('Invalid expression');
-      return st[0];
-    }
-
-    const tokens = toTokens(expr);
-    const rpn = toRPN(tokens);
-    return evalRPN(rpn);
-  }
-
-  // 4) Notes storage using localStorage
+  // 3) NOTES (localStorage)
   function saveNote(text) {
     const notes = getNotes();
-    notes.push({id: Date.now(), text, created: new Date().toISOString()});
+    notes.push({ id: Date.now(), text: String(text), created: new Date().toISOString() });
     localStorage.setItem('rk_notes', JSON.stringify(notes));
     updateNotesCount();
   }
-
-  function getNotes() {
-    try { return JSON.parse(localStorage.getItem('rk_notes')||'[]'); } catch { return []; }
-  }
-
-  function updateNotesCount() {
-    const n = getNotes().length;
-    notesCount && (notesCount.textContent = 'Notes: ' + n);
-  }
-
+  function getNotes() { try { return JSON.parse(localStorage.getItem('rk_notes')||'[]'); } catch { return []; } }
+  function updateNotesCount() { const n = getNotes().length; notesCount && (notesCount.textContent = 'Notes: ' + n); }
   function showNotesModal() {
     const notes = getNotes();
     let html = '<h2>Your Notes</h2>';
@@ -298,270 +214,303 @@
     html += `<div style="margin-top:12px"><button onclick="closeModal();">Close</button> <button onclick="downloadNotesFile();">Download Notes</button></div>`;
     openModal(html);
   }
-
   function deleteNote(spec) {
     const notes = getNotes();
-    // if spec is number
     if (/^\d+$/.test(spec.trim())) {
       const idx = parseInt(spec.trim(),10)-1;
       if (idx<0 || idx>=notes.length) { addBotMsg('Invalid note number'); return; }
-      notes.splice(idx,1);
-      localStorage.setItem('rk_notes', JSON.stringify(notes));
-      updateNotesCount();
-      addBotMsg('Note deleted');
-      return;
+      notes.splice(idx,1); localStorage.setItem('rk_notes', JSON.stringify(notes)); updateNotesCount(); addBotMsg('Note deleted'); return;
     }
-    // else try to delete text match
     const newNotes = notes.filter(n => n.text.toLowerCase() !== spec.toLowerCase());
     if (newNotes.length === notes.length) { addBotMsg('No matching note found'); return; }
-    localStorage.setItem('rk_notes', JSON.stringify(newNotes));
-    updateNotesCount();
-    addBotMsg('Note deleted (matching text)');
+    localStorage.setItem('rk_notes', JSON.stringify(newNotes)); updateNotesCount(); addBotMsg('Note deleted (matching text)');
   }
-
   function downloadNotesFile() {
     const notes = getNotes();
     if (!notes.length) { addBotMsg('No notes to download'); return; }
     const txt = notes.map((n,i)=>`#${i+1} [${new Date(n.created).toLocaleString()}]\n${n.text}\n\n`).join('');
-    const blob = new Blob([txt], {type:'text/plain'});
-    const url = URL.createObjectURL(blob);
+    const blob = new Blob([txt], {type:'text/plain'}); const url = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href = url; a.download = 'rohit_notes.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     addBotMsg('Notes downloaded ✔');
   }
 
-  // 5) open modal helpers
-  function openModal(innerHtml) {
-    modalContent.innerHTML = innerHtml;
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-  }
-  window.closeModal = () => { modal.style.display='none'; modal.setAttribute('aria-hidden','true'); modalContent.innerHTML=''; };
+  // 4) Modal helpers
+  function openModal(innerHtml) { if (!modal || !modalContent) return; modalContent.innerHTML = innerHtml; modal.style.display = 'flex'; modal.setAttribute('aria-hidden','false'); }
+  window.closeModal = () => { if (!modal || !modalContent) return; modal.style.display='none'; modal.setAttribute('aria-hidden','true'); modalContent.innerHTML=''; };
 
-  // 6) URL validator
-  function isValidUrl(s) {
-    try { const u = new URL(s); return u.protocol === 'http:' || u.protocol === 'https:'; } catch { return false; }
-  }
+  // 5) URL validator
+  function isValidUrl(s) { try { const u = new URL(s); return u.protocol === 'http:' || u.protocol === 'https:'; } catch { return false; } }
 
-  // 7) Conversational fallback (simple offline knowledge + command hints)
+  // 6) Conversational fallback
   function conversationalReply(raw) {
-    const typing = showTyping();
+    const t = showTyping();
     setTimeout(()=> {
-      typing.remove();
+      t && t.remove();
       const q = normalize(raw);
-      // small rule-based conversational answers
-      if (q.includes('how to open pdf') || q.includes('open pdf')) {
-        addBotMsg("Use: open pdf <filename>  or open link <https://...> \nIf you uploaded PDFs to your website's folder, use the exact filename.");
-        return;
-      }
-      if (q.includes('how to use timer') || q.includes('timer')) {
-        addBotMsg("Open the Study Timer page (Top menu) or ask 'start timer 25' — feature available in Study Timer page.");
-        return;
-      }
-      if (q.includes('contact') || q.includes('support')) {
-        addBotMsg("Contact via email: masumboy141@gmail.com — the Contact button opens Gmail compose.");
-        return;
-      }
-      // fallback small talk
-      if (q.includes('hello') || q.includes('hi')) { addBotMsg('Hello! How can I help with notes, PDFs, calendar or calculations?'); return; }
-      if (q.includes('thanks') || q.includes('thank')) { addBotMsg('You’re welcome!'); return; }
-
-      // default helpful hint
-      addBotMsg("I can open PDFs, show calendar, calculate expressions, save notes, and open links. Try commands: 'open pdf ch1.pdf', 'calendar', 'calculate 23*4', 'create note: Revise optics'.");
-    }, 700);
+      if (q.includes('how to open pdf') || q.includes('open pdf')) { addBotMsg("Use: open pdf <filename> or open link <https://...>. If PDF uploaded in site folder, use exact filename."); return; }
+      if (q.includes('timer') || q.includes('pomodoro')) { addBotMsg("Use Study Timer page or ask 'start timer 25' (feature on timer page)."); return; }
+      if (q.includes('contact') || q.includes('support')) { addBotMsg("Contact via email: masumboy141@gmail.com"); return; }
+      if (q.includes('hello')||q.includes('hi')) { addBotMsg('Hello! How can I help with notes, PDFs, calendar or calculations?'); return; }
+      if (q.includes('thanks')||q.includes('thank')) { addBotMsg('You’re welcome!'); return; }
+      addBotMsg("I can open PDFs, show calendar, calculate expressions (sin/cos/tan/log/sqrt/^), save notes, and open links. Examples: 'open pdf ch1.pdf', 'calendar', 'calculate sin(90)', 'create note: Revise optics'.");
+    }, 600);
   }
 
-  // utility: escape for display
+  // 7) Utilities
   function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]); }
 
-  // sanitize user-provided math and evaluate using safe parser
-  // evaluateSafe and sanitizeMath are defined above
-  // To avoid duplication in this single-file engine, define them now:
+  // ---- SAFE MATH PARSER / EVALUATOR (functions + degrees for trig) ----
+  // Supported functions: sin, cos, tan, asin, acos, atan, log (base10), ln (natural), sqrt
+  // Operators: + - * / % ^ (power)
+  // Unary minus supported.
 
-  function sanitizeMath(s) {
-    if (!s) return null;
-    s = s.replace(/×/g,'*').replace(/÷/g,'/').replace(/—/g,'-').replace(/–/g,'-');
-    if (/[^0-9+\-*/().%\^ \t]/.test(s)) return null;
-    if (/[a-zA-Z]/.test(s)) return null;
+  const MATH_FNS = {
+    'sin': (x)=> Math.sin(x * Math.PI / 180),
+    'cos': (x)=> Math.cos(x * Math.PI / 180),
+    'tan': (x)=> Math.tan(x * Math.PI / 180),
+    'asin': (x)=> (Math.asin(x) * 180 / Math.PI),
+    'acos': (x)=> (Math.acos(x) * 180 / Math.PI),
+    'atan': (x)=> (Math.atan(x) * 180 / Math.PI),
+    'sqrt': (x)=> Math.sqrt(x),
+    'ln': (x)=> Math.log(x),
+    'log': (x)=> Math.log10 ? Math.log10(x) : Math.log(x)/Math.LN10
+  };
+
+  const OPERATORS = {
+    '+': {prec:1,assoc:'L',fn:(a,b)=>a+b},
+    '-': {prec:1,assoc:'L',fn:(a,b)=>a-b},
+    '*': {prec:2,assoc:'L',fn:(a,b)=>a*b},
+    '/': {prec:2,assoc:'L',fn:(a,b)=>a/b},
+    '%': {prec:2,assoc:'L',fn:(a,b)=>a%b},
+    '^': {prec:3,assoc:'R',fn:(a,b)=>Math.pow(a,b)}
+  };
+
+  function trySolveMath(rawExpr) {
+    try {
+      const s = preprocessMath(rawExpr);
+      const tokens = tokenize(s);
+      const rpn = toRPN(tokens);
+      const val = evalRPN(rpn);
+      if (Number.isFinite(val)) return { ok:true, value: formatNumber(val) };
+      return { ok:false, error: 'Non-finite result' };
+    } catch (e) { return { ok:false, error: e.message || 'Invalid expression' }; }
+  }
+
+  function formatNumber(v) {
+    // show integer as integer, else 6 decimal places trimmed
+    if (Math.abs(v - Math.round(v)) < 1e-12) return Math.round(v).toString();
+    return parseFloat(v.toFixed(8)).toString();
+  }
+
+  // allow functions names and replace common unicode operators
+  function preprocessMath(s) {
+    if (typeof s !== 'string') throw new Error('Not a string');
+    s = s.replace(/×/g,'*').replace(/÷/g,'/').replace(/√/g,'sqrt').replace(/—/g,'-').replace(/–/g,'-');
+    // ensure function names are lower-case and remove trailing words
+    return s.trim();
+  }
+
+  function tokenize(s) {
+    const tokens = [];
+    let i = 0;
+    while (i < s.length) {
+      const ch = s[i];
+      // whitespace
+      if (/\s/.test(ch)) { i++; continue; }
+      // number (including decimal)
+      if (/[0-9.]/.test(ch)) {
+        let num = ch; i++;
+        while (i < s.length && /[0-9.]/.test(s[i])) { num += s[i++]; }
+        if (num.split('.').length > 2) throw new Error('Invalid number');
+        tokens.push({type:'number', value: parseFloat(num) });
+        continue;
+      }
+      // letter => function name or constant
+      if (/[a-zA-Z]/.test(ch)) {
+        let name = ch; i++;
+        while (i < s.length && /[a-zA-Z0-9]/.test(s[i])) { name += s[i++]; }
+        name = name.toLowerCase();
+        if (name === 'pi') tokens.push({type:'number', value: Math.PI});
+        else if (name === 'e') tokens.push({type:'number', value: Math.E});
+        else tokens.push({type:'fn', value: name});
+        continue;
+      }
+      // operators & parentheses & commas
+      if (ch === ',' ) { tokens.push({type:'comma'}); i++; continue; }
+      if (ch === '(' || ch === ')') { tokens.push({type: ch}); i++; continue; }
+      if (['+','-','*','/','%','^'].includes(ch)) {
+        // handle unary minus: if at start or after '(' or another operator
+        if (ch === '-' ) {
+          const prev = tokens.length ? tokens[tokens.length-1] : null;
+          if (!prev || (prev.type === 'operator' || prev === '(' || prev.type === '(' || prev.type === 'comma')) {
+            // unary minus token
+            tokens.push({type:'operator', value:'u-'});
+            i++; continue;
+          }
+        }
+        tokens.push({type:'operator', value: ch});
+        i++; continue;
+      }
+      throw new Error('Invalid char: ' + ch);
+    }
+    return tokens;
+  }
+
+  function toRPN(tokens) {
+    const out = [];
+    const stack = [];
+    for (let t of tokens) {
+      if (t.type === 'number') out.push(t);
+      else if (t.type === 'fn') {
+        stack.push(t);
+      } else if (t.type === 'operator') {
+        if (t.value === 'u-') {
+          // represent unary minus as function 'neg'
+          stack.push({type:'fn', value:'neg'});
+          continue;
+        }
+        while (stack.length) {
+          const top = stack[stack.length-1];
+          if (top.type === 'operator') {
+            const o2 = top.value;
+            const o1 = t.value;
+            if ( (OPERATORS[o2] && OPERATORS[o1] && ((OPERATORS[o1].assoc === 'L' && OPERATORS[o1].prec <= OPERATORS[o2].prec) || (OPERATORS[o1].assoc === 'R' && OPERATORS[o1].prec < OPERATORS[o2].prec))) ) {
+              out.push(stack.pop());
+              continue;
+            }
+          }
+          if (top.type === 'fn' || (top.type === 'operator' && top.value === 'u-')) {
+            // functions have higher precedence: break? we'll handle below
+          }
+          break;
+        }
+        stack.push(t);
+      } else if (t === '(' || t.type === '(') {
+        stack.push({type:'paren', value:'('});
+      } else if (t === ')' || t.type === ')') {
+        // pop until '('
+        while (stack.length && stack[stack.length-1].type !== 'paren') out.push(stack.pop());
+        if (!stack.length) throw new Error('Mismatched parentheses');
+        stack.pop(); // remove '('
+        // if function on top, pop it to output
+        if (stack.length && stack[stack.length-1].type === 'fn') out.push(stack.pop());
+      } else if (t.type === 'comma') {
+        // pop until '('
+        while (stack.length && stack[stack.length-1].type !== 'paren') out.push(stack.pop());
+        if (!stack.length) throw new Error('Misplaced comma');
+      } else {
+        // unknown token type
+        throw new Error('Unknown token in toRPN: ' + JSON.stringify(t));
+      }
+    }
+    while (stack.length) {
+      const x = stack.pop();
+      if (x.type === 'paren') throw new Error('Mismatched parentheses');
+      out.push(x);
+    }
+    return out;
+  }
+
+  function evalRPN(rpn) {
+    const st = [];
+    for (let tok of rpn) {
+      if (tok.type === 'number') { st.push(tok.value); continue; }
+      if (tok.type === 'operator') {
+        const op = tok.value;
+        if (!OPERATORS[op]) throw new Error('Unknown operator ' + op);
+        const b = st.pop(); const a = st.pop();
+        if (a === undefined || b === undefined) throw new Error('Invalid expression');
+        st.push(OPERATORS[op].fn(a,b));
+        continue;
+      }
+      if (tok.type === 'fn') {
+        const name = tok.value;
+        if (name === 'neg') {
+          const v = st.pop();
+          if (v === undefined) throw new Error('Invalid unary');
+          st.push(-v);
+          continue;
+        }
+        const fn = MATH_FNS[name];
+        if (!fn) throw new Error('Unknown function ' + name);
+        // arity 1
+        const v = st.pop();
+        if (v === undefined) throw new Error('Function ' + name + ' missing arg');
+        st.push(fn(v));
+        continue;
+      }
+      // If token is plain operator object popped from earlier stack (legacy)
+      if (tok.value && OPERATORS[tok.value]) {
+        const op = tok.value;
+        const b = st.pop(); const a = st.pop();
+        st.push(OPERATORS[op].fn(a,b));
+        continue;
+      }
+      throw new Error('Unhandled RPN token: ' + JSON.stringify(tok));
+    }
+    if (st.length !== 1) throw new Error('Invalid expression after eval');
+    return st[0];
+  }
+
+  // ---- Wrapper to accept direct math expressions or text containing expr ----
+  function sanitizeMathInput(s) {
+    if (!s || typeof s !== 'string') return null;
+    // remove "calculate" or leading words
+    s = s.replace(/^(calculate|calc)\s*/i,'').trim();
     return s;
   }
-  function evaluateSafe(expr) {
-    // same shunting-yard implementation as used above
-    const ops = {
-      '+': {prec:1, assoc:'L'}, '-': {prec:1, assoc:'L'},
-      '*': {prec:2, assoc:'L'}, '/': {prec:2, assoc:'L'}, '%': {prec:2, assoc:'L'},
-      '^': {prec:3, assoc:'R'}
-    };
-    function toTokens(s) {
-      const tokens = []; let num = '';
-      for (let i=0;i<s.length;i++){
-        const ch = s[i];
-        if ((ch>='0'&&ch<='9') || ch=='.') { num += ch; continue; }
-        if (ch === ' ' || ch === '\t') { if (num){ tokens.push(num); num=''; } continue; }
-        if (num){ tokens.push(num); num=''; }
-        if (ch in ops || ch==='(' || ch===')') tokens.push(ch);
-        else throw new Error('Invalid char in expression');
-      }
-      if (num) tokens.push(num);
-      return tokens;
-    }
-    function toRPN(tokens) {
-      const out = [], stack = [];
-      for (let t of tokens) {
-        if (!isNaN(t)) out.push(t);
-        else if (t in ops) {
-          while (stack.length){
-            const o2 = stack[stack.length-1];
-            if (o2 in ops && ((ops[t].assoc==='L' && ops[t].prec <= ops[o2].prec) || (ops[t].assoc==='R' && ops[t].prec < ops[o2].prec))){
-              out.push(stack.pop());
-            } else break;
-          }
-          stack.push(t);
-        } else if (t === '(') stack.push(t);
-        else if (t === ')') {
-          while (stack.length && stack[stack.length-1] !== '(') out.push(stack.pop());
-          if (!stack.length) throw new Error('Mismatched parentheses');
-          stack.pop();
-        } else throw new Error('Unknown token ' + t);
-      }
-      while (stack.length) {
-        const x = stack.pop();
-        if (x==='('||x===')') throw new Error('Mismatched parentheses');
-        out.push(x);
-      }
-      return out;
-    }
-    function evalRPN(rpn) {
-      const st = [];
-      for (let t of rpn){
-        if (!isNaN(t)) st.push(parseFloat(t));
-        else {
-          const b = st.pop(); const a = st.pop();
-          if (t === '+') st.push(a+b);
-          else if (t === '-') st.push(a-b);
-          else if (t === '*') st.push(a*b);
-          else if (t === '/') st.push(a/b);
-          else if (t === '%') st.push(a%b);
-          else if (t === '^') st.push(Math.pow(a,b));
-          else throw new Error('Unknown op ' + t);
-        }
-      }
-      if (st.length !== 1) throw new Error('Invalid expression');
-      return st[0];
-    }
-    const tokens = toTokens(expr);
-    const rpn = toRPN(tokens);
-    return evalRPN(rpn);
-  }
 
-  // Ensure calculator uses these
-  function doCalculate(expr) {
-    const safe = sanitizeMath(expr);
-    if (!safe) { addBotMsg('Invalid expression. Only numbers and +-*/().%^ allowed. Example: calculate (12+3)*2'); return; }
+  // try solve and return {ok, value, error}
+  function trySolveMath(exprRaw) {
+    const expr = sanitizeMathInput(exprRaw);
+    if (!expr) return { ok:false, error:'Empty expression' };
     try {
-      const result = evaluateSafe(safe);
-      addBotMsg(`${expr} = ${result}`);
+      const pre = preprocessMath(expr);
+      const tokens = tokenize(pre);
+      const rpn = toRPN(tokens);
+      const val = evalRPN(rpn);
+      if (!Number.isFinite(val)) return { ok:false, error:'Result not finite' };
+      return { ok:true, value: formatNumber(val) };
     } catch (e) {
-      addBotMsg('Calculation error: ' + e.message);
+      return { ok:false, error: e.message || 'Parse error' };
     }
   }
 
-  // 8) Utility escape
-  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]); }
+  // --- formatNumber helper re-used ---
+  function formatNumber(v) {
+    if (Math.abs(v - Math.round(v)) < 1e-12) return Math.round(v).toString();
+    return parseFloat(v.toFixed(8)).toString();
+  }
+
+  // ---- END MATH PARSER ----
+
+  // ------------------------------------------------
+  // Now expose simple button-binding so UI works
+  // ------------------------------------------------
+  // (Bind send button already added above)
+  // Also allow quick test on load
+  // ------------------------------------------------
+
+  // optional: quick examples appended to chat for first-time users
+  (function showQuickTips(){
+    // show nothing if already have messages
+    if (!chatWindow) return;
+    // don't spam if messages already present
+    if (chatWindow.children.length > 2) return;
+    const tips = [
+      "Try: calculate sin(90)",
+      "Try: calculate cos(60)",
+      "Try: calculate 2^8",
+      "Try: open pdf 11-phy-ch1.pdf",
+      "Try: create note: revise optics"
+    ];
+    addBotMsg('Quick examples: ' + tips.join(' • '));
+  })();
+
+  // make send available as global for quick testing
+  window.askChatSend = onSend;
+
+  // expose trySolveMath globally for debug
+  window.trySolveMath = trySolveMath;
 
 })();
-
-// SMART OFFLINE CHATBOT JS
-const input = document.getElementById("chatInput");
-const sendBtn = document.getElementById("chatSend");
-const chatBody = document.getElementById("chatBody");
-
-// --- Add message to chat ---
-function addMessage(text, sender="bot") {
-    const div = document.createElement("div");
-    div.className = `msg ${sender}`;
-    div.innerText = text;
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-// --- Typing animation ---
-function showTyping() {
-    const div = document.createElement("div");
-    div.className = "typing bot";
-    div.id = "typingDot";
-    div.innerHTML = "<span></span><span></span><span></span>";
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
-function removeTyping() {
-    const dot = document.getElementById("typingDot");
-    if (dot) dot.remove();
-}
-
-// --- Math Solver ---
-function solveMath(expr) {
-    try {
-        expr = expr
-            .replace(/sin/gi, "Math.sin")
-            .replace(/cos/gi, "Math.cos")
-            .replace(/tan/gi, "Math.tan")
-            .replace(/log/gi, "Math.log10")
-            .replace(/√/g, "Math.sqrt")
-            .replace(/\^/g, "**");
-
-        // Convert degrees to radians for trig
-        expr = expr.replace(/Math\.(sin|cos|tan)\((.*?)\)/g,
-            (m, fn, val) => `Math.${fn}(((${val}) * Math.PI) / 180)`
-        );
-
-        return eval(expr);
-    } catch {
-        return null;
-    }
-}
-
-// --- Command Handler ---
-function smartReply(q) {
-    q = q.toLowerCase();
-
-    // PDF open
-    if (q.includes("open") && q.includes("pdf")) {
-        return "Opening PDF… (Aap filename likho, main open kar dunga)";
-    }
-
-    // Page open
-    if (q.includes("open") && q.includes("page")) {
-        return "Page khola ja raha hai…";
-    }
-
-    // Calendar
-    if (q.includes("calendar")) {
-        const date = new Date();
-        return `Aaj ki date: ${date.toDateString()}`;
-    }
-
-    // Math solve check
-    const mathResult = solveMath(q);
-    if (mathResult !== null) {
-        return `Answer = ${mathResult}`;
-    }
-
-    // Default
-    return "Samajh gaya! 👍 Aap aur kuch puch sakte ho.";
-}
-
-// --- Main Send Handler ---
-sendBtn.onclick = () => {
-    const text = input.value.trim();
-    if (!text) return;
-
-    addMessage(text, "user");
-    input.value = "";
-
-    showTyping();
-
-    setTimeout(() => {
-        removeTyping();
-        addMessage(smartReply(text), "bot");
-    }, 600);
-};
