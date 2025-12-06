@@ -1,35 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Rohit Notes</title>
-
-    <!-- Manifest HERE -->
-    <link rel="manifest" href="manifest.json">
-  
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Rohit ki Notes — Home</title>
 
-  <!-- external CSS -->
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Background canvas -->
   <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-  <!-- SVG wave -->
+  <!-- WAVE -->
   <svg id="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
     <path id="wavePath" d="" fill="rgba(255,255,255,0.03)"></path>
   </svg>
 
   <!-- TOPBAR -->
   <header class="topbar">
-    <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
+    <button id="menuBtn" class="icon-btn">☰</button>
 
     <div class="brand">
-      <img src="profile.jpg" alt="Rohit" class="logo" />
+      <img src="profile.jpg" class="logo" alt="">
       <div>
         <div class="brand-name">Rohit ki Notes</div>
         <div class="brand-sub">Personal Study Hub</div>
@@ -37,16 +35,16 @@
     </div>
 
     <div class="theme-toggle">
-      <input id="themeSwitch" type="checkbox" />
+      <input id="themeSwitch" type="checkbox">
       <label for="themeSwitch" class="slider">
-        <span class="icon sun">☀️</span>
-        <span class="icon moon">🌙</span>
+        <span class="icon">☀️</span>
+        <span class="icon">🌙</span>
       </label>
     </div>
   </header>
 
   <!-- SIDE MENU -->
-  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+  <aside id="sideMenu" class="side-menu">
     <nav>
       <a href="index.html">🏠 Home</a>
       <a href="classes.html">📘 Classes</a>
@@ -56,21 +54,22 @@
       <a href="ask-chat.html">🤖 Chat</a>
     </nav>
     <div class="side-footer">
-      <button class="side-email" onclick="window.location.href='mailto:masumboy141@gmail.com'">Email Support</button>
+      <button onclick="window.location.href='mailto:masumboy141@gmail.com'">
+        Email Support
+      </button>
     </div>
   </aside>
 
-  <!-- Overlay -->
-  <div id="overlay" class="overlay" aria-hidden="true"></div>
+  <div id="overlay" class="overlay"></div>
 
   <!-- MAIN CONTENT -->
   <main class="main">
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
         <h1>Power <span class="accent">∝</span> Work</h1>
-        <p class="lead">We are the hardest workers in the room. Clean notes, tests and tools — all in one place.</p>
+        <p class="lead">Clean notes, practice tests and smart study tools.</p>
 
         <div class="hero-ctas">
           <button class="btn primary" onclick="goto('classes.html')">Start Learning</button>
@@ -80,30 +79,21 @@
 
         <div class="cards-row">
           <a class="card card3d" href="classes.html">
-            <div class="card-top">
-              <span class="emoji">📘</span>
-              <span class="badge new">New</span>
-            </div>
+            <div class="card-top"><span class="emoji">📘</span><span class="badge new">New</span></div>
             <div class="title">Classes</div>
-            <div class="desc">Browse class-wise notes</div>
+            <div class="desc">Browse class notes</div>
           </a>
 
           <a class="card card3d" href="tests.html">
-            <div class="card-top">
-              <span class="emoji">📝</span>
-              <span class="badge new">New</span>
-            </div>
+            <div class="card-top"><span class="emoji">📝</span><span class="badge new">New</span></div>
             <div class="title">Tests</div>
-            <div class="desc">Practice MCQs & quizzes</div>
+            <div class="desc">Practice quizzes</div>
           </a>
 
           <a class="card card3d" href="study-timer.html">
-            <div class="card-top">
-              <span class="emoji">⏳</span>
-              <span class="badge">Tool</span>
-            </div>
+            <div class="card-top"><span class="emoji">⏳</span><span class="badge">Tool</span></div>
             <div class="title">Timer</div>
-            <div class="desc">Focus sessions & stopwatch</div>
+            <div class="desc">Focus sessions</div>
           </a>
         </div>
       </div>
@@ -115,10 +105,10 @@
       <div class="feature-grid">
         <div class="feature">Fast PDF viewer</div>
         <div class="feature">Smart chapter search</div>
-        <div class="feature">Offline-ready pages</div>
-        <div class="feature">Study timer & stopwatch</div>
-        <div class="feature">Calendar & planner</div>
-        <div class="feature">Contact & support</div>
+        <div class="feature">Offline-ready</div>
+        <div class="feature">Study timer</div>
+        <div class="feature">Calendar planner</div>
+        <div class="feature">Support</div>
       </div>
     </section>
 
@@ -128,156 +118,113 @@
       <div class="tool-grid">
         <button class="tool" onclick="goto('study-timer.html')">Open Timer</button>
         <button class="tool" onclick="goto('ask-chat.html')">Ask Chat</button>
-        <button class="tool" onclick="showMotivation()">Daily Motivation</button>
+        <button class="tool" onclick="showMotivation()">Motivation</button>
       </div>
     </section>
 
-    <section class="about">
-      <h2>About</h2>
-      <p>Short & neat notes designed to help you revise faster. Use search, tests and the timer to make study consistent.</p>
-    </section>
-
     <footer class="site-footer">
-      © <span id="year">2025</span> Rohit ki Notes — Built with ❤️
+      © <span id="year"></span> Rohit ki Notes
     </footer>
 
   </main>
 
+  <!-- ================= JS START ================= -->
 
-<!-- ============= JAVASCRIPT START ============= -->
-<script>
-// -------------------------------
-//  Navigation Function
-// -------------------------------
-function goto(page) {
-  window.location.href = page;
-}
+  <script>
+    function goto(p) { window.location.href = p; }
 
-// -------------------------------
-//  Side Menu
-// -------------------------------
-const sideMenu = document.getElementById("sideMenu");
-const overlay = document.getElementById("overlay");
-const menuBtn = document.getElementById("menuBtn");
+    const side = document.getElementById("sideMenu");
+    const overlay = document.getElementById("overlay");
+    const menuBtn = document.getElementById("menuBtn");
 
-menuBtn.addEventListener("click", () => {
-  sideMenu.classList.add("open");
-  overlay.classList.add("show");
-});
+    menuBtn.onclick = () => { side.classList.add("open"); overlay.classList.add("show"); };
+    overlay.onclick = () => { side.classList.remove("open"); overlay.classList.remove("show"); };
 
-overlay.addEventListener("click", () => {
-  sideMenu.classList.remove("open");
-  overlay.classList.remove("show");
-});
+    // THEME
+    const ts = document.getElementById("themeSwitch");
+    ts.onchange = () => {
+      document.body.classList.toggle("dark", ts.checked);
+      localStorage.setItem("theme", ts.checked ? "dark" : "light");
+    };
+    if (localStorage.getItem("theme") === "dark") {
+      ts.checked = true;
+      document.body.classList.add("dark");
+    }
 
-// -------------------------------
-//  Theme Toggle
-// -------------------------------
-const themeSwitch = document.getElementById("themeSwitch");
+    // YEAR
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-themeSwitch.addEventListener("change", () => {
-  if (themeSwitch.checked) {
-    document.body.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.body.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  }
-});
+    // MOTIVATION
+    function showMotivation() {
+      const lines = [
+        "Success = Consistency × Hard Work!",
+        "Today's grind builds tomorrow!",
+        "Dream it. Do it.",
+        "Winners focus on winning!",
+        "Trust the process!"
+      ];
+      alert(lines[Math.floor(Math.random() * lines.length)]);
+    }
 
-// Load saved theme
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-  themeSwitch.checked = true;
-}
+    // BACKGROUND ANIMATION
+    const canvas = bgCanvas;
+    const ctx = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
 
-// -------------------------------
-//  Auto Year
-// -------------------------------
-document.getElementById("year").textContent = new Date().getFullYear();
+    let circles = [];
+    for (let i = 0; i < 40; i++) {
+      circles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 3 + 1,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: (Math.random() - 0.5) * 0.4
+      });
+    }
 
-// -------------------------------
-//  Daily Motivation
-// -------------------------------
-function showMotivation() {
-  const lines = [
-    "Success = Consistency × Hard Work!",
-    "Today's grind makes tomorrow shine!",
-    "If you can dream it, you can do it!",
-    "Winners focus on winning!",
-    "Believe in yourself!"
-  ];
-  alert(lines[Math.floor(Math.random() * lines.length)]);
-}
+    function animateBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      circles.forEach(c => {
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.25)";
+        ctx.fill();
+        c.x += c.dx; c.y += c.dy;
+        if (c.x < 0 || c.x > canvas.width) c.dx *= -1;
+        if (c.y < 0 || c.y > canvas.height) c.dy *= -1;
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
 
-// -------------------------------
-//  Background Animation
-// -------------------------------
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+    window.addEventListener("resize", () => {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+    });
 
-let circles = [];
-for (let i = 0; i < 40; i++) {
-  circles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 3 + 1,
-    dx: (Math.random() - 0.5) * 0.4,
-    dy: (Math.random() - 0.5) * 0.4
-  });
-}
+    // WAVE
+    const wavePath = document.getElementById("wavePath");
+    let t = 0;
+    function animateWave() {
+      t += 0.03;
+      let p = "M0 60 ";
+      for (let x = 0; x <= 1440; x += 20) {
+        p += `L ${x} ${60 + Math.sin(x * 0.01 + t) * 10} `;
+      }
+      p += "L1440 120 L0 120 Z";
+      wavePath.setAttribute("d", p);
+      requestAnimationFrame(animateWave);
+    }
+    animateWave();
+  </script>
 
-function animateBg() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  circles.forEach((c) => {
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255,255,255,0.25)";
-    ctx.fill();
-    c.x += c.dx;
-    c.y += c.dy;
+  <!-- SERVICE WORKER (CORRECT POSITION) -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 
-    if (c.x < 0 || c.x > canvas.width) c.dx *= -1;
-    if (c.y < 0 || c.y > canvas.height) c.dy *= -1;
-  });
-  requestAnimationFrame(animateBg);
-}
-animateBg();
-
-// -------------------------------
-//  Wave Animation
-// -------------------------------
-const wavePath = document.getElementById("wavePath");
-let t = 0;
-
-function animateWave() {
-  t += 0.03;
-  let path = "M0 60 ";
-
-  for (let x = 0; x <= 1440; x += 20) {
-    let y = 60 + Math.sin(x * 0.01 + t) * 10;
-    path += `L ${x} ${y} `;
-  }
-
-  path += "L 1440 120 L 0 120 Z";
-  wavePath.setAttribute("d", path);
-
-  requestAnimationFrame(animateWave);
-}
-animateWave();
-
-</script>
-<!-- ============= JAVASCRIPT END ============= -->
 </body>
 </html>
-
-    <!-- All your website code -->
-
-    <!-- Service Worker HERE (just before closing body) -->
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js");
-        }
-    </script>
