@@ -38,7 +38,7 @@
       <input id="themeSwitch" type="checkbox">
       <label for="themeSwitch" class="slider">
         <span class="icon">🌞</span>
-        <span class="icon">🌙</span>
+        <span class="icon">🌑</span>
       </label>
     </div>
   </header>
@@ -125,23 +125,25 @@
 
   <!-- BAQI PAGE CONTENT -->
 
-  <!-- Timetable Section (yaha paste karna hai) -->
-  <section class="timetable-box">
-    <h2>Generate Timetable</h2>
+<section class="timetable-box">
+  <h2>📚 Smart Weekly Timetable</h2>
 
-    <select id="classSelect">
-      <option value="12 science">12 Science</option>
-      <option value="12 commerce">12 Commerce</option>
-      <option value="12 arts">12 Arts</option>
-      <option value="11 science">11 Science</option>
-    </select>
+  <label>Select Class:</label>
+  <select id="classSelect">
+    <option value="">-- Select Class --</option>
+    <option value="11 science">11 Science</option>
+    <option value="11 commerce">11 Commerce</option>
+    <option value="11 arts">11 Arts</option>
+    <option value="12 science">12 Science</option>
+    <option value="12 commerce">12 Commerce</option>
+    <option value="12 arts">12 Arts</option>
+  </select>
 
-    <button onclick="generateTimetable(document.getElementById('classSelect').value)">
-      Generate
-    </button>
+  <button class="genBtn" onclick="generateTimetable()">Generate</button>
+  <button class="genBtn download" onclick="downloadPDF()">Download PDF</button>
 
-    <div id="result"></div>
-  </section>
+  <div id="result" class="timetable-result"></div>
+</section>
 
 
   <!-- BOTTOM WAVE -->
