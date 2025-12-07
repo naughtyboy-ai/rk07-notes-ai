@@ -544,3 +544,59 @@ body.dark .bot-msg {
 .home-btn:active {
     transform: scale(0.88);
 }
+.timetable-box {
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.3);
+  animation: fadeIn 0.8s ease;
+}
+
+.timetable-box select,
+.genBtn {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.genBtn {
+  background: #4cafef;
+  color: #000;
+  cursor: pointer;
+}
+
+.genBtn.download {
+  background: #ffc107;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  animation: fadeIn 0.7s ease;
+}
+
+.timetable-table th, .timetable-table td {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  text-align: center;
+  cursor: pointer;
+}
+
+.timetable-table td:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.science { background: rgba(0,140,255,0.15); }
+.commerce { background: rgba(0,255,140,0.15); }
+.arts { background: rgba(255,140,0,0.15); }
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(10px);}
+  to {opacity:1; transform: translateY(0);}
+}
