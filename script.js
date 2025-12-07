@@ -1,20 +1,22 @@
-/* ==========================================================
-   THEME SWITCH
-===========================================================*/
-const themeSwitch = document.getElementById("themeSwitch");
-if (themeSwitch) {
-  themeSwitch.addEventListener("change", () => {
-    document.body.classList.toggle("dark", themeSwitch.checked);
-    localStorage.setItem("theme", themeSwitch.checked ? "dark" : "light");
-  });
+// Toggle System
+const themeSwitch2 = document.getElementById("themeSwitch");
 
-  // load theme
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
+themeSwitch2.addEventListener("change", () => {
+  if (themeSwitch2.checked) {
     document.body.classList.add("dark");
-    themeSwitch.checked = true;
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.classList.remove("dark");
+    localStorage.setItem("theme", "light");
   }
+});
+
+// Load Saved Theme
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  themeSwitch2.checked = true;
 }
+
 function generateTimetable() {
     const cls = document.getElementById("classSelect").value;
     if (!cls) { alert("Select class first!"); return; }
