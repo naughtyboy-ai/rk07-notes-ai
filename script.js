@@ -1,22 +1,9 @@
-// Toggle System
-const themeSwitch2 = document.getElementById("themeSwitch");
 
-themeSwitch2.addEventListener("change", () => {
-  if (themeSwitch2.checked) {
-    document.body.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.body.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  }
+// DARK MODE
+const modeToggle = document.getElementById("modeToggle");
+modeToggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark", modeToggle.checked);
 });
-
-// Load Saved Theme
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-  themeSwitch2.checked = true;
-}
-
 
 
 /* ==========================================================
