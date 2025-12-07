@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rohit ki Notes — Home</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HOME BUTTON (Back + Home popup menu) -->
+<div id="homeBtn" class="home-btn">🏠</div>
+
+<div id="homeMenu" class="home-menu">
+  <button onclick="history.back()">⬅️ Back</button>
+  <button onclick="window.location.href='index.html'">🏠 Home</button>
+  <button onclick="document.getElementById('homeMenu').classList.remove('show')">✖ Close</button>
+</div>
+
+<!-- BACKGROUND CANVAS -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- WAVE BOTTOM -->
+<svg id="waveBottom" viewBox="0 0 1440 120">
+  <path id="waveBottomPath" d=""></path>
+</svg>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <button id="menuBtn" class="menu-icon">☰</button>
+
+  <div class="brand">
+    <img src="profile.jpg" class="logo" />
+    <div>
+      <div class="brand-name glow">Rohit ki Notes</div>
+      <div class="brand-sub">Personal Study Hub</div>
+    </div>
+  </div>
+
+  <label class="switch">
+    <input type="checkbox" id="themeSwitch">
+    <span class="slider"></span>
+  </label>
+</header>
+
+<!-- SIDE MENU -->
+<aside id="sideMenu" class="side-menu">
+  <a href="index.html">🏠 Home</a>
+  <a href="classes.html">📘 Classes</a>
+  <a href="study-timer.html">⏳ Study Timer</a>
+  <a href="calendar.html">📅 Calendar</a>
+  <a href="tests.html">📝 Tests</a>
+  <a href="ask-chat.html">🤖 Ask Chat</a>
+</aside>
+
+<div id="overlay"></div>
+
+<main>
+
+<section class="hero">
+  <h1>Power <span class="accent">∝</span> Work</h1>
+  <p>Your personal study hub with notes, tools & tests.</p>
+
+  <div class="hero-buttons">
+    <button onclick="goto('classes.html')" class="btn primary">Start Learning</button>
+    <button onclick="goto('study-timer.html')" class="btn">Study Timer</button>
+  </div>
+
+  <div class="card-container">
+
+    <div class="card" onclick="goto('classes.html')">
+      <span class="emoji">📘</span>
+      <h3>Classes</h3>
+      <p>Notes for all subjects</p>
+    </div>
+
+    <div class="card" onclick="goto('tests.html')">
+      <span class="emoji">📝</span>
+      <h3>Tests</h3>
+      <p>MCQs & Practice</p>
+    </div>
+
+    <div class="card" onclick="goto('ask-chat.html')">
+      <span class="emoji">🤖</span>
+      <h3>Ask Chat</h3>
+      <p>Smart Assistant</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="motivation">
+  <h2>Daily Motivation</h2>
+  <button class="mot-btn" onclick="showMotivation()">✨ Generate Quote</button>
+  <div id="motBox" class="mot-box"></div>
+</section>
+
+<footer>
+  © <span id="year"></span> Rohit ki Notes — Built with ❤️
+</footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
