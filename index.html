@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rohit ki Notes — Home</title>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- FIXED THEME TOGGLE -->
+  <div id="themeToggleContainer">
+    <input type="checkbox" id="themeSwitch">
+    <label for="themeSwitch" class="toggle-label" title="Toggle theme">
+      <span class="toggle-icon sun">☀️</span>
+      <span class="toggle-icon moon">🌙</span>
+    </label>
+  </div>
+
+  <!-- Universal Home button -->
+  <a href="index.html" class="home-btn" aria-label="Home">🏠</a>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
+
+    <div class="brand">
+      <img src="profile.jpg" alt="Rohit" class="logo" id="profileImg">
+      <div>
+        <div class="brand-name glow-touch" id="notesTitle">Rohit ki Notes</div>
+        <div class="brand-sub">Personal Study Hub</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="contact" id="contactBtn" title="Email support">✉ Contact</button>
+    </div>
+  </header>
+
+  <!-- SIDE MENU -->
+  <aside id="sideMenu" class="side-menu" aria-hidden="true">
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="classes.html">📘 Classes</a>
+      <a href="subjects.html">📚 Subjects</a>
+      <a href="study-timer.html">⏳ Study Timer</a>
+      <a href="calendar.html">📅 Calendar</a>
+      <a href="tests.html">📝 Tests</a>
+      <a href="ask-chat.html">🤖 Ask Chat</a>
+      <a href="#" id="openUpload">⬆ Upload Note</a>
+    </nav>
+    <div class="side-footer">
+      <button class="side-email" id="mailBtn">Email Support</button>
+    </div>
+  </aside>
+
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- MAIN -->
+  <main class="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Power <span class="accent">∝</span> Work</h1>
+        <p class="lead">We are the hardest workers in the room. Clean notes, tests and tools — all in one place.</p>
+
+        <div class="hero-ctas">
+          <button class="btn primary" onclick="goto('classes.html')">Start Learning</button>
+          <button class="btn" onclick="showTimetableUI()">Timetable</button>
+          <button class="btn ghost" onclick="showMotivation()">Daily Motivation</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES CARDS (bottom area) -->
+    <section id="homeCards" class="home-cards">
+      <!-- cards placed in JS-friendly markup style -->
+      <div class="cards-row">
+        <div class="card card3d" data-link="subjects.html">
+          <div class="card-top"><span class="emoji">📘</span><span class="badge">Study</span></div>
+          <div class="title">Subjects & Notes</div>
+          <div class="desc">Class 9–12 notes, chapter-wise</div>
+        </div>
+
+        <div class="card card3d" data-link="tests.html">
+          <div class="card-top"><span class="emoji">📝</span><span class="badge new">Tests</span></div>
+          <div class="title">Tests & Practice</div>
+          <div class="desc">MCQs • Chapter tests</div>
+        </div>
+
+        <div class="card card3d" data-link="#timetable">
+          <div class="card-top"><span class="emoji">📅</span><span class="badge">Tool</span></div>
+          <div class="title">Smart Timetable</div>
+          <div class="desc">Weekly plan — morning/noon/evening</div>
+        </div>
+
+        <div class="card card3d" data-link="#notes">
+          <div class="card-top"><span class="emoji">🗂</span><span class="badge">Save</span></div>
+          <div class="title">Create Notes</div>
+          <div class="desc">Save quick notes locally</div>
+        </div>
+
+        <div class="card card3d" data-link="ask-chat.html">
+          <div class="card-top"><span class="emoji">🤖</span><span class="badge">AI</span></div>
+          <div class="title">Ask Rohit AI</div>
+          <div class="desc">Chat, solve, open PDFs</div>
+        </div>
+
+        <div class="card card3d" onclick="showFormulas()">
+          <div class="card-top"><span class="emoji">🔬</span><span class="badge">Formulas</span></div>
+          <div class="title">Formula Book</div>
+          <div class="desc">Math / Physics / Chemistry</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMETABLE UI (hidden until generate) -->
+    <section id="timetable" class="timetable-box" aria-hidden="true">
+      <h2>📚 Smart Weekly Timetable</h2>
+      <div class="timetable-controls">
+        <select id="classSelect">
+          <option value="">-- Select Class --</option>
+          <option value="11 science">11 Science</option>
+          <option value="11 commerce">11 Commerce</option>
+          <option value="11 arts">11 Arts</option>
+          <option value="12 science">12 Science</option>
+          <option value="12 commerce">12 Commerce</option>
+          <option value="12 arts">12 Arts</option>
+        </select>
+        <button class="genBtn" id="genBtn">Generate</button>
+        <button class="genBtn" id="downloadBtn">Download PDF</button>
+        <button class="genBtn" id="saveTimetableBtn">Save</button>
+      </div>
+      <div id="result" class="timetable-result"></div>
+    </section>
+
+    <!-- NOTES SECTION -->
+    <section id="notes" class="notes-box">
+      <h2>Notes — Create / View</h2>
+
+      <div class="notes-controls">
+        <input id="noteName" placeholder="Note name (e.g., rk07)" />
+        <input id="noteContent" placeholder="Note content" />
+        <button id="saveNoteBtn" class="genBtn">Save Note</button>
+        <button id="showNotesBtn" class="genBtn">Show Notes</button>
+        <input id="noteFile" type="file" accept=".pdf,.jpg,.png,.docx" style="display:none" />
+        <button id="openUploadBtn" class="genBtn">Upload File</button>
+        <div id="notesCount" style="margin-left:12px"></div>
+      </div>
+
+      <div id="notesList" class="notes-list"></div>
+    </section>
+
+    <!-- FORMULAS -->
+    <section id="formulaBox" class="formula-box" aria-hidden="true">
+      <h2>Formula Book</h2>
+      <div class="formula-tabs">
+        <button onclick="loadFormulas('math')">Math</button>
+        <button onclick="loadFormulas('physics')">Physics</button>
+        <button onclick="loadFormulas('chemistry')">Chemistry</button>
+      </div>
+      <div id="formulaList"></div>
+    </section>
+
+    <!-- RECENT + STREAK -->
+    <section class="meta-box">
+      <div id="recentBox" class="recent-box"></div>
+      <div class="streak-box">Study Streak: <span id="streakCount">0</span> days</div>
+    </section>
+
+    <!-- MOTIVATION (quotes handled in script) -->
+    <section id="motivation" class="motivation-box">
+      <h2>Daily Motivation</h2>
+      <div id="quoteBox" class="quote-box"></div>
+      <button class="genBtn" onclick="showMotivation()">New Quote</button>
+    </section>
+
+    <footer class="site-footer">
+      © <span id="year">2025</span> Rohit ki Notes — Built with ❤️
+    </footer>
+
+  </main>
+
+  <!-- BOTTOM WAVE (stylish) -->
+  <svg id="bottomWave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" class="wave-bottom">
+    <path id="bottomWavePath" d="" fill="rgba(255,255,255,0.04)"></path>
+  </svg>
+
+  <!-- scripts -->
+  <script src="script.js"></script>
+
+  <!-- service worker registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>
