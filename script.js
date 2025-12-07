@@ -1,3 +1,15 @@
+const homeBtn = document.getElementById("homeBtn");
+const homeSheet = document.getElementById("homeSheet");
+
+homeBtn.addEventListener("click", () => {
+  homeSheet.style.bottom = "0px";
+});
+
+document.addEventListener("click", (e) => {
+  if (!homeSheet.contains(e.target) && !homeBtn.contains(e.target)) {
+    homeSheet.style.bottom = "-300px";
+  }
+});
 /* Main site script - theme, menu, waves, timetable, notes, formulas, streak, recent, uploads */
 
 // === utilities ===
@@ -5,13 +17,19 @@ function el(id){return document.getElementById(id)}
 function goto(p){ if(p.startsWith('#')) location.hash = p; else location.href = p }
 
 // === THEME TOGGLE ===
-const themeSwitch = el('themeSwitch');
-themeSwitch.addEventListener('change', ()=>{
-  document.body.classList.toggle('dark', themeSwitch.checked);
-  localStorage.setItem('theme', themeSwitch.checked ? 'dark' : 'light');
-});
-if(localStorage.getItem('theme') === 'dark'){ document.body.classList.add('dark'); themeSwitch.checked=true }
+// THEME SLIDER
+const sw = document.getElementById("themeSwitch");
 
+sw.addEventListener("change", () => {
+  document.body.classList.toggle("dark", sw.checked);
+  localStorage.setItem("theme", sw.checked ? "dark" : "light");
+});
+
+// load saved state
+if(localStorage.getItem("theme") === "dark"){
+  document.body.classList.add("dark");
+  sw.checked = true;
+}
 // === MENU ===
 const side = document.getElementById('sideMenu'), overlay = document.getElementById('overlay'), menuBtn = document.getElementById('menuBtn')
 menuBtn.addEventListener('click', ()=>{ side.classList.toggle('open'); overlay.classList.toggle('show'); })
