@@ -35,7 +35,7 @@
     </div>
 <!-- FIXED THEME TOGGLE -->
 <div id="themeToggleContainer">
-    <input type="checkbox" id="themeSwitch">
+    <input type="slider" id="themeSwitch">
     <label for="themeSwitch" class="toggle-label">
         <span class="toggle-icon sun">☀️</span>
         <span class="toggle-icon moon">🌙</span>
@@ -125,31 +125,13 @@
 
   <!-- BAQI PAGE CONTENT -->
 
-<section class="timetable-box">
-  <h2>📚 Smart Weekly Timetable</h2>
 
-  <label>Select Class:</label>
-  <select id="classSelect">
-    <option value="">-- Select Class --</option>
-    <option value="11 science">11 Science</option>
-    <option value="11 commerce">11 Commerce</option>
-    <option value="11 arts">11 Arts</option>
-    <option value="12 science">12 Science</option>
-    <option value="12 commerce">12 Commerce</option>
-    <option value="12 arts">12 Arts</option>
-  </select>
-
-  <button class="genBtn" onclick="generateTimetable()">Generate</button>
-  <button class="genBtn download" onclick="downloadPDF()">Download PDF</button>
-
-  <div id="result" class="timetable-result"></div>
-</section>
 
 
   <!-- BOTTOM WAVE -->
-<svg id="bottomWave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"
+<svg id="Wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"
      style="position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; z-index: -1;">
-    <path id="bottomWavePath" d="" fill="rgba(255,255,255,0.05)"></path>
+    <path id="WavePath" d="" fill="rgba(255,255,255,0.05)"></path>
 </svg>
 
 
