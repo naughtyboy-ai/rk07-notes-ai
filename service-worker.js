@@ -1,20 +1,16 @@
-self.addEventListener("install", e => {
-    e.waitUntil(
-        caches.open("rohit-cache").then(cache => {
-            return cache.addAll([
-                "index.html",
-                "ask-chat.html",
-                "ask-chat.js",
-                "notes-upload.js",
-                "timetable.js",
-                "formulas.js"
-            ]);
-        })
-    );
-});
+// simple offline cache
+const CACHE_NAME = 'rk-notes-v1';
+const ASSETS = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/script.js',
+  '/manifest.json'
+];
 
-self.addEventListener("fetch", e => {
-    e.respondWith(
-        caches.match(e.request).then(resp => resp || fetch(e.request))
-    );
+self.addEventListener('install', e=>{
+  e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)));
+});
+self.addEventListener('fetch', e=>{
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
 });
