@@ -113,59 +113,71 @@ body.dark .topbar {
   font-size: 14px;
   cursor: pointer;
 }
-
-/* ------------------------------------------
-   THEME SWITCH (Slider)
--------------------------------------------*/
-.theme-toggle {
-  position: relative;
-  width: 52px;
-  height: 26px;
+/* FIXED POSITION TOGGLE */
+#themeToggleContainer {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
 }
 
-.theme-toggle input {
+/* Hide checkbox */
+#themeSwitch {
   display: none;
 }
 
-.theme-toggle .slider {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #bbb;
-  border-radius: 40px;
+/* Toggle body */
+.toggle-label {
+  width: 70px;
+  height: 34px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
   cursor: pointer;
+  padding: 4px;
+  justify-content: space-between;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* Icons */
+.toggle-icon {
+  font-size: 20px;
+  opacity: 0.6;
   transition: 0.3s;
 }
 
-.theme-toggle .slider:before {
-  content: "";
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 2px;
-  left: 3px;
-  background: white;
-  border-radius: 50%;
-  transition: 0.3s;
+/* Move moon on toggle */
+#themeSwitch:checked + .toggle-label {
+  background: rgba(0,0,0,0.4);
 }
 
-.theme-toggle input:checked + .slider {
-  background: #4f8cff;
+/* Sun fade in/out */
+#themeSwitch:not(:checked) + .toggle-label .sun {
+  opacity: 1;
 }
 
-.theme-toggle input:checked + .slider:before {
-  transform: translateX(26px);
+#themeSwitch:checked + .toggle-label .sun {
+  opacity: 0.3;
 }
 
-.slider .icon {
-  position: absolute;
-  font-size: 13px;
-  top: 5px;
+/* Moon fade */
+#themeSwitch:checked + .toggle-label .moon {
+  opacity: 1;
 }
 
-.sun { left: 6px; }
-.moon { right: 6px; }
+#themeSwitch:not(:checked) + .toggle-label .moon {
+  opacity: 0.3;
+}
 
+/* Dark Mode Body Class */
+body.dark {
+  background: #0e0f14;
+  color: white;
+  transition: background 0.3s;
+}
 /* ------------------------------------------
    SIDE MENU
 -------------------------------------------*/
