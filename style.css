@@ -113,71 +113,56 @@ body.dark .topbar {
   font-size: 14px;
   cursor: pointer;
 }
-/* FIXED POSITION TOGGLE */
-#themeToggleContainer {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
 }
 
-/* Hide checkbox */
-#themeSwitch {
-  display: none;
-}
-
-/* Toggle body */
-.toggle-label {
-  width: 70px;
-  height: 34px;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(14px);
-  display: flex;
-  align-items: center;
-  border-radius: 50px;
-  cursor: pointer;
-  padding: 4px;
-  justify-content: space-between;
-  transition: 0.3s;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-/* Icons */
-.toggle-icon {
-  font-size: 20px;
-  opacity: 0.6;
-  transition: 0.3s;
-}
-
-/* Move moon on toggle */
-#themeSwitch:checked + .toggle-label {
-  background: rgba(0,0,0,0.4);
-}
-
-/* Sun fade in/out */
-#themeSwitch:not(:checked) + .toggle-label .sun {
-  opacity: 1;
-}
-
-#themeSwitch:checked + .toggle-label .sun {
-  opacity: 0.3;
-}
-
-/* Moon fade */
-#themeSwitch:checked + .toggle-label .moon {
-  opacity: 1;
-}
-
-#themeSwitch:not(:checked) + .toggle-label .moon {
-  opacity: 0.3;
-}
-
-/* Dark Mode Body Class */
+/* DARK MODE */
 body.dark {
-  background: #0e0f14;
-  color: white;
-  transition: background 0.3s;
+    background: #1a1a1a;
+    color: #fff;
 }
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* DARK MODE SWITCH */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    display: inline-block;
+}
+.switch input { display: none; }
+
+.slider {
+    background: #bbb;
+    border-radius: 30px;
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    transition: .4s;
+}
+.slider:before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    left: 2px;
+    bottom: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+input:checked + .slider {
+    background: #007bff;
+}
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
 /* ------------------------------------------
    SIDE MENU
 -------------------------------------------*/
