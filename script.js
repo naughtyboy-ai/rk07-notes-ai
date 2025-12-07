@@ -1,10 +1,19 @@
-
-// DARK MODE
+/* ==========================================================
+   DARK MODE TOGGLE (Auto Save)
+===========================================================*/
 const modeToggle = document.getElementById("modeToggle");
-modeToggle.addEventListener("change", () => {
-    document.body.classList.toggle("dark", modeToggle.checked);
-});
 
+// Load previous theme
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    if (modeToggle) modeToggle.checked = true;
+}
+
+modeToggle?.addEventListener("change", () => {
+    const isDark = modeToggle.checked;
+    document.body.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+});
 
 /* ==========================================================
    SIDE MENU
@@ -14,138 +23,142 @@ const overlay = document.getElementById("overlay");
 const menuBtn2 = document.getElementById("menuBtn");
 
 function openMenu() {
-  sideMenu.classList.add("open");
-  overlay.classList.add("show");
+    sideMenu?.classList.add("open");
+    overlay?.classList.add("show");
 }
 function closeMenu() {
-  sideMenu.classList.remove("open");
-  overlay.classList.remove("show");
+    sideMenu?.classList.remove("open");
+    overlay?.classList.remove("show");
 }
 
 menuBtn2?.addEventListener("click", openMenu);
 overlay?.addEventListener("click", closeMenu);
 
 /* ==========================================================
-   GLOBAL NAVIGATION
+   PAGE NAVIGATION
 ===========================================================*/
 function goto(page) {
-  window.location.href = page;
+    window.location.href = page;
 }
 
 /* ==========================================================
-   3D CARD HOVER EFFECT
+   3D CARD EFFECT
 ===========================================================*/
 document.querySelectorAll(".card3d").forEach(card => {
-  card.addEventListener("mousemove", e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    const rotateY = ((x / rect.width) - 0.5) * 18;
-    const rotateX = ((y / rect.height) - 0.5) * -18;
+    let rect = null;
+    card.addEventListener("mouseenter", () => {
+        rect = card.getBoundingClientRect();
+    });
 
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-  });
+    card.addEventListener("mousemove", e => {
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = `rotateX(0) rotateY(0) scale(1)`;
-  });
+        const rotateY = ((x / rect.width) - 0.5) * 20;
+        const rotateX = ((y / rect.height) - 0.5) * -20;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0) rotateY(0) scale(1)";
+    });
 });
 
 /* ==========================================================
-   "NEW" BADGE PULSE
+   NEW BADGE PULSE (Efficient)
 ===========================================================*/
 document.querySelectorAll(".badge.new").forEach(b => {
-  setInterval(() => b.classList.toggle("pulse"), 1000);
+    b.style.animation = "pulseEffect 1.2s infinite";
 });
 
 /* ==========================================================
-   BACKGROUND CANVAS ANIMATION
+   CANVAS BACKGROUND ANIMATION (Optimized)
 ===========================================================*/
 const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
+if (canvas) {
+    const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const dots = Array.from({ length: 40 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+    }));
+
+    function animateDots() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        dots.forEach(dot => {
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255,0.25)";
+            ctx.fill();
+
+            dot.x += dot.dx;
+            dot.y += dot.dy;
+
+            if (dot.x < 0 || dot.x > canvas.width) dot.dx *= -1;
+            if (dot.y < 0 || dot.y > canvas.height) dot.dy *= -1;
+        });
+
+        requestAnimationFrame(animateDots);
+    }
+    animateDots();
 }
-resizeCanvas();
-window.onresize = resizeCanvas;
-
-let dots = [];
-for (let i = 0; i < 35; i++) {
-  dots.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    dx: (Math.random() - 0.5) * 0.6,
-    dy: (Math.random() - 0.5) * 0.6
-  });
-}
-
-function animateDots() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  dots.forEach(d => {
-    ctx.beginPath();
-    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255,255,255,0.25)";
-    ctx.fill();
-
-    d.x += d.dx;
-    d.y += d.dy;
-
-    if (d.x < 0 || d.x > canvas.width) d.dx *= -1;
-    if (d.y < 0 || d.y > canvas.height) d.dy *= -1;
-  });
-
-  requestAnimationFrame(animateDots);
-}
-animateDots();
 
 /* ==========================================================
-   WAVE ANIMATION
+   TOP WAVE ANIMATION
 ===========================================================*/
 const wavePath = document.getElementById("wavePath");
-let w = 0;
+let waveT = 0;
 
 function animateWave() {
-  w += 0.03;
+    if (!wavePath) return;
 
-  let d = "M0 60 ";
-  for (let i = 0; i <= 1440; i += 40) {
-    d += `Q ${i + 20} ${60 + Math.sin((i / 100) + w) * 20} ${i + 40} 60 `;
-  }
-  d += "V 120 H 0 Z";
+    waveT += 0.03;
+    let d = "M0 60 ";
 
-  wavePath.setAttribute("d", d);
+    for (let i = 0; i <= innerWidth; i += 40) {
+        d += `Q ${i + 20} ${60 + Math.sin((i / 100) + waveT) * 20} ${i + 40} 60 `;
+    }
 
-  requestAnimationFrame(animateWave);
+    wavePath.setAttribute("d", d + `V120 H0 Z`);
+    requestAnimationFrame(animateWave);
 }
 animateWave();
-<script>
-// -------------------------------
-//  Bottom Wave Animation
-// -------------------------------
+
+/* ==========================================================
+   BOTTOM WAVE ANIMATION
+===========================================================*/
 const bottomWavePath = document.getElementById("bottomWavePath");
-let t2 = 0;
+let waveB = 0;
 
 function animateBottomWave() {
-  t2 += 0.03;
-  let path = "M0 0 ";
+    if (!bottomWavePath) return;
 
-  for (let x = 0; x <= 1440; x += 20) {
-    let y = 20 + Math.sin(x * 0.01 + t2) * 10;
-    path += `L ${x} ${y} `;
-  }
+    waveB += 0.03;
+    let path = "M0 0 ";
 
-  path += "L 1440 120 L 0 120 Z";
-  bottomWavePath.setAttribute("d", path);
+    for (let x = 0; x <= innerWidth; x += 20) {
+        let y = 20 + Math.sin(x * 0.01 + waveB) * 10;
+        path += `L ${x} ${y} `;
+    }
 
-  requestAnimationFrame(animateBottomWave);
+    bottomWavePath.setAttribute("d", path + `L ${innerWidth} 120 L 0 120 Z`);
+    requestAnimationFrame(animateBottomWave);
 }
 animateBottomWave();
-</script>
+
 /* ==========================================================
    CHAT WIDGET
 ===========================================================*/
@@ -157,67 +170,69 @@ const chatInput2 = document.getElementById("chatInput");
 const chatSendBtn = document.getElementById("chatSend");
 
 function openChat() {
-  chatWidget.setAttribute("aria-hidden", "false");
+    chatWidget?.classList.add("open");
 }
 function closeChat() {
-  chatWidget.setAttribute("aria-hidden", "true");
+    chatWidget?.classList.remove("open");
 }
 
 openChatBtn?.addEventListener("click", openChat);
 closeChatBtn?.addEventListener("click", closeChat);
 
-/* -------- Load local FAQ JSON -------- */
+/* ---- Load local FAQ ---- */
 let FAQ = [];
 try {
-  FAQ = JSON.parse(document.getElementById("faqData").textContent);
+    FAQ = JSON.parse(document.getElementById("faqData")?.textContent || "[]");
 } catch {
-  FAQ = [];
+    FAQ = [];
 }
 
 function addChatMsg(text, sender) {
-  const div = document.createElement("div");
-  div.className = sender === "bot" ? "bot-msg" : "user-msg";
-  div.innerText = text;
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
+    if (!chatBody) return;
+    const div = document.createElement("div");
+    div.className = sender === "bot" ? "bot-msg" : "user-msg";
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
 }
 
 function getAnswer(q) {
-  q = q.toLowerCase();
+    q = q.toLowerCase();
 
-  for (let item of FAQ) {
-    if (q.includes(item.q)) return item.a;
-  }
-  return "Sorry, I didn’t understand that. Try: pdf, timer, subjects, tests, support.";
+    for (let item of FAQ) {
+        if (q.includes(item.q.toLowerCase())) return item.a;
+    }
+    return "Sorry, I didn’t understand that. Try: pdf, timer, subjects, tests, support.";
 }
 
-chatSendBtn.addEventListener("click", () => {
-  const msg = chatInput2.value.trim();
-  if (!msg) return;
+chatSendBtn?.addEventListener("click", () => {
+    const msg = chatInput2.value.trim();
+    if (!msg) return;
 
-  addChatMsg(msg, "user");
-  addChatMsg(getAnswer(msg), "bot");
-  chatInput2.value = "";
+    addChatMsg(msg, "user");
+    setTimeout(() => addChatMsg(getAnswer(msg), "bot"), 300);
+
+    chatInput2.value = "";
 });
 
-chatInput2.addEventListener("keypress", e => {
-  if (e.key === "Enter") chatSendBtn.click();
+chatInput2?.addEventListener("keypress", e => {
+    if (e.key === "Enter") chatSendBtn.click();
 });
 
 /* ==========================================================
    MOTIVATION POPUP
 ===========================================================*/
 function showMotivation() {
-  alert([
-    "🔥 Hard work beats talent!",
-    "📚 Study now, shine later!",
-    "🏆 Success = Consistency!",
-    "💪 Small steps → Big results!"
-  ][Math.floor(Math.random() * 4)]);
+    alert([
+        "🔥 Hard work beats talent!",
+        "📚 Study now, shine later!",
+        "🏆 Success = Consistency!",
+        "💪 Small steps → Big results!"
+    ][Math.floor(Math.random() * 4)]);
 }
 
 /* ==========================================================
-   SET YEAR (FOOTER)
+   AUTO YEAR
 ===========================================================*/
 const y = document.getElementById("year");
 if (y) y.textContent = new Date().getFullYear();
