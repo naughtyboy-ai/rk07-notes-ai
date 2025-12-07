@@ -23,8 +23,7 @@
   </div>
 
   <!-- Universal Home button -->
-  <a href="index.html" class="home-btn" aria-label="Home">🏠</a>
-
+  <div class="home-btn" id="homeBtn">🏠</div>
   <!-- TOPBAR -->
   <header class="topbar">
     <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
@@ -199,5 +198,9 @@
       navigator.serviceWorker.register('service-worker.js').catch(()=>{});
     }
   </script>
+  <div id="homeSheet">
+  <button class="home-sheet-btn" onclick="window.location='index.html'">🏠 Go Home</button>
+  <button class="home-sheet-btn" onclick="history.back()">⬅ Go Back</button>
+  </div>
 </body>
 </html>
